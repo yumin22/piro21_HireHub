@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+
+{% endblock %}
+{% block content %}
+<div class="title">지원자 관리 > 서류 관리</div>
+<div class="applicant_container">
+    <div class="applicants_list">
+        <p>지원자</p>
+        <div class="scroll_section">
+            {% for applicant in applicants %}
+            <div class="each_applicant all">
+                <ul>
+                    <li id="name">{{applicant.name}}</li>
+                    <li class="info">{{applicant.school}}</li>
+                    <li class="info">{{applicant.major}}</li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="applicants_list">
+        <p>서류 합격자</p>
+        <div class="scroll_section">
+            {% for applicant in applicants %}
+            {% if applicant.status != 'submitted' %}
+                <div class="each_applicant pass">
+                    <ul>
+                        <li id="name">{{applicant.name}}</li>
+                        <li class="info">{{applicant.school}}</li>
+                        <li class="info">{{applicant.major}}</li>
+                    </ul>
+                </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

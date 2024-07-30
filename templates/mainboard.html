@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/mainboard.css' %}">
+{% endblock %}
+{% block content %}
+<div class = "mainboard_container">
+    <div class="evaluate_list">
+        <p class="main_title">평가 목록</p>
+        <div class="scroll_section">
+            {% for applicant in applicants %}
+            <div class="my_applicant" OnClick="location.href ='http://URL주소'" style="cursor:pointer;">
+                <ul class="applicant_info">
+                    <li>{{applicant.name}}</li>
+                    <li>{{applicant.school}}</li>
+                    <li>{{applicant.major}}</li>
+                </ul>
+                <p>지원 날짜: {{applicant.submission_date}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="my_schedule">
+        <p class="main_title">내 일정</p>
+        <div class="scroll_section">
+            {% for applicant in applicants %}
+            <div class="schedule_content">
+                <p id="name">{{applicant.name}}</p>
+                <p id="date">면접 날짜: {{applicant.interview_date}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
