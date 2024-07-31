@@ -24,6 +24,9 @@
             </div>
             <div id="question-form-container">
                 {{ formset.management_form }}
+                {% for form in formset %}
+                    {{ form.as_p }}
+                {% endfor %}
                 <!-- 질문이 숨김 필드로 추가 -->
             </div>
             <button type="submit">템플릿 생성하기</button>
@@ -58,7 +61,7 @@
 
                 const hiddenQuestionInput = document.createElement('input');
                 hiddenQuestionInput.type = 'hidden';
-                hiddenQuestionInput.name = `questions-${questionCounter}-question`;
+                hiddenQuestionInput.name = `form-${questionCounter}-question`;
                 hiddenQuestionInput.value = questionText;
 
                 listItem.appendChild(questionLabel);
@@ -70,6 +73,9 @@
                 document.getElementById('new_question_text').value = '';
                 console.log(`Added question: ${questionText}`); 
                 questionCounter++;
+
+                const totalForms = document.getElementById('id_form-TOTAL_FORMS');
+                totalForms.value = questionCounter;
             }
         }
 

@@ -13,7 +13,7 @@ class TemplateListView(View):
 class ApplicationTemplateCreateView(View):
     def get(self, req):
         template_form = ApplicationTemplateForm()
-        QuestionFormSet = modelformset_factory(Question, form=QuestionForm)
+        QuestionFormSet = modelformset_factory(Question, form=QuestionForm, extra=0)
         formset = QuestionFormSet(queryset=Question.objects.none())
         return render(req, 'apply_create.html', {
             'template_form' : template_form,
@@ -22,7 +22,7 @@ class ApplicationTemplateCreateView(View):
     
     def post(self, req):
         template_form = ApplicationTemplateForm(req.POST)
-        QuestionFormSet = modelformset_factory(Question, form=QuestionForm)
+        QuestionFormSet = modelformset_factory(Question, form=QuestionForm, extra=0)
         formset = QuestionFormSet(req.POST, queryset=Question.objects.none())
 
         if template_form.is_valid() and formset.is_valid():
