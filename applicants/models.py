@@ -20,7 +20,7 @@ class Application(models.Model):
         ('interview_completed', 'Interview Completed'),
     ]
 
-    template = models.ForeignKey(ApplicationTemplate, on_delete=models.CASCADE)
+    template = models.ForeignKey(ApplicationTemplate, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15)
     school = models.CharField(max_length=100)
