@@ -1,0 +1,108 @@
+body {
+   margin: 0;
+}
+:root {
+   --lightgreen-color: #7CE84C
+}
+
+/* initial.html */
+.initial_container {
+   display: flex;
+}
+.left_initialContainer, .right_initialContainer {
+   width: 50%;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+h3 {
+   font-size: 110px;
+}
+.left_initialContainer {
+   background-color: var(--lightgreen-color);
+   color: white;
+}
+.right_initialContainer {
+   color: var(--lightgreen-color)
+}
+.applicants_btns, .interviewer_btns {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.applicants_btns a, .interviewer_btns a {
+   margin-bottom: 26px;
+   border-radius: 30px;
+   font-size: 35px;
+   font-weight: bold;
+   text-align: center;
+   padding: 20px 0;
+   text-decoration: none;
+}
+.applicants_btns a {
+   background-color: white;
+   width: 455px;
+   color: var(--lightgreen-color);
+}
+.interviewer_btns a {
+   background-color: var(--lightgreen-color);
+   width: 400px;
+   color: white;
+}
+
+/* signup.html, login.html */
+.logo, .login_logo {
+   font-size: 64px;
+   font-weight: bold;
+   margin-top: 90px;
+   margin-bottom: 55px;
+   text-align: center;
+}
+.login_logo {
+   margin-top: 180px;
+}
+.logo a, .login_logo a {
+   text-decoration: none;
+   color: black;
+}
+.signup_container form, .loginform_container form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+#signup_form input, #login_form input {
+   width: 580px;
+   height: 70px;
+   border-radius: 30px;
+   font-size: 24px;
+   font-weight: bold;
+   color: black;
+   padding-left: 20px;
+   border: 2px solid var(--lightgreen-color);
+   margin-bottom: 28px;
+}
+.signup_input:visited, .login_input:visited {
+   outline: none;
+}
+.signup_btn, .login_btn {
+   background-color: var(--lightgreen-color);
+   margin-top: 26px;
+}
+
+/* signupcheck.html */
+.signupCheck_container {
+   text-align: center;
+   position: relative;
+   top: 40%;
+}
+.signupCheck_container h2 {
+   font-size: 55px;
+   margin: 0;
+}
+.signupCheck_container p {
+   font-size: 40px;
+   font-weight: bold;
+   margin-top: 10px;
+}
