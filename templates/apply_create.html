@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Creation</title>
+</head>
+<body>
+    <div>
+        <h1>템플릿 > 새 템플릿</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <h2>지원서 제목</h2>
+                {{ template_form.name }}
+                {{ template_form.description }}
+            </div>
+            <div>
+                <h2>지원서 항목 추가</h2>
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    {{ form.question_text }}
+                {% endfor %}
+                <button type="button" onclick="addQuestion()">추가하기</button>
+            </div>
+            <button type="submit">템플릿 생성하기</button>
+        </form>
+    </div>
+    <div>
+        <h2>지원서 양식</h2>
+        <div id="preview">
+            <h3>제목: <span id="preview-title"></span></h3>
+            <ul id="question-list">
+                <!-- 질문 리스트가 여기에 추가됩니다. -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function addQuestion() {
+            const questionText = document.getElementById('id_question_text').value;
+            if (questionText) {
+                const questionList = document.getElementById('question-list');
+                const listItem = document.createElement('li');
+                listItem.textContent = questionText;
+                questionList.appendChild(listItem);
+                document.getElementById('id_question_text').value = '';
+            }
+        }
+
+        document.getElementById('id_name').addEventListener('input', function () {
+            document.getElementById('preview-title').textContent = this.value;
+        });
+    </script>
+</body>
+</html>
