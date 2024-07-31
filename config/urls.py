@@ -23,4 +23,5 @@ urlpatterns = [
     path('applicants/', include('applicants.urls')),
     path('interviews/', include('interviews.urls')),
     path('evaluations/', include('evaluations.urls')),
+    path('template/', include('template.urls')),
 ]
