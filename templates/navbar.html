@@ -5,7 +5,7 @@
     </div>
     {% if user.is_authenticated %}<!--로그인한 상태일 때 출력-->
     <div id="nav_menu">
-        <a href='{% url "accounts:mainboard" pk=user.pk %}'>내 작업보드</a> 
+        <a href='{% url "accounts:mainboard" pk=user.pk %}'><h2>내 작업보드</h2></a> 
         <div>
             <h2>지원자 관리</h2>
             <div>
@@ -13,8 +13,8 @@
                 <a href='{% url "applicants:interview" %}'>면접 관리</a> 
             </div>
         </div>
-        <a href='{% url "applicants:interview" %}'>템플릿</a>
-        <a href='{% url "applicants:interview" %}'>로그아웃</a>
+        <a href='{% url "applicants:interview" %}'><h2>템플릿</h2></a><!--임시url-->
+        <a href='{% url "applicants:interview" %}'><h2>로그아웃</h2></a><!--임시url-->
     </div>
     {% endif %}
 </nav>
