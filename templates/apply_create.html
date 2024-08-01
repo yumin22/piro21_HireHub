@@ -6,51 +6,85 @@
 </head>
 <body>
     <div>
-        <h1>템플릿 > 새 템플릿</h1>
-        <form method="post">
+        <h1>템플릿</h1>
+        <form method="post" id="template-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div>
                 <h2>지원서 제목</h2>
                 {{ template_form.name }}
+            </div>
+            <div>
+                <h2>지원서 설명</h2>
                 {{ template_form.description }}
             </div>
             <div>
                 <h2>지원서 항목 추가</h2>
+                <input type="text" id="new_question_text" placeholder="항목을 입력하세요">
+                <button type="button" onclick="addQuestion()">추가하기</button>
+            </div>
+            <div id="question-form-container">
                 {{ formset.management_form }}
                 {% for form in formset %}
-                    {{ form.question_text }}
+                    {{ form.as_p }}
                 {% endfor %}
-                <button type="button" onclick="addQuestion()">추가하기</button>
+                <!-- 질문이 숨김 필드로 추가 -->
             </div>
             <button type="submit">템플릿 생성하기</button>
         </form>
     </div>
+    <!-- 미리보기 영역 -->
     <div>
         <h2>지원서 양식</h2>
         <div id="preview">
             <h3>제목: <span id="preview-title"></span></h3>
-            <ul id="question-list">
-                <!-- 질문 리스트가 여기에 추가됩니다. -->
-            </ul>
+            <h4>설명: <span id="preview-description"></span></h4>
+            <ol id="question-list">
+                <!-- 항목 리스트가 여기에 추가 -->
+            </ol>
         </div>
     </div>
 
     <script>
+        let questionCounter = 0;
+
         function addQuestion() {
-            const questionText = document.getElementById('id_question_text').value;
+            const questionText = document.getElementById('new_question_text').value;
             if (questionText) {
                 const questionList = document.getElementById('question-list');
+                const questionFormContainer = document.getElementById('question-form-container');
+
+                // 질문 항목을 포함하는 리스트 항목 생성
                 const listItem = document.createElement('li');
-                listItem.textContent = questionText;
+                const questionLabel = document.createElement('label');
+                questionLabel.textContent = questionText;
+                questionLabel.style.fontWeight = 'bold';
+
+                const hiddenQuestionInput = document.createElement('input');
+                hiddenQuestionInput.type = 'hidden';
+                hiddenQuestionInput.name = `form-${questionCounter}-question`;
+                hiddenQuestionInput.value = questionText;
+
+                listItem.appendChild(questionLabel);
+                questionFormContainer.appendChild(hiddenQuestionInput);
+
                 questionList.appendChild(listItem);
-                var div = document.createElement('div');
-                div.innerHTML = questionText;
-                displayContainer.appendChild(div);
+
+                // 입력 필드 초기화
+                document.getElementById('new_question_text').value = '';
+                console.log(`Added question: ${questionText}`); 
+                questionCounter++;
+
+                const totalForms = document.getElementById('id_form-TOTAL_FORMS');
+                totalForms.value = questionCounter;
             }
         }
 
         document.getElementById('id_name').addEventListener('input', function () {
             document.getElementById('preview-title').textContent = this.value;
+        });
+
+        document.getElementById('id_description').addEventListener('input', function () {
+            document.getElementById('preview-description').textContent = this.value;
         });
     </script>
 </body>

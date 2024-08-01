@@ -133,7 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.Interviewer'
 LOGIN_FIELDS = ['email']
 
-
 STATIC_URL = 'static/'
 
 import os
