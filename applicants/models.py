@@ -1,7 +1,7 @@
 from django.db import models
 from accounts.models import Interviewer
 from template.models import ApplicationTemplate, Question
-# 지원서 템플릿을 저장해놓고
+
 
 class Application(models.Model):
     STATUS_CHOICES = [

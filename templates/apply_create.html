@@ -43,7 +43,9 @@
                 const listItem = document.createElement('li');
                 listItem.textContent = questionText;
                 questionList.appendChild(listItem);
-                document.getElementById('id_question_text').value = '';
+                var div = document.createElement('div');
+                div.innerHTML = questionText;
+                displayContainer.appendChild(div);
             }
         }
 

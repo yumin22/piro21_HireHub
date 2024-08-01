@@ -34,3 +34,9 @@ class ApplicationTemplateCreateView(View):
             'template_form': template_form,
             'formset': formset,
         })
+    
+
+
+
+
+
