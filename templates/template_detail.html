@@ -16,6 +16,13 @@
                 {% endfor %}
             </ul>
         </div>
+        <div>
+            <a href="{% url 'template:template_update' pk=template.pk %}">수정</a>
+            <form action="{% url 'template:template_delete' pk=template.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+            </form>
+        </div>
         <a href="{% url 'template:template_list' %}">목록으로 돌아가기</a>
     </div>
 </body>
