@@ -1,21 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>템플릿 목록</title>
-</head>
-<body>
-    <div>
-        <h1>템플릿 목록</h1>
-        <a href="{% url 'template:apply_create' %}">+ 템플릿 생성하기</a>
-        <div>
-            <h2>지원서</h2>
-            <ul>
-                {% for template in template %}
-                    <li><a href="{% url 'template:template_detail' template.pk %}">{{ template.name }}</a></li>
-                {% endfor %}
-            </ul>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Hire Hub
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/template/temp_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 id="tempTitle">템플릿</h1>
+<div class="templateCtx">
+    <div class="tempBox">
+        <div class="addTemp">
+            <h2 class="tempName">지원서</h2>
+            <a href="{% url 'template:apply_create' %}"><i class="ri-file-add-fill"></i></a>
         </div>
+        <p></p>
+        <ul>
+            {% for template in template %}
+                <li class="templateList"><i class="ri-file-2-fill"></i>
+                    <a href="{% url 'template:template_detail' template.pk %}">{{ template.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
-</body>
-</html>
+    <div class="tempBox">
+        <div class="addTemp">
+            <h2 class="tempName">질문지</h2>
+            <a href="{% url 'template:apply_create' %}"><i class="ri-file-add-fill"></i></a>
+        </div>
+        <p></p>
+        <ul>
+            {% for template in template %}
+                <li class="templateList"><i class="ri-file-2-fill"></i>
+                    <a href="{% url 'template:template_detail' template.pk %}">{{ template.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="tempBox">
+        <div class="addTemp">
+            <h2 class="tempName">평가표</h2>
+            <a href="{% url 'template:apply_create' %}"><i class="ri-file-add-fill"></i></a>
+        </div>
+        <p></p>
+        <ul>
+            {% for template in template %}
+                <li class="templateList"><i class="ri-file-2-fill"></i>
+                    <a href="{% url 'template:template_detail' template.pk %}">{{ template.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
