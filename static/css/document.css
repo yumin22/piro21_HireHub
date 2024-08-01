@@ -1,0 +1,70 @@
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.applicant_container {
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+    gap: 10px;
+    height: 100vh;
+}
+
+.applicants_list {
+    width: 50%;
+}
+
+.applicants_list > p {
+    margin:0;
+    padding: 10px 0;
+    border-bottom: solid black;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.each_applicant {
+    background-color: aliceblue;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.all {
+    background-color: #E1E1E1;
+}
+
+.pass {
+    background-color: #CEFBB9;
+}
+
+.applicant_info{
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+#name {
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding-right: 10px;
+    border-right: solid black;
+}
+
+.info {
+    font-size: 0.5rem;
+    padding-right: 5px;
+}
+
+.scroll_section {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.scroll_section::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}

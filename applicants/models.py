@@ -30,6 +30,9 @@ class Application(models.Model):
     interview_date = models.DateTimeField(blank=True, null=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='submitted')
 
+    def __str__(self):
+        return f'{self.name}'
+
 
 class Answer(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='answers')

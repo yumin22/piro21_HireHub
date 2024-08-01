@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-
+<link rel="stylesheet" href="{% static 'css/document.css' %}">
 {% endblock %}
 {% block content %}
 <div class="title">지원자 관리 > 서류 관리</div>
@@ -11,7 +11,7 @@
         <div class="scroll_section">
             {% for applicant in applicants %}
             <div class="each_applicant all">
-                <ul>
+                <ul class="applicant_info">
                     <li id="name">{{applicant.name}}</li>
                     <li class="info">{{applicant.school}}</li>
                     <li class="info">{{applicant.major}}</li>
@@ -26,7 +26,7 @@
             {% for applicant in applicants %}
             {% if applicant.status != 'submitted' %}
                 <div class="each_applicant pass">
-                    <ul>
+                    <ul class="applicant_info">
                         <li id="name">{{applicant.name}}</li>
                         <li class="info">{{applicant.school}}</li>
                         <li class="info">{{applicant.major}}</li>
