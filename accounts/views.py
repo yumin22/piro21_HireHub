@@ -38,7 +38,7 @@ def login(request):
                auth_login(request, user)
                return redirect('accounts:initial') # 수정 필요
             else:
-               form.add_error(None, '관리자의 승인이 필요하거나 계정이 비활성화되었습니다.')
+               return render(request, 'accounts/requiredapproval.html')
          else:
             form.add_error(None, '이메일 또는 비밀번호가 잘못되었습니다.')
    else:
@@ -46,3 +46,10 @@ def login(request):
 
    context = {'form': form}
    return render(request, 'accounts/login.html', context)
+
+def requiredApproval(request):
+   return render(request, 'accounts/requiredapproval.html')
+
+def logout(request):
+   auth_logout(user)
+   return redirect('accounts:initial')

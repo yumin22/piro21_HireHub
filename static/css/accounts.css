@@ -2,7 +2,7 @@ body {
    margin: 0;
 }
 :root {
-   --lightgreen-color: #7CE84C
+   --lightgreen-color: #7CE84C;
 }
 
 /* initial.html */
@@ -90,9 +90,12 @@ h3 {
    background-color: var(--lightgreen-color);
    margin-top: 26px;
 }
+.signup_btn:hover, .login_btn:hover {
+   cursor: pointer;
+}
 
-/* signupcheck.html */
-.signupCheck_container {
+/* signupcheck.html, requiredapproval.html */
+.signupCheck_container, .requiredapproval_container {
    text-align: center;
    position: relative;
    top: 40%;
@@ -101,8 +104,12 @@ h3 {
    font-size: 55px;
    margin: 0;
 }
-.signupCheck_container p {
+.signupCheck_container p, .requiredapproval_container p {
    font-size: 40px;
    font-weight: bold;
    margin-top: 10px;
+}
+.requiredapproval_container h2 {
+   font-size: 50px;
+   margin: 0;
 }
