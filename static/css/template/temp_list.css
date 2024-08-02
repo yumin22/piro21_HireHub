@@ -4,9 +4,9 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -93,7 +93,6 @@ li {
     font-size: 24px;
     color: #A3A3A3;
 
-   
 }
 
 .templateList > a {

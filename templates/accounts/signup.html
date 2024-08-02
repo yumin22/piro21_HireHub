@@ -1,0 +1,13 @@
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+   <p class="logo"><a href="{% url 'accounts:initial' %}">Hire Hub</a></p>
+   <div class="signup_container">
+      <form method="POST" action="" id="signup_form">
+         {% csrf_token %}
+         {{ form }}
+         <input class="signup_btn" type="submit" value="회원가입" style="color: white; border: none;">
+      </form>
+   </div>
+{% endblock content %}

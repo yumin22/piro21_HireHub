@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+{% endblock %}
+{% block content %}
+<section class="profile_section">
+    <div class="profile_container">
+        <h2>지원자 프로필</h2>
+        <div>
+            <div class="profile_details">
+                <div class="profile_personal">
+                    <div>
+                        <p><strong>{{ applicant.name }}</strong> </p>
+                    </div>
+                    <div>
+                        <p><strong>학교:</strong> {{ applicant.school }}</p>
+                        <p><strong>학과:</strong> {{ applicant.major }}</p>
+                        <!--<p><strong>이메일:</strong> {{applicant.phone_number}}</p><-->
+                        <p><strong>연락처:</strong> {{ applicant.phone_number }}</p>
+                    </div>
+                </div>
+                <div class="profile_interview">
+                    <div>
+                        <p><strong>면접일:</strong> {{ applicant.interview_date }}</p>
+                        <p><strong>면접관:</strong> {{ applicant.interviewer }}</p>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button>개별 질문 보기</button>
+                    <button>평가표 확인하기</button>
+                </div>
+            </div>
+            <div class="application_container">
+                <h3>지원서 내용</h3>
+                <div class="application_content">
+                    <div class="answers">
+                        {% for answer in answers %}
+                            <p><strong>{{ answer.question.question_text }}</strong></p> 
+                            <p>{{ answer.answer_text }}</p> 
+                        {% endfor %}
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
