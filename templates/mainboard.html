@@ -18,7 +18,7 @@
         </div>
         <div class="scroll_section">
             {% for applicant in sort_applicants %}
-            <div class="my_applicant" OnClick="location.href ='http://URL주소'" style="cursor:pointer;">
+            <div class="my_applicant" onclick="location.href='{% url 'applicants:profile' applicant.pk %}';" style="cursor:pointer;">
                 <ul class="applicant_info">
                     <li id="name">{{applicant.name}}</li>
                     <li class="info">{{applicant.school}}</li>

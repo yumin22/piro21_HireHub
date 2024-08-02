@@ -33,7 +33,6 @@ class Application(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-
 class Answer(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='answers')
     question = models.ForeignKey(Question, on_delete=models.CASCADE) #특정 질문에 대한 답변
