@@ -48,7 +48,7 @@ def signup(request):
 def signupCheck(request):
    return render(request, 'accounts/signupcheck.html')
 
-def login(request, pk):
+def login(request):
    if request.method == 'POST':
       form = LoginForm(request, request.POST)
       if form.is_valid():
