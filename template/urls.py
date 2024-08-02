@@ -1,0 +1,12 @@
+from django.urls import path
+from . import views
+
+app_name = 'template'
+
+urlpatterns = [
+    path('list/', views.TemplateListView.as_view(), name ='template_list'),
+    path('apply/create',views.ApplicationTemplateCreateView.as_view(), name='apply_create'),
+    path('apply/<int:pk>', views.TemplateDetailView.as_view(), name='template_detail'),
+    path('apply/<int:pk>/update', views.TemplateUpdateView.as_view(), name='template_update'),
+    path('apply/<int:pk>/delete', views.TemplateDeleteView.as_view(), name='template_delete'),
+]

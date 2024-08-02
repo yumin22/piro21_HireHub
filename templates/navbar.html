@@ -1,3 +1,9 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock%}
+
 {% block content %}
 <nav>
     <div id="nav_title">

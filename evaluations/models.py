@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import Interviewer
 from applicants.models import Application
+
 # Create your models here.
 class Evaluation(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='evaluations')

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'applicants',
     'interviews',
     'evaluations',
+    'template',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
+
 
 TEMPLATES = [
     {
@@ -134,9 +136,6 @@ STATIC_ROOT = BASE_DIR
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-#AUTH_USER_MODEL = "accounts.Interviewer" 
-
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -146,11 +145,5 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
-MEDIA_URL = "/media/"
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
-
-AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
-]
+AUTH_USER_MODEL = 'accounts.Interviewer'
+LOGIN_FIELDS = ['email']

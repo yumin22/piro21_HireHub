@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ template.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/template.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="form-title">{{ template.name }}</h1>
+        <p class="form-description">{{ template.description }}</p>
+        <div>
+            <h2 class="section-title">질문 목록</h2>
+            <ul class="questions-list">
+                {% for question in questions %}
+                    <li class="question-item">{{ question.question_text }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="actions">
+            <a class="btn-custom" href="{% url 'template:template_update' pk=template.pk %}">수정</a>
+            <form class="delete-form" action="{% url 'template:template_delete' pk=template.pk %}" method="post">
+                {% csrf_token %}
+                <button class="btn-delete" type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+            </form>
+        </div>
+        <div>
+            <a class="back-link" href="{% url 'template:template_list' %}">목록으로 돌아가기</a>
+        </div>
+    </div>
+</body>
+</html>

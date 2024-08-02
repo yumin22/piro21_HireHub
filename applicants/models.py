@@ -1,15 +1,6 @@
 from django.db import models
 from accounts.models import Interviewer
-# 지원서 템플릿을 저장해놓고
-class ApplicationTemplate(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-    created_by = models.ForeignKey(Interviewer, on_delete=models.CASCADE)
-
-# 여기서 질문을 추가할 수 있게 해놓음
-class Question(models.Model):
-    template = models.ForeignKey(ApplicationTemplate, on_delete=models.CASCADE, related_name='questions') # related_name쓰면 접근시 easy해서 쓴겨
-    question_text = models.TextField()
+from template.models import ApplicationTemplate, Question
 
 
 class Application(models.Model):
@@ -29,7 +20,9 @@ class Application(models.Model):
     interviewer = models.ForeignKey(Interviewer, on_delete=models.CASCADE)
     interview_date = models.DateTimeField(blank=True, null=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='submitted')
-    interview_date = models.DateTimeField(blank=True, null=True) 
+
+    def __str__(self):
+        return f'{self.name}'
 
 class Answer(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='answers')
