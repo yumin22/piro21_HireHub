@@ -10,4 +10,5 @@ urlpatterns = [
    path('login/', login, name='login'),
    path('login/require_approval', requiredApproval, name='requiredApproval'),
    path('logout/', logout, name='logout'),
+   path("mainboard/<int:pk>/", mainboard, name="mainboard"),
 ]

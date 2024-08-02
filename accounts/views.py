@@ -1,9 +1,31 @@
+from django.db.models import Q
+from applicants.models import Application
 from django.shortcuts import render, redirect
 from .models import Interviewer
 from .forms import SignupForm, LoginForm
 from django.contrib.auth import authenticate, login as auth_login
 
 # Create your views here.
+
+def mainboard(request,pk):
+   applicants = Application.objects.filter(interviewer=pk)
+   sort_applicants = Application.objects.filter(interviewer=pk)
+   sort = request.GET.get('sort','')
+
+   if sort == 'submitted':
+      sort_applicants = sort_applicants.filter(status='submitted')
+   elif sort == 'scheduled':
+      sort_applicants = sort_applicants.filter(status='interview_scheduled')
+   elif sort == 'in_progress':
+      sort_applicants = sort_applicants.filter(status='interview_in_progress')
+   elif sort == 'completed':
+      sort_applicants = sort_applicants.filter(status='interview_completed')
+   else:
+      sort_applicants = sort_applicants
+
+   interview_num = applicants.filter(~Q(status='submitted')).count()
+   ctx = {"applicants":applicants, "sort_applicants":sort_applicants, "pk":pk, "interview_num": interview_num}
+   return render(request, "mainboard.html", ctx)
 def initial(request):
    return render(request, 'accounts/initial.html')
 
@@ -26,7 +48,7 @@ def signup(request):
 def signupCheck(request):
    return render(request, 'accounts/signupcheck.html')
 
-def login(request):
+def login(request, pk):
    if request.method == 'POST':
       form = LoginForm(request, request.POST)
       if form.is_valid():
@@ -36,7 +58,7 @@ def login(request):
          if user is not None:
             if user.is_approved and user.is_active: # 관리자의 승인을 받았으며 활성화되었을 때
                auth_login(request, user)
-               return redirect('accounts:initial') # 수정 필요
+               return render(request, 'accounts/mainborad.html') # 수정 필요
             else:
                return render(request, 'accounts/requiredapproval.html')
          else:

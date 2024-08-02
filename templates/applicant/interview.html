@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/interview.css' %}">
+{% endblock %}
+{% block content %}
+<div class="title">지원자 관리 > 면접 관리</div>
+<div class="search-applicant">
+    <input type="text" id="applicant-search-input" placeholder="지원자 검색">
+    <button type="button" onclick="searchApplicant()">검색</button>
+    <ul id="applicant-search-results"></ul>
+</div>
+<div class="applicant_container">
+    <div class="applicants_list">
+        <p>면접 대기</p>
+        <div class="scroll_section">
+            {% for applicant in applicants %}
+            {% if applicant.status == 'interview_scheduled' %}
+            <div class="each_applicant scheduled">
+                <ul class="applicant_info">
+                    <li id="name">{{applicant.name}}</li>
+                    <li class="info">{{applicant.school}}</li>
+                    <li class="info">{{applicant.major}}</li>
+                </ul>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="applicants_list">
+        <p>면접 진행 중</p>
+        <div class="scroll_section">
+            {% for applicant in applicants %}
+            {% if applicant.status == 'interview_in_progress' %}
+                <div class="each_applicant in_progress">
+                    <ul class="applicant_info">
+                        <li id="name">{{applicant.name}}</li>
+                        <li class="info">{{applicant.school}}</li>
+                        <li class="info">{{applicant.major}}</li>
+                    </ul>
+                </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="applicants_list">
+        <p>면접 완료</p>
+        <div class="scroll_section">
+            {% for applicant in applicants %}
+            {% if applicant.status == 'interview_completed' %}
+                <div class="each_applicant completed">
+                    <ul class="applicant_info">
+                        <li id="name">{{applicant.name}}</li>
+                        <li class="info">{{applicant.school}}</li>
+                        <li class="info">{{applicant.major}}</li>
+                    </ul>
+                </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/interview.js' %}"></script>
+{% endblock %}
