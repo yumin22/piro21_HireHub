@@ -1,43 +1,62 @@
-<!DOCTYPE html>
-<html lang="kr">
-<head>
-    <meta charset="UTF-8">
-    <title>HireHub</title>
-</head>
-<body>
-    <div>
-        <h1>템플릿</h1>
-        <form method="post" id="template-form" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div>
-                <h2>지원서 제목</h2>
-                {{ template_form.name }}
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+    Hire Hub
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/template/temp_create.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="createEntire">
+        <div class="createWrite">
+            <div class="createHeader">
+                <h1>템플릿</h1>
+                <i class="ri-arrow-right-s-line"></i>
+                <p>새 템플릿</p>
             </div>
-            <div>
-                <h2>지원서 설명</h2>
-                {{ template_form.description }}
+            <form method="post" id="template-form" class="templateForm" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="formTitle">
+                    <h2>지원서 제목</h2>
+                    {{ template_form.name }}
+                </div>
+                <div class="formContent">
+                    {{ template_form.description }}
+                </div>
+                <div class="formQuestion">
+                    <h2>지원서 항목 추가</h2>
+                    <div>
+                        <input type="text" id="new_question_text" placeholder="항목을 입력하세요">
+                        <button type="button" onclick="addQuestion()">추가하기</button>
+                    </div>
+                    
+                </div>
+                <div id="question-form-container">
+                    {{ formset.management_form }}
+
+                </div>  
+                <button type="submit" class="createBtn">
+                    <i class="ri-add-line"></i>
+                    템플릿 생성하기
+                </button>
+            </form>
+        </div>
+
+        <div class="createPrev">
+            <h2>지원서 양식</h2>
+            <div id="preview" class="preview">
+                <h3>| 제목 </h3><span id="preview-title"> </span>
+                <h4>| 설명 </h4><span id="preview-description"></span>
+                <h4>| 항목 추가 </h4>
+                <ol id="question-list" class="questionList">
+
+                </ol>
             </div>
-            <div>
-                <h2>지원서 항목 추가</h2>
-                <input type="text" id="new_question_text" placeholder="항목을 입력하세요">
-                <button type="button" onclick="addQuestion()">추가하기</button>
-            </div>
-            <div id="question-form-container">
-                {{ formset.management_form }}
-                <!-- 질문이 숨김 필드로 추가 -->
-            </div>
-            <button type="submit">템플릿 생성하기</button>
-        </form>
-    </div>
-    <!-- 미리보기 영역 -->
-    <div>
-        <h2>지원서 양식</h2>
-        <div id="preview">
-            <h3>제목: <span id="preview-title"></span></h3>
-            <h4>설명: <span id="preview-description"></span></h4>
-            <ol id="question-list">
-                <!-- 항목 리스트가 여기에 추가 -->
-            </ol>
         </div>
     </div>
 
@@ -109,5 +128,4 @@
             });
         });
     </script>
-</body>
-</html>
+{% endblock %}

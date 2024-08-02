@@ -1,7 +1,7 @@
 from django.db import models
 from accounts.models import Interviewer
 from template.models import ApplicationTemplate, Question
-# 지원서 템플릿을 저장해놓고
+
 
 class Application(models.Model):
     STATUS_CHOICES = [
@@ -11,7 +11,7 @@ class Application(models.Model):
         ('interview_completed', 'Interview Completed'),
     ]
 
-    template = models.ForeignKey(ApplicationTemplate, on_delete=models.CASCADE)
+    template = models.ForeignKey(ApplicationTemplate, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15)
     school = models.CharField(max_length=100)
