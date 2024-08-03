@@ -33,17 +33,16 @@
                     <button>평가표 확인하기</button>
                 </div>
             </div>
-            <div class="application_container">
-                <h3>지원서 내용</h3>
-                <div class="application_content">
-                    <div class="answers">
-                        {% for answer in answers %}
-                            <p><strong>{{ answer.question.question_text }}</strong></p> 
-                            <p>{{ answer.answer_text }}</p> 
-                        {% endfor %}
-                </div>
-            </div>
-            </div>
+        </div>
+    </div>
+    <div class="application_container">
+        <h3>지원서 내용</h3>
+        <div class="application_content">
+            <div class="answers">
+                {% for answer in answers %}
+                    <p><strong>{{ answer.question.question_text }}</strong></p> 
+                    <p>{{ answer.answer_text }}</p> 
+                {% endfor %}
         </div>
     </div>
 </section>

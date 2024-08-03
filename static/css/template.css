@@ -63,13 +63,13 @@ body {
     text-decoration: none;
 }
 .btn-custom:hover {
-    background-color: #7CE84C ;
+    background-color: var(--green-color) ;
 }
 .delete-form {
     display: inline;
 }
 .btn-delete {
-    background-color: #lightgray ;
+    background-color: var(--green-color) ;
     color: white;
     border: none;
     border-radius: 4px;
@@ -78,7 +78,7 @@ body {
     font-size: 14px;
 }
 .btn-delete:hover {
-    background-color: #7CE84C ;
+    background-color: var(--green-color) ;
 }
 .back-link {
     display: block;

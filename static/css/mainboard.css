@@ -2,12 +2,12 @@
     display: flex;
     justify-content: center;
     align-content: space-around;
-    height: 100vh;
+    height: 100%;
 }
 
 .evaluate_list{
     width: 60%;
-    margin: 20px;
+    margin: 30px;
 }
 
 .main_title {
@@ -15,7 +15,7 @@
     padding: 10px 0;
     border-bottom: solid black;
     margin-bottom: 10px;
-    font-size: 1rem;
+    font-size: 2.4rem;
     font-weight: bold;
     display: flex;
 }
@@ -30,17 +30,18 @@
 }
 .form-control {
     margin-left: auto;
+    font-size: 2rem;
 }
 
 .my_applicant {
-    padding:10px;
+    padding: 10px 20px;
     background-color: #E6E6E6;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
 .my_applicant > p {
-    font-size: 0.6rem;
+    font-size: 2rem;
     margin: 5px 0;
 }
 
@@ -54,22 +55,22 @@
 }
 
 #name {
-    font-size: 0.8rem;
+    font-size: 2rem;
     font-weight: bold;
     padding-right: 10px;
     border-right: solid black;
 }
 
 .info {
-    font-size: 0.5rem;
+    font-size: 2rem;
     padding-right: 5px;
 }   
 
 .my_schedule{
-    width: 40%;
-    height: 80%;
-    margin: 10px;
-    padding: 10px;
+    width: 45%;
+    margin: 30px;
+    margin-left: 10px;
+    padding: 15px 20px;
     background-color: #E6E6E6;
     border-radius: 5px;
 }
@@ -82,13 +83,13 @@
 }
 
 .schedule_content > #schedule_name{
-    font-size: 0.8rem;
+    font-size: 2rem;
     font-weight: bold;
     margin: 5px;
 }
 
 .schedule_content > #schedule_date{
-    font-size: 0.6rem;
+    font-size: 2rem;
     margin: 5px;
 }
 

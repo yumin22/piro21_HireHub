@@ -5,8 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/variable.css' %}">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
     <style>
         body {
@@ -17,9 +18,11 @@
 </head>
 <body>
     <header>
+        {% include 'navbar.html'%}
     </header>
-    {% include 'navbar.html'%}
-    {% block content %}<!-- 여기 내용-->{% endblock %}
+    <main>
+        {% block content %}<!-- 여기 내용-->{% endblock %}
+    </main>
 </body>
 </html>
 
