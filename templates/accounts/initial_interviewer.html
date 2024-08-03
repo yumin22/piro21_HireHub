@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+   <div class="initial_interviewer">
+      <h3>면접관</h3>
+      <div class="initial_btns">
+         <a href="{% url 'accounts:signup' %}">회원가입</a>
+         <a href="{% url 'accounts:login' %}">로그인</a>
+      </div>
+   </div>
+{% endblock content %}

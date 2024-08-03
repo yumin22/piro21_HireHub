@@ -1,33 +1,23 @@
-/* initial.html */
-.initial_container {
-   display: flex;
-   height: 100%;
-}
-.left_initialContainer, .right_initialContainer {
-   width: 50%;
+/* initialInterviewer.html */
+.initial_interviewer, .initial_applicant {
    display: flex;
    flex-direction: column;
+   height: 100%;
    align-items: center;
    justify-content: center;
+   color: var(--green-color);
 }
 h3 {
    font-size: 12.8rem;
    font-weight: bold;
-   margin-bottom: 140px;
+   margin-bottom: 100px;
 }
-.left_initialContainer {
-   background-color: var(--green-color);
-   color: white;
-}
-.right_initialContainer {
-   color: var(--green-color);
-}
-.applicants_btns, .interviewer_btns {
+.initial_btns {
    display: flex;
    flex-direction: column;
    align-items: center;
 }
-.applicants_btns a, .interviewer_btns a {
+.initial_btns a {
    margin-bottom: 26px;
    border-radius: 30px;
    font-size: 4rem;
@@ -35,15 +25,8 @@ h3 {
    text-align: center;
    padding: 12px 0;
    text-decoration: none;
-}
-.applicants_btns a {
-   background-color: white;
-   width: 455px;
-   color: var(--green-color);
-}
-.interviewer_btns a {
    background-color: var(--green-color);
-   width: 400px;
+   width: 555px;
    color: white;
 }
 

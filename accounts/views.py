@@ -9,10 +9,14 @@ from .forms import SignupForm, LoginForm
 
 # Create your views here.
 
-def initial(request):
+# 면접관 초기 페이지
+def initialInterviewer(request):
+   return render(request, 'accounts/initial_interviewer.html')
+
+def initialApplicant(request):
    template = ApplicationTemplate.objects.get(pk=1)
    context = {'template': template}
-   return render(request, 'accounts/initial.html', context)
+   return render(request, 'accounts/initial_applicant.html', context)
 
 def signup(request):
    if request.method == 'GET':
