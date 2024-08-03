@@ -6,43 +6,46 @@
 </head>
 {% endblock %}
 {% block content %}
-<section class="profile_section">
-    <div class="profile_container">
-        <h2>지원자 프로필</h2>
-        <div>
-            <div class="profile_details">
-                <div class="profile_personal">
-                    <div>
-                        <p><strong>{{ applicant.name }}</strong> </p>
+<section>
+    <h2>
+        <a href=""><i class="ri-arrow-left-s-line"></i></a>
+        <span>지원자 프로필</span>
+    </h2>
+    <div class="profile_section">
+        <div class="profile_container">
+            <div class="profile_personal">
+                <div class="profile_name">{{ applicant.name }}</div>
+                <div class="profile_detail">
+                    <div class="profile_detail1">
+                        <p>학교</p>
+                        <p>학과</p>
+                        <p>연락처</p>
                     </div>
-                    <div>
-                        <p><strong>학교:</strong> {{ applicant.school }}</p>
-                        <p><strong>학과:</strong> {{ applicant.major }}</p>
-                        <!--<p><strong>이메일:</strong> {{applicant.phone_number}}</p><-->
-                        <p><strong>연락처:</strong> {{ applicant.phone_number }}</p>
+                    <div class="profile_detail2">
+                        <p>{{ applicant.school }}</p>
+                        <p>{{ applicant.major }}</p>
+                        <p>{{ applicant.phone_number }}</p>
                     </div>
-                </div>
-                <div class="profile_interview">
-                    <div>
-                        <p><strong>면접일:</strong> {{ applicant.interview_date }}</p>
-                        <p><strong>면접관:</strong> {{ applicant.interviewer }}</p>
-                    </div>
-                </div>
-                <div class="actions">
-                    <button>개별 질문 보기</button>
-                    <button>평가표 확인하기</button>
                 </div>
             </div>
+            <div class="profile_interview">
+                <p><strong>면접일:</strong> {{ applicant.interview_date }}</p>
+                <p><strong>면접관:</strong> {{ applicant.interviewer }}</p>
+            </div>
+            <div class="actions">
+                <button><a href="">코멘트 작성</a></button>
+                <button><a href="">개별 질문</a></button>
+                <button><a href="">평가표 확인</a></button>
+            </div>
         </div>
-    </div>
-    <div class="application_container">
-        <h3>지원서 내용</h3>
-        <div class="application_content">
-            <div class="answers">
+        <div class="application_container">
+            <h3>지원서</h3>
+            <div class="application_content">
                 {% for answer in answers %}
-                    <p><strong>{{ answer.question.question_text }}</strong></p> 
-                    <p>{{ answer.answer_text }}</p> 
+                    <p class="question"><strong>{{ answer.question.id }}. {{ answer.question.question_text }}</strong></p>
+                    <p>{{ answer.answer_text }}</p>
                 {% endfor %}
+            </div>
         </div>
     </div>
 </section>
