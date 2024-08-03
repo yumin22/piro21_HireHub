@@ -1,0 +1,68 @@
+.apply_container {
+   padding: 30px;
+}
+.apply_container h2 {
+   font-size: 3rem;
+   margin-left: 10px;
+}
+.apply_container p {
+   font-size: 2.4rem;
+   margin-left: 10px;
+}
+
+#applyForm {
+   max-height: 520px;
+   background-color: rgba(124, 232, 76, .1);
+   border-radius: 30px;
+   margin-top: 15px;
+   margin-bottom: 20px;
+   padding: 30px;
+}
+.apply_content {
+   max-height: 440px;
+   display: flex;
+   flex-direction: column;
+   font-size: 2.4rem;
+   overflow-y: scroll;
+}
+.apply_content::-webkit-scrollbar {
+   width: 8px;
+}
+.apply_content::-webkit-scrollbar-thumb {
+   border-radius: 10px;
+   background: var(--green-color);
+}
+
+.question {
+   display: flex;
+   flex-direction: column;
+}
+.apply_content input, .question textarea {
+   max-width: 97%;
+   border: 2px solid var(--green-color);
+   border-radius: 20px;
+   padding: 10px 20px;
+   margin-bottom: 15px;
+   color: black;
+}
+.apply_content input::placeholder {
+   font-weight: 500;
+}
+.question label {
+   margin-left: 15px;
+   font-weight: 500;
+   margin-bottom: 10px;
+}
+
+.apply_container button {
+   background-color: var(--green-color);
+   color: white;
+   width: 45%;
+   height: 65px;
+   font-weight: bold;
+   font-size: 3rem;
+   border-radius: 30px;
+   position: absolute;
+   left: 50%;
+   transform: translate(-50%, 0);
+}

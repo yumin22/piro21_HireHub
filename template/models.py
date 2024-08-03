@@ -11,6 +11,9 @@ class Question(models.Model):
     template = models.ForeignKey(ApplicationTemplate, on_delete=models.CASCADE, related_name='questions') # related_name쓰면 접근시 easy해서 쓴겨
     question_text = models.TextField()
 
+    def __str__(self):
+        return self.question_text
+
 class InterviewQuestionTemplate(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()

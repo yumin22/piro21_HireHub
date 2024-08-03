@@ -8,4 +8,5 @@ urlpatterns = [
     path("document", views.document, name="document"),
     path('search_applicant/', views.search_applicant, name='search_applicant'),
     path("document/profile/<int:pk>", views.profile, name='profile'),
+    path('apply/<int:pk>/', views.apply, name='apply'),
 ]

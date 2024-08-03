@@ -1,16 +1,18 @@
-from django.db.models import Q
-from applicants.models import Application
 from django.shortcuts import render, redirect
-from .models import Interviewer
-from .forms import SignupForm, LoginForm
+from django.db.models import Q
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.urls import reverse
-from django.views.decorators.csrf import csrf_exempt
+from .models import Interviewer
+from applicants.models import Application
+from template.models import ApplicationTemplate
+from .forms import SignupForm, LoginForm
 
 # Create your views here.
 
 def initial(request):
-   return render(request, 'accounts/initial.html')
+   template = ApplicationTemplate.objects.get(pk=1)
+   context = {'template': template}
+   return render(request, 'accounts/initial.html', context)
 
 def signup(request):
    if request.method == 'GET':
@@ -41,7 +43,7 @@ def login(request):
          if user is not None:
             if user.is_approved and user.is_active: # 관리자의 승인을 받았으며 활성화되었을 때
                auth_login(request, user)
-               return redirect(reverse('accounts:mainboard', kwargs={'pk': user.pk})) # 수정 필요
+               return redirect(reverse('accounts:mainboard', kwargs={'pk': user.pk})) # 로그인한 유저의 mainboard로 이동
             else:
                return render(request, 'accounts/requiredapproval.html')
          else:

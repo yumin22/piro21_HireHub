@@ -34,11 +34,6 @@ class ApplicationTemplateCreateView(View):
             template.created_by = req.user
             template.save()
 
-
-        questions = [v for k, v in req.POST.items() if k.startswith('questions[')]
-        for question_text in questions:
-            Question.objects.create(template=template, question_text=question_text)
-
         if formset.is_valid():
             formset_questions = formset.save(commit=False)
             for question in formset_questions:

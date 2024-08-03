@@ -17,7 +17,7 @@ class Application(models.Model):
     school = models.CharField(max_length=100)
     major = models.CharField(max_length=100)
     submission_date = models.DateTimeField(auto_now_add=True)
-    interviewer = models.ForeignKey(Interviewer, on_delete=models.CASCADE)
+    interviewer = models.ManyToManyField(Interviewer, blank=True, null=True)
     interview_date = models.DateTimeField(blank=True, null=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='submitted')
 
