@@ -1,23 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HireHub</title>
-</head>
-<body>
-    <div>
-        <h1>템플릿 수정</h1>
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+    Hire Hub
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/template/temp_create.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="createEntire">
+        <div class="createWrite">
+            <h1>템플릿 수정</h1>
+        </div>
         <form method="post" id="template-form" enctype="multipart/form-data">
             {% csrf_token %}
-            <div>
+            <div class="formTitle">
                 <h2>지원서 제목</h2>
                 {{ template_form.name }}
             </div>
-            <div>
+            <div class="formContent">
                 <h2>지원서 설명</h2>
                 {{ template_form.description }}
             </div>
-            <div>
+            <div class="formQuestion">
                 <h2>지원서 항목 추가</h2>
                 <input type="text" id="new_question_text" placeholder="항목을 입력하세요">
                 <button type="button" onclick="addQuestion()">추가하기</button>
@@ -28,16 +37,16 @@
                     {{ form.as_p }}
                 {% endfor %}
             </div>
-            <button type="submit">템플릿 수정하기</button>
+            <button type="submit" class="createBtn">템플릿 수정하기</button>
         </form>
     </div>
     <!-- 미리보기 영역 -->
-    <div>
+    <div class="createPrev">
         <h2>지원서 양식</h2>
-        <div id="preview">
+        <div id="preview" class="preview">
             <h3>제목: <span id="preview-title"></span></h3>
             <h4>설명: <span id="preview-description"></span></h4>
-            <ol id="question-list">
+            <ol id="question-list" class="questionList">
                 <!-- 항목 리스트가 여기에 추가 -->
             </ol>
         </div>
@@ -111,5 +120,4 @@ document.getElementById('template-form').addEventListener('submit', function(e) 
     });
 });
     </script>
-</body>
-</html>
+{% endblock %}

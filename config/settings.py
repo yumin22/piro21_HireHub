@@ -150,3 +150,21 @@ AUTHENTICATION_BACKENDS = [
 
 AUTH_USER_MODEL = 'accounts.Interviewer'
 LOGIN_FIELDS = ['email']
+
+import environ
+
+# environ 초기화
+env = environ.Env(
+    # 기본값 설정
+    DEBUG=(bool, False)
+)
+
+# .env 파일 읽기
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# 설정 변수들
+DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY')
+DATABASES = {
+    'default': env.db(),
+}
