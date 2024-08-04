@@ -1,8 +1,3 @@
-
-html {
-
-}
-
 .createEntire {
     margin-left: 57px;
     display: flex;
@@ -167,11 +162,18 @@ html {
 }
 
 #question-form-container {
+<<<<<<< HEAD
+=======
+    border: 3px solid #E2E2E2;
+    border-radius: 7px;
+    width: 43rem;
+>>>>>>> origin/feature/YM
     height: 100px;
     overflow-y: auto;
 
 }
 
+<<<<<<< HEAD
 #id_form-0-question_text {
     display: block;
     border: 3px solid #E2E2E2;
@@ -184,6 +186,21 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+=======
+.question-form-container > p > label {
+    display: none !important;
+}
+
+.form-field > textarea {
+    border-radius: 7px;
+    width: 42.5rem !important;
+    height: 95px !important;
+    background-color: #f9f9f9;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    padding: 5px 5px 5px 10px;
+>>>>>>> origin/feature/YM
 }
 
 .question-form-container > h2 {
@@ -230,10 +247,27 @@ html {
     font-weight: 500;
     min-height: 30px;
     display: block;
+<<<<<<< HEAD
 }
 
+=======
+    margin-left: 10px;
+    margin-top: 5px;
+
+}
+
+.questionLis {
+    padding-left: 0 !important;
+}
+>>>>>>> origin/feature/YM
 
 .questionList > li {
     font-size: 16px;
     font-weight: 500;
+<<<<<<< HEAD
 }
+=======
+
+}
+
+>>>>>>> origin/feature/YM

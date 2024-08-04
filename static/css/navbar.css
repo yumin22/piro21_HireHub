@@ -14,10 +14,16 @@ nav {
 }
 
 #nav_title a {
+    font-family: 'SBAggroB';
     text-decoration: none;
     font-size: 3.6rem;
     font-weight: bold;
     color: black;
+}
+
+.template-link h2 {
+    text-align: start;
+    /* 추가 스타일을 여기에 적용할 수 있습니다 */
 }
 
 #nav_menu {
@@ -33,6 +39,15 @@ nav {
     vertical-align: middle;
     font-weight: bold;
 }
+
+.accountsToggle {
+    display: none; /* 기본적으로 보이지 않게 설정 */
+}
+
+.toggleTrigger:hover + .accountsToggle {
+    display: block; /* 호버 시 보이게 설정 */
+}
+
 
 #nav_menu div {
     display: flex;
