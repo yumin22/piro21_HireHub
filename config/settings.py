@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 import environ
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
@@ -85,11 +84,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': env('DB_HOST'),
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -150,21 +146,3 @@ AUTHENTICATION_BACKENDS = [
 
 AUTH_USER_MODEL = 'accounts.Interviewer'
 LOGIN_FIELDS = ['email']
-
-import environ
-
-# environ 초기화
-env = environ.Env(
-    # 기본값 설정
-    DEBUG=(bool, False)
-)
-
-# .env 파일 읽기
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
-# 설정 변수들
-DEBUG = env('DEBUG')
-SECRET_KEY = env('SECRET_KEY')
-DATABASES = {
-    'default': env.db(),
-}
