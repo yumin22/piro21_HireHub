@@ -162,31 +162,14 @@
 }
 
 #question-form-container {
-<<<<<<< HEAD
-=======
     border: 3px solid #E2E2E2;
     border-radius: 7px;
     width: 43rem;
->>>>>>> origin/feature/YM
     height: 100px;
     overflow-y: auto;
 
 }
 
-<<<<<<< HEAD
-#id_form-0-question_text {
-    display: block;
-    border: 3px solid #E2E2E2;
-    border-radius: 7px;
-    width: 43rem;
-    height: 15rem;
-    font-size: 16px;
-    padding: 0 10px 0 10px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-=======
 .question-form-container > p > label {
     display: none !important;
 }
@@ -200,7 +183,6 @@
     margin-bottom: 5px;
     font-size: 1.6rem;
     padding: 5px 5px 5px 10px;
->>>>>>> origin/feature/YM
 }
 
 .question-form-container > h2 {
@@ -247,10 +229,6 @@
     font-weight: 500;
     min-height: 30px;
     display: block;
-<<<<<<< HEAD
-}
-
-=======
     margin-left: 10px;
     margin-top: 5px;
 
@@ -259,15 +237,10 @@
 .questionLis {
     padding-left: 0 !important;
 }
->>>>>>> origin/feature/YM
 
 .questionList > li {
     font-size: 16px;
     font-weight: 500;
-<<<<<<< HEAD
-}
-=======
 
 }
 
->>>>>>> origin/feature/YM
