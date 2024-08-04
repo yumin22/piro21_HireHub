@@ -30,4 +30,3 @@ class EvaluationQuestion(models.Model):
     template = models.ForeignKey(EvaluationTemplate, on_delete=models.CASCADE, related_name='questions')
     question_title = models.CharField(max_length=200)
     question_text = models.TextField()
-    score = models.IntegerField()

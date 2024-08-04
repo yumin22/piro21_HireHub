@@ -37,6 +37,6 @@ class EvaluationTemplateForm(forms.ModelForm):
 class EvaluationQuestionForm(forms.ModelForm):
     class Meta:
         model = EvaluationQuestion
-        fields = ['question_title', 'question_text', 'score'] 
+        fields = ['question_title', 'question_text'] 
 
 

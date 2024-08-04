@@ -6,7 +6,6 @@ from .forms import SignupForm, LoginForm
 from django.contrib.auth import authenticate, login as auth_login
 
 # Create your views here.
-
 def mainboard(request,pk):
    applicants = Application.objects.filter(interviewer=pk)
    sort_applicants = Application.objects.filter(interviewer=pk)
@@ -26,6 +25,7 @@ def mainboard(request,pk):
    interview_num = applicants.filter(~Q(status='submitted')).count()
    ctx = {"applicants":applicants, "sort_applicants":sort_applicants, "pk":pk, "interview_num": interview_num}
    return render(request, "mainboard.html", ctx)
+
 def initial(request):
    return render(request, 'accounts/initial.html')
 

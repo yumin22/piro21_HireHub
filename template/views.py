@@ -129,7 +129,7 @@ class EvaluationTemplateCreateView(View):
             
             if questions_titles and question_texts:
                 for title, text in zip(questions_titles, question_texts):
-                    EvaluationQuestion.objects.create(template=template, question_title=title, question_text=text, score=0)
+                    EvaluationQuestion.objects.create(template=template, question_title=title, question_text=text)
             
             formset_questions = formset.save(commit=False)
             for question in formset_questions:
