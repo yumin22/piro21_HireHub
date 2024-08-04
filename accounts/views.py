@@ -11,6 +11,8 @@ from .forms import SignupForm, LoginForm
 
 # 면접관 초기 페이지
 def initialInterviewer(request):
+   if request.user.is_authenticated: # 만약 사용자가 로그인되어 있다면 바로 메인 페이지로 가도록
+      return redirect(reverse('accounts:mainboard', kwargs={'pk': request.user.pk}))
    return render(request, 'accounts/initial_interviewer.html')
 
 def initialApplicant(request):
@@ -63,7 +65,7 @@ def requiredApproval(request):
 
 def logout(request):
    auth_logout(request)
-   return redirect('accounts:initial')
+   return redirect('accounts:initialInterviewer')
 
 def mainboard(request,pk):
    applicants = Application.objects.filter(interviewer=pk)
