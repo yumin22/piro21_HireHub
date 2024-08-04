@@ -9,4 +9,7 @@ urlpatterns = [
     path('apply/<int:pk>', views.TemplateDetailView.as_view(), name='template_detail'),
     path('apply/<int:pk>/update', views.TemplateUpdateView.as_view(), name='template_update'),
     path('apply/<int:pk>/delete', views.TemplateDeleteView.as_view(), name='template_delete'),
+    path('evaluate/create', views.EvaluationTemplateCreateView.as_view(), name='evaluate_create'),
+    path('evaluate/<int:pk>/detail', views.EvaluateDetailView.as_view(), name='evaluate_detail'),
+    path('evaluate/<int:pk>/update', views.EvaluateUpdateView.as_view(), name='evaluate_update'),
 ]

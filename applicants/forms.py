@@ -1,10 +1,10 @@
 from django import forms
 from django.forms.models import inlineformset_factory
-from .models import ApplicationTemplate, Question
+from .models import ApplicationTemplate, ApplicationQuestion
 
 QuestionFormSet = inlineformset_factory(
     ApplicationTemplate, 
-    Question, 
+    ApplicationQuestion, 
     fields=('question_text',), 
     extra=1, 
     can_delete=True

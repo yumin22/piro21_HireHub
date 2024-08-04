@@ -40,9 +40,9 @@
       });
 
       if (valid) {
-         let questions = documents.querySelectAll("textarea[name^='answer_']");
+         let questions = document.querySelectorAll("textarea[name^='answer_']");
          questions.forEach(function(question) {
-            if (questions.value.trim() == "" && valid) {
+            if (question.value.trim() == "" && valid) {
                valid = false;
                invalidField = question;
             }

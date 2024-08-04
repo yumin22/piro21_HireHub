@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import Interviewer
-from template.models import ApplicationTemplate, Question
+from template.models import ApplicationTemplate, ApplicationQuestion
 
 
 class Application(models.Model):
@@ -26,6 +26,6 @@ class Application(models.Model):
 
 class Answer(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='answers')
-    question = models.ForeignKey(Question, on_delete=models.CASCADE) #특정 질문에 대한 답변
+    question = models.ForeignKey(ApplicationQuestion, on_delete=models.CASCADE) #특정 질문에 대한 답변
     answer_text = models.TextField()
 
