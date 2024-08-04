@@ -2,17 +2,36 @@ section {
     padding: 30px 20px;
     height: 100%;
 }
-section > h2 {
-    font-size: 4rem;
+.profile_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-section > h2 > a {
+.profile_logo {
+    font-size: 4rem;
+    font-weight: bold;
+}
+.profile_logo a {
     text-decoration: none;
+}
+.actions {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    font-weight: bold;
+    gap: 1.5rem;
+    margin-right: 1rem;
+}
+.actions a {
+    text-decoration: none;
+}
+.actions button:hover {
+    background-color: #444;
 }
 
 .profile_section {
     display: flex;
     height: 600px;
-    margin: 20px 0;
 }
 
 .profile_container {
@@ -68,30 +87,6 @@ section > h2 > a {
     justify-content: center;
     font-size: 2.4rem;
     height: 40%;
-}
-
-.actions {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-.actions button {
-    background-color: black;
-    color: white;
-    border: none;
-    width: 30%;
-    height: 50px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.7rem;
-    font-weight: bold;
-}
-.actions button a {
-    text-decoration: none;
-}
-.actions button:hover {
-    background-color: #444;
 }
 
 .application_container{

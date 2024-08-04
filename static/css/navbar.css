@@ -7,7 +7,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--green-color); 
+    background-color: var(--main-color); 
     padding: 20px 20px 10px;
     height: 100%;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -18,7 +18,7 @@ nav {
     text-decoration: none;
     font-size: 3.6rem;
     font-weight: bold;
-    color: black;
+    color: white;
 }
 
 .template-link h2 {
@@ -34,7 +34,7 @@ nav {
     margin-left: 30px;
     margin-bottom: 2px;
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: 1.6rem;
     vertical-align: middle;
     font-weight: bold;
@@ -67,4 +67,5 @@ nav {
 
 main {
 	height: calc(100vh - 95px);
+    background-color: #EEEEEE;
 }
