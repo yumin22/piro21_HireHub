@@ -15,33 +15,40 @@
         <div class="createWrite">
             <h1>템플릿 수정</h1>
             <form method="post" id="template-form" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="formTitle">
-                <h2>지원서 제목</h2>
-                {{ template_form.name }}
-            </div>
-            <div class="formContent">
-                <h2>지원서 설명</h2>
-                {{ template_form.description }}
-            </div>
-            <div class="formQuestion">
-                <h2>지원서 항목 추가</h2>
-                <div>
-                    <input type="text" id="new_question_text" placeholder="항목을 입력하세요">
-                    <button type="button" onclick="addQuestion()">추가하기</button>
+                {% csrf_token %}
+                <div class="formTitle">
+                    <h2>지원서 제목</h2>
+                    {{ template_form.name }}
                 </div>
-            </div>
-            <div  class="question-form-container">
-                <h2>항목 수정</h2>
-                <div id="question-form-container">
-                    {{ formset.management_form }}
-                    {% for form in formset %}
-                        {{ form.as_p }}
-                    {% endfor %}
+                <div class="formContent">
+                    <h2>지원서 설명</h2>
+                    {{ template_form.description }}
                 </div>
-            </div>
-            <button type="submit" style="display: none;"></button>
-        </form>
+                <div class="formQuestion">
+                    <h2>지원서 항목 추가</h2>
+                    <div>
+                        <input type="text" id="new_question_text" placeholder="항목을 입력하세요">
+                        <button type="button" onclick="addQuestion()">추가하기</button>
+                    </div>
+                </div>
+                <div class="question-form-container">
+                    <h2>항목 수정</h2>
+                    <div id="question-form-container">
+                        <p>{{ formset.management_form }}</p>
+                        {% for form in formset %}
+                            <div class="form-group">
+                                {% for field in form %}
+                                <div class="form-field">
+                                    {{ field.errors }}
+                                    {{ field }}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button type="submit" style="display: none;"></button>
+            </form>
         </div>
         <!-- 미리보기 영역 -->
         <div class="createPrev">
@@ -50,14 +57,11 @@
                 <h3>| 제목<span id="preview-title"></span></h3>
                 <h4>| 설명<span id="preview-description"></span></h4>
                 <h4>| 항목 추가 </h4>
-                    <ol id="question-list" class="questionList">
-
-                    </ol>
+                <ol id="question-list" class="questionList"></ol>
             </div>
             <button type="button" class="createBtn" onclick="submitForm()">수정 완료</button>
         </div>
     </div>
-    
 
     <script>
         let questionCounter = 0;

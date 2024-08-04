@@ -166,23 +166,27 @@ html {
 }
 
 #question-form-container {
+    border: 3px solid #E2E2E2;
+    border-radius: 7px;
+    width: 43rem;
     height: 100px;
     overflow-y: auto;
 
 }
 
-#id_form-0-question_text {
-    display: block;
-    border: 3px solid #E2E2E2;
+.question-form-container > p > label {
+    display: none !important;
+}
+
+.form-field > textarea {
     border-radius: 7px;
-    width: 43rem;
-    height: 15rem;
-    font-size: 16px;
-    padding: 0 10px 0 10px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 42.5rem !important;
+    height: 95px !important;
+    background-color: #f9f9f9;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    padding: 5px 5px 5px 10px;
 }
 
 .question-form-container > h2 {
