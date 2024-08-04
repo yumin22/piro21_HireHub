@@ -14,7 +14,7 @@ def initialInterviewer(request):
    return render(request, 'accounts/initial_interviewer.html')
 
 def initialApplicant(request):
-   template = ApplicationTemplate.objects.get(pk=1)
+   template = ApplicationTemplate.objects.get(pk=12)
    context = {'template': template}
    return render(request, 'accounts/initial_applicant.html', context)
 

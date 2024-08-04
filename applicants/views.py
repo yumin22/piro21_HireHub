@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Application, Answer
 from accounts.models import Interviewer
 from django.http import JsonResponse
-from template.models import ApplicationTemplate, Question
+from template.models import ApplicationTemplate, ApplicationQuestion
 from .forms import ApplicationForm
 from django.forms import modelformset_factory
 

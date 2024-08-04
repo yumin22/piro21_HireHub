@@ -1,7 +1,7 @@
 from django.db import models
 from accounts.models import Interviewer
 from applicants.models import Application
-from template.models import InterviewQuestionTemplate, InterviewQuestion 
+from template.models import InterviewTemplate, InterviewQuestion 
 
 class Interview(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='interviews')
