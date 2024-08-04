@@ -233,11 +233,18 @@ html {
     font-weight: 500;
     min-height: 30px;
     display: block;
+    margin-left: 10px;
+    margin-top: 5px;
+
 }
 
+.questionLis {
+    padding-left: 0 !important;
+}
 
 .questionList > li {
     font-size: 16px;
     font-weight: 500;
+
 }
 
