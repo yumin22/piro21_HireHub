@@ -5,7 +5,7 @@
    height: 100%;
    align-items: center;
    justify-content: center;
-   color: var(--green-color);
+   color: black;
 }
 h3 {
    font-size: 12.8rem;
@@ -25,7 +25,7 @@ h3 {
    text-align: center;
    padding: 12px 0;
    text-decoration: none;
-   background-color: var(--green-color);
+   background-color: var(--main-color);
    width: 555px;
    color: white;
 }
@@ -57,14 +57,14 @@ h3 {
    font-weight: bold;
    color: black;
    padding-left: 20px;
-   border: 2px solid var(--green-color);
+   border: 2px solid var(--main-color);
    margin-bottom: 28px;
 }
 .signup_input:visited, .login_input:visited {
    outline: none;
 }
 .signup_btn, .login_btn {
-   background-color: var(--green-color);
+   background-color: var(--main-color);
    margin-top: 26px;
 }
 .signup_btn:hover, .login_btn:hover {

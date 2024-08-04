@@ -33,11 +33,11 @@
 }
 
 .all {
-    background-color: #E1E1E1;
+    background-color: var(--box-color);
 }
 
 .pass {
-    background-color: #CEFBB9;
+    background-color: var(--mediumprocess-color);
 }
 
 .applicant_info{

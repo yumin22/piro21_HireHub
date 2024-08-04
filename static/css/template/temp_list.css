@@ -85,7 +85,7 @@ li {
     gap: 10px;
     width: 89%;
     height: 39px;
-    background-color: #E1E1E1;
+    background-color: var(--box-color);
     margin-top: 20px;
     border-radius: 5px;
 }

@@ -7,10 +7,17 @@
 {% endblock %}
 {% block content %}
 <section>
-    <h2>
-        <a href=""><i class="ri-arrow-left-s-line"></i></a>
-        <span>지원자 프로필</span>
-    </h2>
+    <div class="profile_header">
+        <div class="profile_logo">
+            <a href='{% url "accounts:mainboard" pk=user.pk %}'><i class="ri-arrow-left-s-line"></i></a>
+            <span>지원자 프로필</span>
+        </div>
+        <div class="actions">
+            <a href="">코멘트 작성 |</a>
+            <a href="">개별 질문 |</a>
+            <a href="">평가표 확인 |</a>
+        </div>
+    </div>
     <div class="profile_section">
         <div class="profile_container">
             <div class="profile_personal">
@@ -31,11 +38,6 @@
             <div class="profile_interview">
                 <p><strong>면접일:</strong> {{ applicant.interview_date }}</p>
                 <p><strong>면접관:</strong> {{ applicant.interviewer }}</p>
-            </div>
-            <div class="actions">
-                <button><a href="">코멘트 작성</a></button>
-                <button><a href="">개별 질문</a></button>
-                <button><a href="">평가표 확인</a></button>
             </div>
         </div>
         <div class="application_container">

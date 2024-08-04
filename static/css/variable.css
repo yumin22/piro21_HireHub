@@ -1,7 +1,8 @@
 :root {
-   --lightgreen-color: #CEFBB9;
-   --mediumgreen-color: #A8FF82;
-   --green-color: #7CE84C;
+   --lightprocess-color: rgba(21,52,72, .2);
+   --mediumprocess-color: rgba(21,52,72, .5);
+   --process-color: rgba(21,52,72, .7);
+   --main-color: rgb(21,52,72);
 
-   --lightgray-color: #E1E1E1;
+   --box-color: #DDDDDD;
 }

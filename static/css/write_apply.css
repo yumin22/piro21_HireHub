@@ -13,7 +13,7 @@
 
 #applyForm {
    height: 80%;
-   background-color: rgba(124, 232, 76, .1);
+   background-color: rgba(49, 160, 235, 0.1);
    border-radius: 30px;
    margin-top: 15px;
    padding: 30px;
@@ -30,7 +30,7 @@
 }
 .apply_content::-webkit-scrollbar-thumb {
    border-radius: 10px;
-   background: var(--green-color);
+   background: var(--main-color);
 }
 
 .questions_list {
@@ -64,7 +64,7 @@
 }
 
 .apply_container button {
-   background-color: var(--green-color);
+   background-color: var(--main-color);
    color: white;
    width: 45%;
    height: 65px;

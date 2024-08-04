@@ -33,15 +33,15 @@
 }
 
 .scheduled {
-    background-color: #CEFBB9;
+    background-color: var(--lightprocess-color);
 }
 
 .in_progress {
-    background-color: #A8FF82;
+    background-color: var(--mediumprocess-color);
 }
 
 .completed {
-    background-color: #7CE84C;
+    background-color: var(--process-color);
 }
 
 .applicant_info {
