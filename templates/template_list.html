@@ -20,7 +20,7 @@
         </div>
         <p></p>
         <ul>
-            {% for template in template %}
+            {% for template in template1 %}
                 <li class="templateList"><i class="ri-file-2-fill"></i>
                     <a href="{% url 'template:template_detail' template.pk %}">{{ template.name }}</a>
                 </li>
@@ -44,13 +44,13 @@
     <div class="tempBox">
         <div class="addTemp">
             <h2 class="tempName">평가표</h2>
-            <a href="{% url 'template:apply_create' %}"><i class="ri-file-add-fill"></i></a>
+            <a href="{% url 'template:evaluate_create' %}"><i class="ri-file-add-fill"></i></a>
         </div>
         <p></p>
         <ul>
-            {% for template in template %}
+            {% for template in template2 %}
                 <li class="templateList"><i class="ri-file-2-fill"></i>
-                    <a href="{% url 'template:template_detail' template.pk %}">{{ template.name }}</a>
+                    <a href="{% url 'template:evaluate_detail' template.pk %}">{{ template.title }}</a>
                 </li>
             {% endfor %}
         </ul>

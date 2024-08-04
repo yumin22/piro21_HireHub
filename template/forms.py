@@ -1,5 +1,5 @@
 from django import forms
-from .models import ApplicationTemplate, Question
+from .models import ApplicationTemplate, ApplicationQuestion, EvaluationTemplate, EvaluationQuestion
 
 class ApplicationTemplateForm(forms.ModelForm):
     class Meta:
@@ -15,9 +15,28 @@ class ApplicationTemplateForm(forms.ModelForm):
             }),
         }
 
-class QuestionForm(forms.ModelForm):
+class ApplicationQuestionForm(forms.ModelForm):
     class Meta:
-        model = Question
+        model = ApplicationQuestion
         fields = ['question_text']
+
+class EvaluationTemplateForm(forms.ModelForm):
+    class Meta:
+        model = EvaluationTemplate
+        fields = ['title' , 'description']
+
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'placeholder': '평가표 제목을 입력하세요.'
+            }),
+            'description': forms.Textarea(attrs={
+                'placeholder': '(선택) 해당 평가표에 대한 설명글을 입력할 수 있습니다.'
+            }),
+        }
+
+class EvaluationQuestionForm(forms.ModelForm):
+    class Meta:
+        model = EvaluationQuestion
+        fields = ['question_title', 'question_text', 'score'] 
 
 

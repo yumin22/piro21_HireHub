@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HireHub</title>
+</head>
+<body>
+    <div>
+        <h1>평가표 수정</h1>
+        <form method="post" id="template-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <h2>평가표 제목</h2>
+                {{ template_form.title }}
+            </div>
+            <div>
+                <h2>평가표 설명</h2>
+                {{ template_form.description }}
+            </div>
+            <div id="question-form-container">
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    {{ form.as_p }}
+                {% endfor %}
+            </div>
+            <button type="submit">템플릿 수정하기</button>
+        </form>
+    </div>
+    <!-- 미리보기 영역 -->
+    <script>
+        let questionCounter = 0;
+        function addQuestion() {
+            const questionTitle = document.getElementById('new_question_title').value;
+            const questionText = document.getElementById('new_question_text').value;
+
+            if (questionTitle && questionText) {
+                const questionFormContainer = document.getElementById('question-form-container');
+                const newForm = document.createElement('div');
+                newForm.className = 'question-form';
+
+                newForm.innerHTML = `
+                    <input type="hidden" name="questions_titles[${questionCounter}]" value="${questionTitle}">
+                    <input type="hidden" name="question_texts[${questionCounter}]" value="${questionText}">
+                `;
+                
+                questionFormContainer.appendChild(newForm);
+
+                const questionList = document.getElementById('question-list');
+                const listItem = document.createElement('li');
+                listItem.textContent = `${questionTitle}: ${questionText}`;
+                questionList.appendChild(listItem);
+
+                document.getElementById('new_question_title').value = '';
+                document.getElementById('new_question_text').value = '';
+                questionCounter++;
+            }
+        }
+        document.getElementById('template-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();  
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            }).then(data => {
+                if (data.success) {
+                    window.location.href = data.redirect;  
+                } else {
+                    console.error('Form submission failed:', data.errors);
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
