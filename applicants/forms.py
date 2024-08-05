@@ -1,6 +1,7 @@
 from django import forms
 from django.forms.models import inlineformset_factory
-from .models import ApplicationTemplate, Question
+from .models import ApplicationTemplate, Question, Comment
+
 
 QuestionFormSet = inlineformset_factory(
     ApplicationTemplate, 
@@ -16,3 +17,8 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = ApplicationTemplate
         fields = ['name','description']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']

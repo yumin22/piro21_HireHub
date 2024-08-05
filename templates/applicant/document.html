@@ -10,7 +10,7 @@
         <p>지원자</p>
         <div class="scroll_section">
             {% for applicant in applicants %}
-            <div class="each_applicant all" onclick="location.href='{% url 'applicants:profile' applicant.pk %}';" style="cursor:pointer;">
+            <div class="each_applicant all" onclick="location.href='{% url 'applicants:profile' applicant.pk %}';" style="cursor:pointer;"></div>
                 <ul class="applicant_info">
                     <li id="name">{{applicant.name}}</li>
                     <li class="info">{{applicant.school}}</li>
