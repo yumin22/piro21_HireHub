@@ -3,6 +3,7 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
+import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
@@ -17,24 +18,72 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Interview',
+            name="Interview",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('interview_date', models.DateTimeField()),
-                ('location', models.CharField(max_length=255)),
-                ('application', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='interviews', to='applicants.application')),
-                ('interviewer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("interview_date", models.DateTimeField()),
+                ("location", models.CharField(max_length=255)),
+                (
+                    "application",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="interviews",
+                        to="applicants.application",
+                    ),
+                ),
+                (
+                    "interviewer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='InterviewAnswer',
+            name="InterviewAnswer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('answer_text', models.TextField()),
-                ('score', models.IntegerField(default=0)),
-                ('interview', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='answers', to='interviews.interview')),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='template.interviewquestion')),
-                ('recorded_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("answer_text", models.TextField()),
+                ("score", models.IntegerField(default=0)),
+                (
+                    "interview",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="answers",
+                        to="interviews.interview",
+                    ),
+                ),
+                (
+                    "question",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="template.interviewquestion",
+                    ),
+                ),
+                (
+                    "recorded_by",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

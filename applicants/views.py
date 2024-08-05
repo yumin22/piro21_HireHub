@@ -1,10 +1,12 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Application, Answer
+from .models import Application, Answer, Possible_date_list
 from accounts.models import Interviewer
 from django.http import JsonResponse
 from template.models import ApplicationTemplate, ApplicationQuestion
 from .forms import ApplicationForm
 from django.forms import modelformset_factory
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def interview(request):
@@ -32,6 +34,105 @@ def profile(request, pk):
         'answers': answers,
     }
     return render(request, 'applicant/profile.html', ctx)
+
+def schedule(request):
+    applicants = Application.objects.filter(~Q(status ='submitted'))
+    schedules = Possible_date_list.objects.all()
+
+    ctx = {"applicants": applicants, "schedules":schedules}
+    return render(request, 'applicant/schedule.html', ctx)
+
+def auto_schedule(request):
+    schedules = Possible_date_list.objects.all()
+
+    # 스케줄 정보 리스트
+    schedules_info = [[schedule.id, 0, schedule.max_possible_interview] for schedule in schedules]
+
+    # 이미 배치된 인원 가능 인터뷰수에서 빼기
+    scheduled_applicants = Application.objects.filter(interview_date__isnull=False)
+    for scheduled_applicant in scheduled_applicants:
+        for schedule_info in schedules_info:
+            if schedule_info[0] == scheduled_applicant.interview_date.id:
+                schedule_info[2] -= 1
+
+    # 배치 가능 인터뷰 수 0 이하면 해당 스케줄 삭제
+    for schedule_info in schedules_info:
+        if schedule_info[2] <=0:
+            schedules_info.remove(schedule_info)
+
+    # 지원자 정보 리스트
+    applicants = Application.objects.filter(interview_date__isnull=True)
+    applicants_info = [[applicant.id, list(applicant.possible_date.all())] for applicant in applicants]
+
+    # 스케줄 짜기 알고리즘
+    while schedules_info:
+        # 스케줄링 필요 인원 없으면 break
+        if len(applicants) == 0:
+            break
+
+        # 삭제할 인원 인덱스 리스트
+        del_applicant_index = []
+
+        # 가능 시간대 0개 or 1개 인원 배치, 인기도 갱신
+        for num in range(len(applicants_info)):
+            # 0개
+            if len(applicants_info[num][1]) == 0:
+                del_applicant_index.append(num)
+            # 1개
+            elif len(applicants_info[num][1]) == 1:
+                applicant = Application.objects.get(id=applicants_info[num][0])
+                for schedule_info in schedules_info:
+                    if schedule_info[0] == applicants_info[num][1][0].id:
+                        if schedule_info[2] > 0:
+                            applicant.interview_date = applicants_info[num][1][0]
+                            applicant.save()
+                            schedule_info[2] -= 1
+                            break
+                        else:
+                            break
+
+                del_applicant_index.append(num)
+            # 인기도 갱신
+            else:
+                for possible_date in applicants_info[num][1]:
+                    for schedule_info in schedules_info:
+                        if schedule_info[0] == possible_date.id:
+                            schedule_info[1] += 1
+    
+        # 배치 안되거나 배치한 애들 목록에서 삭제
+        for index in sorted(del_applicant_index, reverse=True):
+            del applicants_info[index]
+        
+        del_applicant_index = []    
+        # 인기도 - 남는자리수 작은 시간대 추출
+        popularity = 1000000
+        low_pop_schedule = []
+        for schedule_info in schedules_info:
+            my_popularity = schedule_info[1] - schedule_info[2]
+            if popularity > my_popularity:
+                popularity = my_popularity
+                low_pop_schedule = schedule_info
+
+        # 인기도 - 남는자리수 낮은 시간대 배치
+        for num in range(len(applicants_info)):
+            for possible_date in applicants_info[num][1]:
+                if possible_date.id == low_pop_schedule[0]:
+                    if low_pop_schedule[2] > 0:
+                        applicant = Application.objects.get(id=applicants_info[num][0])
+                        applicant.interview_date = possible_date
+                        applicant.save()
+                        del_applicant_index.append(num)
+                        low_pop_schedule[2] -=1
+                    applicants_info[num][1].remove(possible_date)
+
+        # 배치된 인원 및 시간대 삭제
+        for index in sorted(del_applicant_index, reverse=True):
+            del applicants_info[index]
+        del_applicant_index = []
+
+        schedules_info.remove(low_pop_schedule)
+                    
+    return redirect('applicants:schedule')
 
 def apply(request, pk):
     template = ApplicationTemplate.objects.get(id=pk)

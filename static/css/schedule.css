@@ -1,0 +1,89 @@
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.schedule_btn {
+    display: flex;
+}
+
+.btn {
+    margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.page_container {
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+    gap: 10px;
+    height: 100vh;
+}
+.schedule_container {
+    width: 70%;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+    overflow-y: scroll;
+
+}
+
+.reschedule_container {
+    width: 20%;
+}
+
+.grid_container > p {
+    margin:0;
+    padding: 10px 0;
+    border-bottom: solid black;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.applicant_info {
+    font-size: 0.6rem;
+    background-color: #A8FF82;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.update{
+    margin-left: 5px;
+    font-size: 0.4rem;
+    color: #A3A3A3
+}
+
+.name {
+    font-size: 0.6rem;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.reschedule_container > p {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.reschedule_applicant {
+    width: 90%;
+    height: 90%;
+    margin: 10px;
+    padding: 10px;
+    background-color: #E6E6E6;
+    border-radius: 5px;
+    overflow:scroll;
+}
+
+.reschedule_applicant {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.reschedule_applicant::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}

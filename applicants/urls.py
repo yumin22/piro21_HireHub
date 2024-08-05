@@ -9,4 +9,6 @@ urlpatterns = [
     path('search_applicant/', views.search_applicant, name='search_applicant'),
     path("document/profile/<int:pk>", views.profile, name='profile'),
     path('apply/<int:pk>/', views.apply, name='apply'),
+    path("schedule", views.schedule, name='schedule'),
+    path("auto_schedule", views.auto_schedule, name='auto_schedule'),
 ]
