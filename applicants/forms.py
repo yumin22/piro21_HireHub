@@ -16,8 +16,3 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = ApplicationTemplate
         fields = ['name','description']
-
-""" class ApplyFrom(forms.ModelForm):
-    class Meta:
-        model = Application
-        fields = [] """

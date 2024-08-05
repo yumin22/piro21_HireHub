@@ -1,27 +1,37 @@
+.document_container {
+    height: 100%;
+    padding: 2rem 4rem;
+}
 .title {
-    font-size: 1.5rem;
+    font-size: 4rem;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
+}
+.title span {
+    font-size: 2.4rem;
 }
 
 .applicant_container {
     display: flex;
     justify-content: center;
     align-content: space-around;
-    gap: 10px;
-    height: 100vh;
+    gap: 2rem;
+    height: calc(100% - 8rem);
+    padding-bottom: 2rem;
 }
 
 .applicants_list {
     width: 50%;
+    /* height: 100%; */
 }
 
 .applicants_list > p {
     margin:0;
-    padding: 10px 0;
-    border-bottom: solid black;
     margin-bottom: 20px;
-    font-size: 1rem;
+    padding: 10px 0;
+    padding-left: 1rem;
+    border-bottom: solid black;
+    font-size: 2.4rem;
     font-weight: bold;
 }
 
@@ -42,28 +52,30 @@
 
 .applicant_info{
     list-style: none;
-    padding-left: 0;
+    padding-left: 0.5rem;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 1rem;
     margin: 5px 0;
 }
 
 #name {
-    font-size: 0.8rem;
+    font-size: 1.6rem;
     font-weight: bold;
-    padding-right: 10px;
+    padding-right: 1rem;
     border-right: solid black;
 }
 
 .info {
-    font-size: 0.5rem;
-    padding-right: 5px;
+    font-size: 1.3rem;
+    padding-right: 0.5rem;
 }
 
 .scroll_section {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    height: calc(100% - 7rem);
+    overflow-y: scroll;
 }
 .scroll_section::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/

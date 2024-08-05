@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="{% static 'css/variable.css' %}">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
     <style>
         body {
-            font-family: 'Pretendard', sans-serif;
+            font-family: 'Pretendard', sans-serif !important;
         }
     </style>
+    {% block head %} {% endblock %}
 </head>
 <body>
     <header>
@@ -25,13 +25,8 @@
          </div>
      </nav>
     </header>
-   <main>
-      <div class="initial_applicant">
-         <h3>지원자</h3>
-         <div class="initial_btns">
-            <a href="{% url 'applicants:apply' pk=template.pk %}">지원서 작성 바로가기</a>
-            <a href="">지원 상태 확인</a>
-         </div>
-      </div>
-   </main>
+    <main>
+        {% block content %}<!-- 여기 내용-->{% endblock content %}
+    </main>
 </body>
+</html>

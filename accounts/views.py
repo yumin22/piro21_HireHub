@@ -13,12 +13,12 @@ from .forms import SignupForm, LoginForm
 def initialInterviewer(request):
    if request.user.is_authenticated: # 만약 사용자가 로그인되어 있다면 바로 메인 페이지로 가도록
       return redirect(reverse('accounts:mainboard', kwargs={'pk': request.user.pk}))
-   return render(request, 'accounts/initial_interviewer.html')
+   return render(request, 'accounts/initial.html')
 
 def initialApplicant(request):
    template = ApplicationTemplate.objects.get(pk=1) # pk 변경 필요
    context = {'template': template}
-   return render(request, 'accounts/initial_applicant.html', context)
+   return render(request, 'for_applicant/initial.html', context)
 
 def signup(request):
    if request.method == 'GET':

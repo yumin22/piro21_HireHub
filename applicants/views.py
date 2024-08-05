@@ -58,4 +58,4 @@ def apply(request, pk):
     context = {
         'template': template,
     }
-    return render(request, 'applicant/write_apply.html', context)
+    return render(request, 'for_applicant/write_apply.html', context)
