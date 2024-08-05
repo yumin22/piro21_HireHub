@@ -1,17 +1,32 @@
 .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 30px;
+    font-size: 4rem;
+    font-weight: 700;
+    padding-top: 45px;
+    padding-left: 57px;
+
+}
+
+.scheduleTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .schedule_btn {
     display: flex;
+    background-color: var(--main-color);
+    color: white;
+    width: 96px;
+    height: 33px;
+    border-radius: 7px;
+    margin-right: 30px;
 }
 
 .btn {
-    margin-left: auto;
-    margin-right: 20px;
-    margin-bottom: 10px;
+    padding-left: 15px;
+    font-size: 1.2rem;
+    font-family: 700;
+    text-align: center;
 }
 
 .page_container {
@@ -19,13 +34,14 @@
     justify-content: center;
     align-content: space-around;
     gap: 10px;
-    height: 100vh;
+    height: calc(100% - 130px);
+    
 }
 .schedule_container {
     width: 70%;
     display: grid;
     grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
-    overflow-y: scroll;
+    overflow-y: auto;
 
 }
 
@@ -36,37 +52,55 @@
 .grid_container > p {
     margin:0;
     padding: 10px 0;
-    border-bottom: solid black;
+    border-bottom: solid var(--box-color);
     margin-bottom: 20px;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 1.6rem;
+    font-weight: 700;
 }
 
 .applicant_info {
     font-size: 0.6rem;
-    background-color: #A8FF82;
+    background-color: var(--mediumprocess-color);
     display: inline-block;
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px 5px 10px 15px;
     margin-bottom: 10px;
+}
+
+.applicant_info > p {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+
+.sideText {
+    font-size: 1rem;
+    font-weight: 500;
+    padding-left: 5px;
+}
+
+.appliCtx > p {
+    font-size: 1rem;
+    font-weight: 500;
+    width: 220px;
 }
 
 .update{
     margin-left: 5px;
     font-size: 0.4rem;
-    color: #A3A3A3
+    color: var(--box-color);
 }
 
 .name {
-    font-size: 0.6rem;
-    font-weight: bold;
+    font-size: 1.2rem;
+    font-weight: 700;
     margin-right: 10px;
 }
 
-.reschedule_container > p {
-    font-size: 0.8rem;
-    font-weight: bold;
-    margin-left: 10px;
+.scheduleTitle > p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-left: 20px;
 }
 
 .reschedule_applicant {
@@ -74,9 +108,9 @@
     height: 90%;
     margin: 10px;
     padding: 10px;
-    background-color: #E6E6E6;
+    background-color: var(--box-color);
     border-radius: 5px;
-    overflow:scroll;
+    overflow-y: auto;
 }
 
 .reschedule_applicant {
