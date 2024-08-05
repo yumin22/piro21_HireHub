@@ -5,10 +5,13 @@
 {% endblock %}
 {% block content %}
 <div class="title">지원자 관리 > 면접 관리</div>
-<div class="search-applicant">
-    <input type="text" id="applicant-search-input" placeholder="지원자 검색">
-    <button type="button" onclick="searchApplicant()">검색</button>
-    <ul id="applicant-search-results"></ul>
+<div class="search_schedule">
+    <a href='{% url 'applicants:schedule' %}'>면접 일정 보러가기</a>
+    <div class="search-applicant">
+        <input type="text" id="applicant-search-input" placeholder="지원자 검색">
+        <button type="button" onclick="searchApplicant()">검색</button>
+        <ul id="applicant-search-results"></ul>
+    </div>
 </div>
 <div class="applicant_container">
     <div class="applicants_list">
