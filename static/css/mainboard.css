@@ -8,6 +8,7 @@
 .evaluate_list{
     width: 60%;
     margin: 30px;
+    overflow-y: auto;
 }
 
 .main_title {
@@ -94,7 +95,6 @@
 }
 
 .scroll_section {
-    overflow:scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }

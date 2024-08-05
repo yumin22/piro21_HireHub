@@ -47,6 +47,25 @@
                     <p class="application_question"><strong>{{ answer.question.id }}. {{ answer.question.question_text }}</strong></p>
                     <p class="application_answer">{{ answer.answer_text }}</p>
                 {% endfor %}
+                    <div class="profile_detail2">
+                        <p>{{ applicant.school }}</p>
+                        <p>{{ applicant.major }}</p>
+                        <p>{{ applicant.phone_number }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="profile_interview">
+                <p><strong>면접일:</strong> {{ applicant.interview_date }}</p>
+                <p><strong>면접관:</strong> {{ applicant.interviewer }}</p>
+            </div>
+        </div>
+        <div class="application_container">
+            <h3>지원서</h3>
+            <div class="application_content">
+                {% for answer in answers %}
+                    <p class="application_question"><strong>{{ answer.question.id }}. {{ answer.question.question_text }}</strong></p>
+                    <p class="application_answer">{{ answer.answer_text }}</p>
+                {% endfor %}
             </div>
         </div>
     </div>

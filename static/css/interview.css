@@ -33,11 +33,11 @@
 }
 
 .search-applicant {
-    width: 466px;
+    width: 400px;
     height: 35px;
     border-radius: 20px;
     background-color: var(--box-color);
-    margin-right: 30px;
+    margin-right: 90px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -57,6 +57,7 @@
 
 .searchBtn  {
     font-size: 2rem;
+    margin-right: 15px;
 }
 
 

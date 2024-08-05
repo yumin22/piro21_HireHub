@@ -19,6 +19,7 @@
         <div class="scroll_section">
             {% for applicant in sort_applicants %}
             <div class="my_applicant" onclick="location.href='{% url 'applicants:profile' applicant.pk %}';" style="cursor:pointer;">
+            
                 <ul class="applicant_info">
                     <li id="name">{{applicant.name}}</li>
                     <li class="info">{{applicant.school}}</li>
@@ -30,7 +31,7 @@
         </div>
     </div>
     <div class="my_schedule">
-        <p class="main_title">내 일정 <span id="interview_num">{{interview_num}}건</span></p>
+        <p class="main_title">내 일정 <span id="interview_num">{{interview_num}}</span></p>
         <div class="scroll_section">
             {% for applicant in applicants %}
             <div class="schedule_content">
