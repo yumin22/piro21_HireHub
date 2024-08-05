@@ -32,7 +32,7 @@
         <div class="scroll_section">
             {% for applicant in applicants %}
             {% if applicant.status == 'interview_scheduled' %}
-            <div class="each_applicant scheduled">
+            <div class="each_applicant scheduled" onclick="location.href='{% url 'applicants:profile' applicant.pk %}';" style="cursor:pointer;">
                 <ul class="applicant_info">
                     <li id="name" class="infoName">{{applicant.name}}</li>
                     <li class="infoSch">{{applicant.school}}</li>

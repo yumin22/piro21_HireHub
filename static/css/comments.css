@@ -83,7 +83,7 @@ section {
 }
 
 .comment {
-    background-color: #CEFBB9;
+    background-color: var(--mediumprocess-color);
     border-radius: 10px;
     margin: 10px 0;
     padding: 15px 15px 20px 15px;
@@ -92,6 +92,9 @@ section {
 
     display: flex; 
     margin-bottom: 1rem; 
+}
+.comment > p {
+    font-size: 1.6rem;
 }
 
 .comment small {
@@ -131,7 +134,7 @@ section {
 }
 
 .comment_box button[type="submit"] {
-    background-color: #4CAF50;
+    background-color: var(--main-color);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -144,6 +147,3 @@ section {
     transition: background-color 0.3s ease;
 }
 
-.comment_box button[type="submit"]:hover {
-    background-color: #45a049;
-}
