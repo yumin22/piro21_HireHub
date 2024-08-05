@@ -1,8 +1,63 @@
 .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: start;
+    padding-top: 45px;
+    padding-left: 57px;
 }
+
+.title > h1 {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.title > i {
+    font-size: 3.5rem;
+}
+
+.title > p {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 210%;
+}
+
+.sideCtx {
+    display: flex;
+    justify-content: end;
+}
+
+.sideCtx > a {
+    font-size: 1.8rem;
+    font-weight: 900;
+    padding: 5px 30px 0 0;
+}
+
+.search-applicant {
+    width: 466px;
+    height: 35px;
+    border-radius: 20px;
+    background-color: var(--box-color);
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+}
+
+.search-applicant > input {
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
+    padding-left: 5px;
+}
+
+.search-applicant > input:focus {
+    outline: none;
+}
+
+.searchBtn  {
+    font-size: 2rem;
+}
+
 
 .applicant_container {
     display: flex;
@@ -10,6 +65,7 @@
     align-content: space-around;
     gap: 10px;
     height: 100vh;
+    padding: 5.8rem;
 }
 
 .applicants_list {
@@ -19,10 +75,12 @@
 .applicants_list > p {
     margin:0;
     padding: 10px 0;
-    border-bottom: solid black;
+    border-bottom: 5px solid black;
     margin-bottom: 20px;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-right: 20px;
+
 }
 
 .each_applicant {
@@ -33,36 +91,63 @@
 }
 
 .scheduled {
-    background-color: #CEFBB9;
+    background-color: var(--lightprocess-color);
+    width: 89%;
+    height: 39px;
+    padding: 0 10px 0 10px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
 .in_progress {
-    background-color: #A8FF82;
+    background-color: var(--mediumprocess-color);
+    width: 89%;
+    height: 39px;
+    padding: 0 10px 0 10px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
 .completed {
-    background-color: #7CE84C;
+    background-color: var(--process-color);
+    width: 89%;
+    height: 39px;
+    padding: 0 10px 0 10px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
 .applicant_info {
+    display: flex;
+    align-items: center;
+    justify-content: start;
     list-style: none;
     padding-left: 0;
     display: flex;
-    align-items: center;
     gap: 10px;
     margin: 5px 0;
+    padding-top: 7px;
 }
 
-#name {
-    font-size: 0.8rem;
-    font-weight: bold;
+.infoName {
+    font-size: 1.6rem;
+    font-weight: 700;
     padding-right: 10px;
     border-right: solid black;
+    margin-left: 10px;
 }
 
-.info {
-    font-size: 0.5rem;
-    padding-right: 5px;
+.infoSch {
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding-right: 10px;
+    margin-left: 20px;
+}
+
+.infoMajor {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-left: 30px;
 }
 
 .scroll_section {

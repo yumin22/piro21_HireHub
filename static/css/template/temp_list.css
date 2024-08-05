@@ -9,6 +9,7 @@
     padding: 0;
 }
 
+
 body {
     min-width: 1280px;
     height: 100%;
@@ -26,6 +27,7 @@ body {
 .templateCtx {
     display: flex;
     padding: 5.8rem;
+    align-items: flex-start;
 }
 
 .tempBox {
@@ -84,7 +86,7 @@ li {
     gap: 10px;
     width: 89%;
     height: 39px;
-    background-color: #E1E1E1;
+    background-color: var(--box-color);
     margin-top: 20px;
     border-radius: 5px;
 }

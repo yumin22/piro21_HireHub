@@ -17,7 +17,7 @@
             <div class="createHeader">
                 <h1>템플릿</h1>
                 <i class="ri-arrow-right-s-line"></i>
-                <p>새 템플릿</p>
+                <p>지원서작성</p>
             </div>
             <form method="post" id="template-form" class="templateForm" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -38,7 +38,6 @@
                 </div>
                 <div id="question-form-container">
                     {{ formset.management_form }}
-
                 </div>  
                 <button type="submit" class="createBtn">
                     <i class="ri-add-line"></i>

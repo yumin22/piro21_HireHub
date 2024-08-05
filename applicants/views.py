@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Application, Answer, Possible_date_list
 from accounts.models import Interviewer
 from django.http import JsonResponse
+from template.models import ApplicationTemplate, ApplicationQuestion
+from .forms import ApplicationForm
+from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
@@ -130,3 +133,30 @@ def auto_schedule(request):
         schedules_info.remove(low_pop_schedule)
                     
     return redirect('applicants:schedule')
+
+def apply(request, pk):
+    template = ApplicationTemplate.objects.get(id=pk)
+
+    if request.method == 'POST':
+        application = Application(
+            template = template,
+            name = request.POST['name'],
+            phone_number = request.POST['phone_number'],
+            school = request.POST['school'],
+            major = request.POST['major'],
+        )
+        application.save()
+
+        for question in template.questions.all():
+            answer_text = request.POST.get(f'answer_{question.id}')
+            Answer.objects.create(
+                application = application,
+                question = question,
+                answer_text = answer_text
+            )
+        return redirect('accounts:initialApplicant')
+        
+    context = {
+        'template': template,
+    }
+    return render(request, 'for_applicant/write_apply.html', context)

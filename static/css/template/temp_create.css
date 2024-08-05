@@ -1,3 +1,8 @@
+body {
+    min-width: 1280px;
+    height: 100%;
+}
+
 .createEntire {
     margin-left: 57px;
     display: flex;
@@ -5,12 +10,16 @@
 
 }
 
+.createWrite {
+    height: auto;
+}
+
 .createPrev {
     display: block;
-    margin: 60px 30px 30px 30px;
+    margin: 40px 30px 10px 30px;
     border-radius: 20px 20px 10px 10px;
     min-width: 60%;
-    min-height: 630px;
+    min-height: 600px;
     background-color: #E2E2E2;
 }
 
@@ -27,7 +36,7 @@
 
 .createHeader {
     display: flex;
-    margin-top: 45px;
+    margin-top: 30px;
 }
 
 .createHeader > h1 {
@@ -51,7 +60,7 @@
 .templateForm {
     display: flex;
     flex-direction: column;
-    margin-top: 35px;
+    margin-top: 20px;
 }
 
 .formTitle > h2{
@@ -82,7 +91,7 @@
     height:15rem;
     font-size: 16px;
     padding: 10px 10px 0 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 
 }
 
@@ -184,12 +193,10 @@
     display: block;
 }
 
-.questionList {
-    margin-left:20px;
-}
-
 .questionList > li {
     font-size: 16px;
     font-weight: 500;
+    padding: 5px 0 5px 0 !important;
+    
 }
 

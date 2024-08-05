@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+    Hire Hub
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/template/temp_detail.css' %}">
+{% endblock %}
+    
+
+{% block content %}
+    <div class="DetailTitle">
+        <a class="back-link" href="{% url 'template:template_list' %}"><i class="ri-arrow-left-s-line"></i></a>
+        <h1>지원서</h1>
+    </div>
+    <div class="container">
+        <div class="tempDetail">
+            <h1 class="form-title">{{ template.name }}</h1>
+            <div class="tempCtx">
+                <div class="form-description">
+                    <h3>| 설명</h3>
+                    <p> {{ template.description }}</p>
+                </div>
+                <div>
+                    <h2 class="section-title">| 질문 목록</h2>
+                    <ol class="questions-list">
+                        {% for question in questions %}
+                            <li class="question-item">{{ question.question_text }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+            <div class="actions">
+                <a class="btn-custom" href="{% url 'template:template_update' pk=template.pk %}">수정</a>
+                <form class="delete-form" action="{% url 'template:template_delete' pk=template.pk %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn-delete" type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
