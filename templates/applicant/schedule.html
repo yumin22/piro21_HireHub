@@ -19,7 +19,19 @@
                     <div class="applicant_info">
                         <span class="name">{{applicant.name}}</span> 
                         <span>{{applicant.interview_time}}</span>
-                        <span class="update">수정</span>
+                        <span class="spanUpdate{{applicant.id}}"><input type="button" value="수정" onclick="Update({{applicant.id}})"></span>
+                        <select class="selectDate{{applicant.id}}" style="display:none">
+                            {% for select_date in applicant.possible_date.all %}
+                            <option class="Date{{ applicant.id }}" value="{{select_date}}">{{select_date}}</option>
+                            {% endfor %}
+                        </select>
+                        <select class="selectTime{{applicant.id}}" style="display:none">
+                            {% for select_time in applicant.TIME_CHOICES %}
+                            <option class="Time{{ applicant.id }}" value="{{select_time}}">{{select_time|first}}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="spanSubmit{{applicant.id}}" style="display:none"><input type="button"  value="수정 완료" onclick="Submit({{applicant.id}})"></span>
+                        <span class="spanUpdateCancel{{applicant.id}}" style="display:none"><input type="button"  value="취소" onclick="UpdateCancel({{applicant.id}})"></span>
                     </div>
                     {% endif %}
                 {% endfor %}
@@ -44,4 +56,5 @@
         </div>
     </div>
 </div>
+<script src="{% static 'js/schedule.js' %}"></script>
 {% endblock %}
