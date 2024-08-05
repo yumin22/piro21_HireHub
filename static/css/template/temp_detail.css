@@ -87,18 +87,14 @@ body {
     color: #A3A3A3;
 }
 
-.questions-list {
-    padding-left: 20px;
+.questionList {
+    margin-left: 5px;
+    padding: 0 0 0 14px !important;
 }
 
 .questions-list > li {
     font-size: 1.8rem;
     font-weight: 500;
-}
-
-.questionList {
-    margin-left: 5px;
-    padding: 0 0 0 14px !important;
 }
 
 .actions {
