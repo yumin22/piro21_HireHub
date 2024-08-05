@@ -185,6 +185,33 @@
     padding: 5px 5px 5px 10px;
 }
 
+.form-field2 > input {
+    border-radius: 7px;
+    width: 42.5rem !important;
+    height: 45px !important;
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 5px 5px 5px 10px;
+    background-color: transparent;
+    border: none;
+}
+
+.form-field2 > input:focus {
+    border: none;
+    outline: none;
+}
+
+.form-field2 > textarea {
+    width: 42.5rem !important;
+    height: 50px !important;
+    background-color: #f9f9f9;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    padding: 5px 5px 5px 10px;
+}
+
+
 .question-form-container > h2 {
     font-size: 16px;
     font-weight: 700;
