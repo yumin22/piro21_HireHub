@@ -64,10 +64,10 @@
     justify-content: center;
     align-content: space-around;
     gap: 10px;
-    height: 100vh;
-    padding: 5.8rem;
+    height: calc(100% - 14rem);
+    padding: 5rem;
 }
-
+    
 .applicants_list {
     width: 32%;
 }
