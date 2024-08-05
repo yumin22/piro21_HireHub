@@ -1,11 +1,14 @@
 section {
     padding: 30px 20px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .profile_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
 .profile_logo {
     font-size: 4rem;
@@ -25,20 +28,19 @@ section {
 .actions a {
     text-decoration: none;
 }
-.actions button:hover {
-    background-color: #444;
-}
 
 .profile_section {
     display: flex;
-    height: 600px;
+    /* height: calc(100% - 80px); */
+    height: 100%;
+    /* padding-bottom: 20px; */
 }
 
 .profile_container {
-    background-color: #E6E6E6;
+    background-color: var(--box-color);
     border-radius: 10px;
     width: 40%;
-    margin-top: 20px;
+    height: 100%;
     margin-right: 20px;
     padding: 20px 30px;
     display: flex;
@@ -86,24 +88,24 @@ section {
     flex-direction: column;
     justify-content: center;
     font-size: 2.4rem;
-    height: 40%;
+    height: 50%;
 }
 
 .application_container{
     width: 60%;
+    height: 100%;
     padding: 0 10px;
-    margin-top: 20px;
 }
 .application_container h3 {
     font-size: 2rem;
     padding-left: 10px;
 }
 .application_content {
+    height: calc(100% - 3rem);
     border: 2px solid black;
-    height: 95%;
-    border-radius: 10px;
-    margin: 10px 0;
-    padding: 10px;
+    border-radius: 1rem s;
+    margin-top: 1rem;
+    padding: 1.5rem 2rem;
     overflow-y: scroll;
     flex-direction: column;
 }
@@ -114,10 +116,11 @@ section {
     border-radius: 10px;
     background: black;
 }
-.question {
+.application_question {
     font-size: 2rem;
 }
-.answers p {
+.application_answer {
     margin: 10px 0;
+    margin-left: 2rem;
     font-size: 1.5rem;
 }
