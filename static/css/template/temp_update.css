@@ -234,13 +234,15 @@
 
 }
 
-.questionLis {
-    padding-left: 0 !important;
+.questionList {
+    margin-left: 5px;
+    padding: 0 0 0 14px !important;
 }
 
 .questionList > li {
     font-size: 16px;
     font-weight: 500;
+    padding: 5px 0 5px 0 !important;
 
 }
 
