@@ -19,7 +19,6 @@ class InterviewTemplate(models.Model):
 class InterviewQuestion(models.Model):
     template = models.ForeignKey(InterviewTemplate, on_delete=models.CASCADE, related_name='questions')
     question_text = models.TextField()
-    question_importance = models.IntegerField(default=1)
 
 class EvaluationTemplate(models.Model):
     title = models.CharField(max_length=255)
