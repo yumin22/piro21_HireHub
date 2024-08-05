@@ -27,12 +27,14 @@
                 </div>
                 <div>
                     <h2 class="section-title">| 평가 항목</h2>
-                    <ul class="questions-list">
+                    <ol class="questions-list">
                         {% for question in questions %}
-                        <li class="question-item">{{ question.question_title }} - {{ question.question_text }}</li>
+                        <li class="question-item">
+                            <p>{{ question.question_title }}</p> {{ question.question_text }}
+                        </li>
                         {% endfor %}
 
-                    </ul>
+                    </ol>
                 </div>
             </div>
             <div class="actions">
