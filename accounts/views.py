@@ -16,7 +16,7 @@ def initialInterviewer(request):
    return render(request, 'accounts/initial.html')
 
 def initialApplicant(request):
-   template = ApplicationTemplate.objects.get(pk=1) # pk 변경 필요
+   template = ApplicationTemplate.objects.get(pk=16) # pk 변경 필요
    context = {'template': template}
    return render(request, 'for_applicant/initial.html', context)
 
