@@ -151,7 +151,13 @@ def apply(request, pk):
                     question = question,
                     answer_text = answer_text,
                 )
-            return redirect('accounts:initialApplicant')
+            
+            name = form.cleaned_data['name']
+            phone_number = form.cleaned_data['phone_number']
+            request.session['name'] = name
+            request.session['phone_number'] = phone_number
+            request.session['submitted'] = True
+            return redirect('applicants:apply_result')
     
     context = {
         'form': form,
@@ -165,19 +171,22 @@ def apply_check(request):
         phone_number = request.POST.get('phone_number')
         request.session['name'] = name
         request.session['phone_number'] = phone_number
+        request.session['submitted'] = False
         return redirect('applicants:apply_result')
     return render(request, 'for_applicant/apply_check.html')
 
 def apply_result(request):
     name = request.session.get('name')
     phone_number = request.session.get('phone_number')
+    submitted = request.session.get('submitted')
     if name and phone_number:
-        try:
-            application = Application.objects.get(name=name, phone_number=phone_number)
-            print(name, phone_number)
-            submitted = True
-        except Application.DoesNotExist:
-            submitted = False
+        if submitted == False:
+            try:
+                application = Application.objects.get(name=name, phone_number=phone_number)
+                print(name, phone_number)
+                submitted = True
+            except Application.DoesNotExist:
+                submitted = False
         context = {
             'submitted': submitted,
             'name': name
