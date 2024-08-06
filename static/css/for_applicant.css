@@ -94,3 +94,56 @@
    margin-bottom: 2rem;
    transform: translate(-50%, 0);
 }
+
+/* apply_check.html */
+.status_container {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.status_logo {
+   font-size: 6.4rem;
+   font-weight: bold;
+   margin-bottom: 4.5rem;
+   text-align: center;
+}
+#statuscheck_form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+#statuscheck_form input {
+   width: 580px;
+   height: 70px;
+   border-radius: 30px;
+   font-size: 2.4rem;
+   font-weight: 600;
+   color: black;
+   padding-left: 20px;
+   border: 2px solid var(--main-color);
+   margin-bottom: 28px;
+}
+.status_container button {
+   width: 580px;
+   height: 70px;
+   border-radius: 30px;
+   font-size: 2.4rem;
+   font-weight: bold;
+   color: white;
+   border: 2px solid var(--main-color);
+   background-color: var(--main-color);
+   margin-top: 26px;
+}
+
+/* apply_result.html */
+.applyResult_container {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   font-size: 6.4rem;
+   font-weight: bold;
+}

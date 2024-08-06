@@ -135,13 +135,10 @@ def auto_schedule(request):
 def apply(request, pk):
     template = ApplicationTemplate.objects.get(id=pk)
     form = ApplyForm()
-    print("접속")
 
     if request.method == 'POST':
         form = ApplyForm(request.POST)
-        print("버튼 누름")
         if form.is_valid():
-            print("폼 유효")
             applyContent = form.save(commit=False)
             applyContent.template = template
             applyContent.save()
@@ -161,6 +158,33 @@ def apply(request, pk):
         'template': template,
     }
     return render(request, 'for_applicant/write_apply.html', context)
+
+def apply_check(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        phone_number = request.POST.get('phone_number')
+        request.session['name'] = name
+        request.session['phone_number'] = phone_number
+        return redirect('applicants:apply_result')
+    return render(request, 'for_applicant/apply_check.html')
+
+def apply_result(request):
+    name = request.session.get('name')
+    phone_number = request.session.get('phone_number')
+    if name and phone_number:
+        try:
+            application = Application.objects.get(name=name, phone_number=phone_number)
+            print(name, phone_number)
+            submitted = True
+        except Application.DoesNotExist:
+            submitted = False
+        context = {
+            'submitted': submitted,
+            'name': name
+        }
+        return render(request, 'for_applicant/apply_result.html', context)
+    else:
+        return redirect('applicants:apply_check')
 
 def comment(request, pk):
     applicant = get_object_or_404(Application, pk=pk)

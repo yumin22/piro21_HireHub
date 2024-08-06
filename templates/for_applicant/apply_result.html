@@ -1,0 +1,17 @@
+{% extends 'for_applicant/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/for_applicant.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="applyResult_container">
+   <p>{{ name }}님</p>
+   {% if submitted %}
+      <p>지원서 제출되었습니다!</p>
+   {% else %}
+      <p>지원서 제출 이력이 없습니다.</p>
+   {% endif %}
+</div>
+{% endblock content %}
