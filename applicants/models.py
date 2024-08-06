@@ -12,7 +12,7 @@ class Possible_date_list(models.Model):
     possible_date= models.DateField(blank=False, null=False)
     # 오전, 오후
     possible_ampm = models.CharField(max_length=50, choices=AMPM_CHOICES, blank=False, null=False)
-    # 해당 타임(면접일/오전or오후) 최대 할당가능 면접 개수
+    # 해당 타임(면접일/오전or오후) 최대 할당가능 면접 개수4
     max_possible_interview = models.IntegerField("면접타임개수", default=0)
     
     def __str__(self):

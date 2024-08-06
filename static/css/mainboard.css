@@ -9,12 +9,14 @@
     width: 60%;
     margin: 30px;
     overflow-y: auto;
+    padding-top: 15px;
 }
 
 .main_title {
     margin:0;
     padding: 10px 0;
-    border-bottom: solid black;
+    padding-left: 1rem;
+    border-bottom: 0.5rem solid black;
     margin-bottom: 10px;
     font-size: 2.4rem;
     font-weight: bold;
@@ -23,6 +25,7 @@
 #interview_num {
     display: block;
     margin-left: auto;
+    padding-right: 1rem;
 }
 
 .sort_container {

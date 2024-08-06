@@ -4,7 +4,7 @@ from .models import Application, Answer, Possible_date_list, Comment
 from accounts.models import Interviewer
 from django.http import JsonResponse
 from template.models import ApplicationTemplate, ApplicationQuestion
-from .forms import ApplicationForm, CommentForm
+from .forms import ApplicationForm, CommentForm, ApplyForm
 from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
 
@@ -134,27 +134,30 @@ def auto_schedule(request):
 
 def apply(request, pk):
     template = ApplicationTemplate.objects.get(id=pk)
+    form = ApplyForm()
+    print("접속")
 
     if request.method == 'POST':
-        application = Application(
-            template = template,
-            name = request.POST['name'],
-            phone_number = request.POST['phone_number'],
-            school = request.POST['school'],
-            major = request.POST['major'],
-        )
-        application.save()
-
-        for question in template.questions.all():
-            answer_text = request.POST.get(f'answer_{question.id}')
-            Answer.objects.create(
-                application = application,
-                question = question,
-                answer_text = answer_text
-            )
-        return redirect('accounts:initialApplicant')
-        
+        form = ApplyForm(request.POST)
+        print("버튼 누름")
+        if form.is_valid():
+            print("폼 유효")
+            applyContent = form.save(commit=False)
+            applyContent.template = template
+            applyContent.save()
+            form.save_m2m()
+            
+            for question in template.questions.all():
+                answer_text = request.POST.get(f'answer_{question.id}')
+                Answer.objects.create(
+                    application = applyContent,
+                    question = question,
+                    answer_text = answer_text,
+                )
+            return redirect('accounts:initialApplicant')
+    
     context = {
+        'form': form,
         'template': template,
     }
     return render(request, 'for_applicant/write_apply.html', context)

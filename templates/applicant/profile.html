@@ -37,7 +37,14 @@
             </div>
             <div class="profile_interview">
                 <p><strong>면접일:</strong> {{ applicant.interview_date }}</p>
-                <p><strong>면접관:</strong> {{ applicant.interviewer }}</p>
+                <div style="display: flex; gap: 0.5rem;">
+                    <strong>면접관:</strong>
+                    <div>
+                        {% for interviewer in applicant.interviewer.all%}
+                        <p> {{ interviewer.name }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="application_container">
