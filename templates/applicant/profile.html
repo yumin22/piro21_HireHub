@@ -41,7 +41,7 @@
                     <strong>면접관:</strong>
                     <div>
                         {% for interviewer in applicant.interviewer.all%}
-                        <p> {{ interviewer }}</p>
+                        <p> {{ interviewer.name }}</p>
                         {% endfor %}
                     </div>
                 </div>

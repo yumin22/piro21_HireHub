@@ -85,6 +85,10 @@
     width: 220px;
 }
 
+.form_update{
+    display: inline-block;
+}
+
 .update{
     margin-left: 5px;
     font-size: 0.4rem;
