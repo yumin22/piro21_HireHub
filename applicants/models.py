@@ -45,6 +45,9 @@ class Application(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+    
+    def get_total_score(self):
+        return self.evaluations.filter(is_submitted=True).aggregate(total=Sum('total_score'))['total'] or 0
 
 class Answer(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='answers')

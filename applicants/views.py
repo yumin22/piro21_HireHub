@@ -1,12 +1,14 @@
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Application, Answer, Possible_date_list, Comment
 from accounts.models import Interviewer
 from django.http import JsonResponse
 from template.models import ApplicationTemplate, ApplicationQuestion
+from django.db import models
 from .forms import ApplicationForm, CommentForm
 from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
+
 
 def interview(request):
     applicants = Application.objects.all()
@@ -195,3 +197,13 @@ def comment(request, pk):
         'form': form,
     }
     return render(request, 'applicant/comments.html', ctx)
+
+def applicant_rankings(request):
+    applications = Application.objects.annotate(
+        total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True))
+    ).order_by('-total_score')
+    
+    context = {
+        'applications': applications
+    }
+    return render(request, 'applicant_rankings.html', context)
