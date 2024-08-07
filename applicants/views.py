@@ -3,10 +3,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Application, Answer, Possible_date_list, Comment
 from accounts.models import Interviewer
 from django.http import JsonResponse
+from django.core.exceptions import PermissionDenied
 from template.models import ApplicationTemplate, ApplicationQuestion
 from .forms import ApplicationForm, CommentForm
 from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
+from datetime import time
 
 def interview(request):
     applicants = Application.objects.all()
@@ -131,6 +133,30 @@ def auto_schedule(request):
         schedules_info.remove(low_pop_schedule)
                     
     return redirect('applicants:schedule')
+
+def schedule_update(request, pk):
+    applicant = get_object_or_404(Application, id=pk)
+
+    if request.method == 'POST':
+        date_id = request.POST.get('selectDate')
+        time_value = request.POST.get('selectTime')
+
+        possible_date = get_object_or_404(Possible_date_list, id=date_id)
+        
+        # Parsing the time value from string to time object
+        print(time_value[0])
+        interview_time = f'{time_value[0]}{time_value[1]}:{time_value[3]}{time_value[4]}'
+        if time_value[0] == '-':
+            applicant.interview_time = None
+        else:
+            applicant.interview_time = interview_time
+        applicant.interview_date = possible_date
+        applicant.save()
+
+        return redirect('applicants:schedule')
+
+    return redirect('applicants:schedule')
+
 
 def apply(request, pk):
     template = ApplicationTemplate.objects.get(id=pk)
