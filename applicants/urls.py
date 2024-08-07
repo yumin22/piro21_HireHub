@@ -11,4 +11,8 @@ urlpatterns = [
     path('apply/<int:pk>/', views.apply, name='apply'),
     path("schedule", views.schedule, name='schedule'),
     path("auto_schedule", views.auto_schedule, name='auto_schedule'),
+    path("document/profile/<int:pk>/comment/", views.comment, name='comment'),
+    path('rankings/', views.applicant_rankings, name='rankings'),
+    path("schedule/update/<int:pk>s", views.schedule_update, name="schedule_update")
+    # path('document/profile/<int:pk>/evaluate', views.evaluate, name='evaluate')
 ]

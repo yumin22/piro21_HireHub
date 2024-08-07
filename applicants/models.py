@@ -45,9 +45,20 @@ class Application(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+    
+    def get_total_score(self):
+        return self.evaluations.filter(is_submitted=True).aggregate(total=Sum('total_score'))['total'] or 0
 
 class Answer(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='answers')
     question = models.ForeignKey(ApplicationQuestion, on_delete=models.CASCADE) #특정 질문에 대한 답변
     answer_text = models.TextField()
 
+class Comment(models.Model):
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='comments')
+    interviewer = models.ForeignKey(Interviewer, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comment by {self.interviewer} on {self.created_at}'

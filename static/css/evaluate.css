@@ -1,0 +1,84 @@
+
+.apply_container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.apply_container h2 {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.formTitle, .formContent, .formQuestion {
+    margin-bottom: 20px;
+}
+
+
+.formTitle input[type="text"], .formContent textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.formContent textarea {
+    height: 100px;
+    resize: none;
+}
+
+.formQuestion label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formQuestion textarea, .formQuestion input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.questions_list {
+    list-style: none;
+    padding: 0;
+}
+
+.questions_list .question {
+    margin-bottom: 20px;
+}
+
+.questions_list label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.questions_list input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.submitBtn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}

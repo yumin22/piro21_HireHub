@@ -13,7 +13,7 @@ body {
 }
 
 .DetailTitle {
-    margin-top: 30px;
+    padding-top: 30px;
     margin-left: 7px;
     display: flex;
 }
@@ -89,12 +89,18 @@ body {
 
 .questionList {
     margin-left: 5px;
-    padding: 0 0 0 14px !important;
 }
 
 .questions-list > li {
     font-size: 1.8rem;
     font-weight: 500;
+    padding: 10px 0 0 5px ;
+}
+.question-item {
+    font-weight: 500;
+}
+.question-item > p { 
+    font-weight: bold;
 }
 
 .actions {

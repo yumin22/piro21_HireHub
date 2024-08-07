@@ -1,14 +1,17 @@
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Application, Answer, Possible_date_list
+from .models import Application, Answer, Possible_date_list, Comment
 from accounts.models import Interviewer
 from django.http import JsonResponse
+from django.core.exceptions import PermissionDenied
 from template.models import ApplicationTemplate, ApplicationQuestion
-from .forms import ApplicationForm
+from django.db import models
+from .forms import ApplicationForm, CommentForm
 from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
+from datetime import time
 
-# Create your views here.
+
 def interview(request):
     applicants = Application.objects.all()
     ctx = {"applicants": applicants}
@@ -18,7 +21,6 @@ def document(request):
     applicants = Application.objects.all()
     ctx = {"applicants": applicants}
     return render(request, "applicant/document.html", ctx)
-
 
 def search_applicant(request):
     search_txt = request.GET.get('search_txt')
@@ -134,6 +136,30 @@ def auto_schedule(request):
                     
     return redirect('applicants:schedule')
 
+def schedule_update(request, pk):
+    applicant = get_object_or_404(Application, id=pk)
+
+    if request.method == 'POST':
+        date_id = request.POST.get('selectDate')
+        time_value = request.POST.get('selectTime')
+
+        possible_date = get_object_or_404(Possible_date_list, id=date_id)
+        
+        # Parsing the time value from string to time object
+        print(time_value[0])
+        interview_time = f'{time_value[0]}{time_value[1]}:{time_value[3]}{time_value[4]}'
+        if time_value[0] == '-':
+            applicant.interview_time = None
+        else:
+            applicant.interview_time = interview_time
+        applicant.interview_date = possible_date
+        applicant.save()
+
+        return redirect('applicants:schedule')
+
+    return redirect('applicants:schedule')
+
+
 def apply(request, pk):
     template = ApplicationTemplate.objects.get(id=pk)
 
@@ -160,3 +186,50 @@ def apply(request, pk):
         'template': template,
     }
     return render(request, 'for_applicant/write_apply.html', context)
+
+def comment(request, pk):
+    applicant = get_object_or_404(Application, pk=pk)
+    answers = Answer.objects.filter(application=applicant)
+    comments = Comment.objects.filter(application=applicant).order_by('created_at')
+    form = CommentForm()
+    
+    if request.method == 'POST':
+        interviewer = get_object_or_404(Interviewer, email=request.user.email)  # 인터뷰어 객체 가져오기
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.application = applicant
+            comment.interviewer = interviewer
+            comment.save()
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':  # AJAX 요청 확인
+                return JsonResponse({
+                    'success': True,
+                    'comment': {
+                        'text': comment.text,
+                        'created_at': comment.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                        'interviewer': interviewer.email  # 인터뷰어 이메일 반환
+                    }
+                })
+            else:
+                return redirect('applicants:comment', pk=pk)
+        else:
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':  # AJAX 요청 확인
+                return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': form.errors.as_json()})
+    
+    ctx = {
+        'applicant': applicant,
+        'answers': answers,
+        'comments': comments,
+        'form': form,
+    }
+    return render(request, 'applicant/comments.html', ctx)
+
+def applicant_rankings(request):
+    applications = Application.objects.annotate(
+        total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True))
+    ).order_by('-total_score')
+    
+    context = {
+        'applications': applications
+    }
+    return render(request, 'applicant_rankings.html', context)

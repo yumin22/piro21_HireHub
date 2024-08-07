@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/evaluate.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="apply_container">
+    <h2>평가 생성 | {{ application.name }}</h2>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <form action="" method="post" id="evaluationForm">
+        {% csrf_token %}
+        <div class="formTitle">
+            <input type="text" name="title" placeholder="템플릿 제목을 입력하세요." value="{{ template.title }}" readonly>
+        </div>
+        <div class="formContent">
+            <textarea id="description" name="description" readonly>{{ template.description }}</textarea>
+        </div>
+        <div class="formQuestion">
+            <div>
+                <label for="comments">Comments:</label>
+                <textarea name="comments" id="comments" rows="4"></textarea>
+            </div> 
+        </div>
+        <ol class="questions_list">
+            {% for question in questions %}
+                <li class="question">
+                    <label for="score_{{ question.id }}">{{ question.question_title }} : {{question.question_text}}</label>
+                    <input type="number" name="score_{{ question.id }}" id="score_{{ question.id }}" min="0" max="10" required>
+                </li>
+            {% endfor %}
+        </ol>
+        <button type="submit" class="submitBtn">평가하기</button>
+    </form>
+</div>
+{% endblock %}

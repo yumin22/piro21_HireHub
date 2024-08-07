@@ -11,70 +11,69 @@
 {% endblock %}
 
 {% block content %}
-<div class="around">
-    <div class="title">
-        <h1>지원자 관리</h1>
-        <i class="ri-arrow-right-s-line"></i>
-        <p>면접 관리</p>
+<div class="title">
+    <h1>지원자 관리</h1>
+    <i class="ri-arrow-right-s-line"></i>
+    <p>면접 관리</p>
+</div>
+<div class="sideCtx">
+    <a href="{% url 'applicants:rankings' %}">지원자 순위</a>
+    <a href='{% url "applicants:schedule" %}'>면접 일정 보러가기</a>
+    <div class="search-applicant">
+        <input type="text" id="applicant-search-input" placeholder="지원자 이름을 검색하세요.">
+        <button type="button" onclick="searchApplicant()"><i class="ri-search-line searchBtn"></i></button>
+        <!-- <ul id="applicant-search-results">
+            
+        </ul> -->
     </div>
-    <div class="sideCtx">
-        <a href='{% url "applicants:schedule" %}'>면접 일정 보러가기</a>
-        <div class="search-applicant">
-            <input type="text" id="applicant-search-input" placeholder="지원자 이름을 검색하세요.">
-            <button type="button" onclick="searchApplicant()"><i class="ri-search-line searchBtn"></i></button>
-            <ul id="applicant-search-results">
-    
-            </ul>
+</div>
+<div class="applicant_container">
+    <div class="applicants_list">
+        <p>면접 대기</p>
+        <div class="scroll_section">
+            {% for applicant in applicants %}
+            {% if applicant.status == 'interview_scheduled' %}
+            <div class="each_applicant scheduled" onclick="location.href='{% url 'applicants:profile' applicant.pk %}';" style="cursor:pointer;">
+                <ul class="applicant_info">
+                    <li id="name" class="infoName">{{applicant.name}}</li>
+                    <li class="infoSch">{{applicant.school}}</li>
+                    <li class="infoMajor">{{applicant.major}}</li>
+                </ul>
+            </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
-    <div class="applicant_container">
-        <div class="applicants_list">
-            <p>면접 대기</p>
-            <div class="scroll_section">
-                {% for applicant in applicants %}
-                {% if applicant.status == 'interview_scheduled' %}
-                <div class="each_applicant scheduled">
+    <div class="applicants_list">
+        <p>면접 진행 중</p>
+        <div class="scroll_section">
+            {% for applicant in applicants %}
+            {% if applicant.status == 'interview_in_progress' %}
+                <div class="each_applicant in_progress">
                     <ul class="applicant_info">
-                        <li id="name" class="infoName">{{applicant.name}}</li>
-                        <li class="infoSch">{{applicant.school}}</li>
-                        <li class="infoMajor">{{applicant.major}}</li>
+                        <li id="name">{{applicant.name}}</li>
+                        <li class="info">{{applicant.school}}</li>
+                        <li class="info">{{applicant.major}}</li>
                     </ul>
                 </div>
-                {% endif %}
-                {% endfor %}
-            </div>
+            {% endif %}
+            {% endfor %}
         </div>
-        <div class="applicants_list">
-            <p>면접 진행 중</p>
-            <div class="scroll_section">
-                {% for applicant in applicants %}
-                {% if applicant.status == 'interview_in_progress' %}
-                    <div class="each_applicant in_progress">
-                        <ul class="applicant_info">
-                            <li id="name">{{applicant.name}}</li>
-                            <li class="info">{{applicant.school}}</li>
-                            <li class="info">{{applicant.major}}</li>
-                        </ul>
-                    </div>
-                {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-        <div class="applicants_list">
-            <p>면접 완료</p>
-            <div class="scroll_section">
-                {% for applicant in applicants %}
-                {% if applicant.status == 'interview_completed' %}
-                    <div class="each_applicant completed">
-                        <ul class="applicant_info">
-                            <li id="name">{{applicant.name}}</li>
-                            <li class="info">{{applicant.school}}</li>
-                            <li class="info">{{applicant.major}}</li>
-                        </ul>
-                    </div>
-                {% endif %}
-                {% endfor %}
-            </div>
+    </div>
+    <div class="applicants_list">
+        <p>면접 완료</p>
+        <div class="scroll_section">
+            {% for applicant in applicants %}
+            {% if applicant.status == 'interview_completed' %}
+                <div class="each_applicant completed">
+                    <ul class="applicant_info">
+                        <li id="name">{{applicant.name}}</li>
+                        <li class="info">{{applicant.school}}</li>
+                        <li class="info">{{applicant.major}}</li>
+                    </ul>
+                </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>

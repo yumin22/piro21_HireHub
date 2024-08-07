@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/comments.css' %}">
+</head>
+{% endblock %}
+{% block content %}
+<section>
+    <div class="comments_header">
+        <div class="comments_logo">
+            <a href='{% url "applicants:profile" pk=applicant.pk %}'><i class="ri-arrow-left-s-line"></i></a>
+            <span>코멘트</span>
+        </div>
+    </div>
+    <div class="comments_section">
+        <div class="application_container">
+            <div class="application_content">
+                <div class="applicant_title">
+                    <h3>지원서</h3>
+                <h3 class="personal_info"> | 인적사항</h3>
+                </div>
+                {% for answer in answers %}
+                    <p class="question"><strong>{{ answer.question.id }}. {{ answer.question.question_text }}</strong></p>
+                    <p>{{ answer.answer_text }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="comments">
+            <div id="comment_list">
+                {% for comment in comments %}
+                    <div class="comment">
+                        <small><strong>작성자:</strong> {{ comment.interviewer.email }}</small>
+                        <p>| {{ comment.text }}</p>
+                        <!--<small>작성일: {{ comment.created_at }}</small>-->
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="comment_box">
+                <form id="comment-form" action="{% url 'applicants:comment' applicant.pk %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Add Comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</section>
+{% endblock %}
+{% block extra_scripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/comments.js' %}"></script>
+{% endblock %}
