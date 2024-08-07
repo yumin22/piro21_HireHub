@@ -224,12 +224,12 @@ def comment(request, pk):
     }
     return render(request, 'applicant/comments.html', ctx)
 
-def applicant_rankings(request):
+def applicant_rankings(req):
     applications = Application.objects.annotate(
-        total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True))
+        total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)) # Evaluation모델을 역참조
     ).order_by('-total_score')
     
     context = {
         'applications': applications
     }
-    return render(request, 'applicant_rankings.html', context)
+    return render(req, 'applicant_rankings.html', context)
