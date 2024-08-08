@@ -16,6 +16,7 @@ class InterviewTemplate(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     created_by = models.ForeignKey(Interviewer, on_delete=models.CASCADE)
+    is_default = models.BooleanField(default=False, verbose_name="기본 템플릿으로 설정")
 
 class InterviewQuestion(models.Model):
     template = models.ForeignKey(InterviewTemplate, on_delete=models.CASCADE, related_name='questions')
@@ -25,6 +26,7 @@ class EvaluationTemplate(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     created_by = models.ForeignKey(Interviewer, on_delete=models.CASCADE)
+    is_default = models.BooleanField(default=False, verbose_name="기본 템플릿으로 설정")
 
 class EvaluationQuestion(models.Model):
     template = models.ForeignKey(EvaluationTemplate, on_delete=models.CASCADE, related_name='questions')
