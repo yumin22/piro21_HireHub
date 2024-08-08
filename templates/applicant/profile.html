@@ -48,7 +48,10 @@
             </div>
         </div>
         <div class="application_container">
-            <h3>지원서</h3>
+            <div class="application_text">
+                <h3>지원서</h3>
+                <button>녹음</button>
+            </div>
             <div class="application_content">
                 {% for answer in answers %}
                     <p class="application_question"><strong>{{ answer.question.id }}. {{ answer.question.question_text }}</strong></p>

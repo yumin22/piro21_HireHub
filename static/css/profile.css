@@ -96,10 +96,30 @@ section {
     height: 100%;
     padding: 0 10px;
 }
-.application_container h3 {
+
+.application_text {
+    display: flex;
+    justify-content: start;
+}
+
+.application_text h3 {
     font-size: 2rem;
     padding-left: 10px;
 }
+
+.application_text > button {
+    width: 50px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px; 
+    text-align: center;
+    line-height: 100%;
+    margin-left: 30px;
+    border-radius: 10px;
+}
+
 .application_content {
     height: calc(100% - 3rem);
     border: 2px solid black;
