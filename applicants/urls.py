@@ -12,4 +12,5 @@ urlpatterns = [
     path("schedule", views.schedule, name='schedule'),
     path("auto_schedule", views.auto_schedule, name='auto_schedule'),
     path("document/profile/<int:pk>/comment/", views.comment, name='comment'),
+    path("document/profile/<int:pk>/question/", views.question, name='question'),
 ]

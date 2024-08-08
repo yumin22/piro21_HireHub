@@ -13,8 +13,8 @@
             <span>지원자 프로필</span>
         </div>
         <div class="actions">
-            <a href="">코멘트 작성 |</a>
-            <a href="">개별 질문 |</a>
+            <a href="{% url 'applicants:comment' applicant.pk %}">코멘트 작성 |</a>
+            <a href="{% url 'applicants:question' applicant.pk %}">개별 질문 |</a>
             <a href="">평가표 확인 |</a>
         </div>
     </div>
@@ -28,25 +28,6 @@
                         <p>학과</p>
                         <p>연락처</p>
                     </div>
-                    <div class="profile_detail2">
-                        <p>{{ applicant.school }}</p>
-                        <p>{{ applicant.major }}</p>
-                        <p>{{ applicant.phone_number }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="profile_interview">
-                <p><strong>면접일:</strong> {{ applicant.interview_date }}</p>
-                <p><strong>면접관:</strong> {{ applicant.interviewer }}</p>
-            </div>
-        </div>
-        <div class="application_container">
-            <h3>지원서</h3>
-            <div class="application_content">
-                {% for answer in answers %}
-                    <p class="application_question"><strong>{{ answer.question.id }}. {{ answer.question.question_text }}</strong></p>
-                    <p class="application_answer">{{ answer.answer_text }}</p>
-                {% endfor %}
                     <div class="profile_detail2">
                         <p>{{ applicant.school }}</p>
                         <p>{{ applicant.major }}</p>
