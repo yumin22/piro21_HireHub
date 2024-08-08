@@ -2,18 +2,21 @@
 .apply_container {
    padding: 30px;
    height: 100%;
+   display: flex;
+   flex-direction: column;
+
 }
 .apply_container h2 {
-   font-size: 3rem;
+   font-size: 2.5rem;
    margin-left: 10px;
 }
 .apply_container p {
-   font-size: 2.4rem;
+   font-size: 2rem;
    margin-left: 10px;
 }
 
 #applyForm {
-   height: 80%;
+   height: calc(100% - 15rem);
    background-color: rgba(49, 160, 235, 0.1);
    border-radius: 30px;
    margin-top: 15px;
@@ -23,7 +26,7 @@
    height: 100%;
    display: flex;
    flex-direction: column;
-   font-size: 2.4rem;
+   font-size: 2rem;
    overflow-y: scroll;
 }
 .apply_content::-webkit-scrollbar {
@@ -34,9 +37,22 @@
    background: var(--main-color);
 }
 
+[id^="id_possible_date_"] {
+   transform: scale(1.5);
+   margin: 0;
+   margin-left: 0.5rem;
+   margin-right: 1rem;
+}
+.apply_content label {
+   font-weight: 500;
+   margin-left: 1.8rem;
+   margin-bottom: 1rem;
+}
+
 .questions_list {
    padding: 0;
    margin: 0;
+   margin-top: 1rem;
    counter-reset: section;
 }
 .question {
@@ -74,6 +90,60 @@
    border-radius: 30px;
    position: absolute;
    left: 50%;
+   bottom: 0;
+   margin-bottom: 2rem;
    transform: translate(-50%, 0);
-   margin-top: auto;
+}
+
+/* apply_check.html */
+.status_container {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.status_logo {
+   font-size: 6.4rem;
+   font-weight: bold;
+   margin-bottom: 4.5rem;
+   text-align: center;
+}
+#statuscheck_form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+#statuscheck_form input {
+   width: 580px;
+   height: 70px;
+   border-radius: 30px;
+   font-size: 2.4rem;
+   font-weight: 600;
+   color: black;
+   padding-left: 20px;
+   border: 2px solid var(--main-color);
+   margin-bottom: 28px;
+}
+.status_container button {
+   width: 580px;
+   height: 70px;
+   border-radius: 30px;
+   font-size: 2.4rem;
+   font-weight: bold;
+   color: white;
+   border: 2px solid var(--main-color);
+   background-color: var(--main-color);
+   margin-top: 26px;
+}
+
+/* apply_result.html */
+.applyResult_container {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   font-size: 6.4rem;
+   font-weight: bold;
 }

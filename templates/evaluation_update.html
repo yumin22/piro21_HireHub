@@ -8,23 +8,29 @@
 
 {% block content %}
     <div class="container">
-        <h2>평가표 | {{template.title}} </h2>
-        <p>{{ template.description }}</p>
+        <h2>평가표 수정 | {{evaluation.template.title}} </h2>
+        <p>{{ evaluation.template.description }}</p>
         <form action="" method="post" id="evaluationForm">
             {% csrf_token %}
             <div class="evaluate_content">
                 <label for="comments">Comments:</label>
-                <textarea name="comments" id="comments" rows="4"></textarea>
+                <textarea name="comments" id="comments" rows="4">{{ evaluation.comments }}</textarea>
                 <ol class="questions_list">
-                    {% for question in template.questions.all %}
+                    {% for question in evaluation.template.questions.all %}
                         <li class="question">
                             <label for="score_{{ question.id }}">{{ question.question_title }} : {{question.question_text}}</label>
-                            <input type="number" name="score_{{ question.id }}" id="score_{{ question.id }}" min="0" max="10" required>
+                            <input type="number" name="score_{{ question.id }}" id="score_{{ question.id }}" 
+                                value="{{ existing_scores}}">
                         </li>
                     {% endfor %}
                 </ol>
             </div>
-            <button type="submit" class="submitBtn">평가하기</button>
+            <button type="submit" class="submitBtn">평가 수정하기</button>
         </form>
+        {% if evaluation %}
+        <div class="total_score">
+            <h3>총 점수: {{ evaluation.total_score }}</h3>
+        </div>
+        {% endif %}
     </div>
 {% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'for_applicant/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/for_applicant.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="status_container">
+        <p class="status_logo">지원 상태 확인</p>
+        <form method="POST" action="" id="statuscheck_form">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="이름 (예: 김피로)">
+            <input type="text" name="phone_number" placeholder="전화번호 (예: 01012345678)">
+        </form>
+        <button type="submit" onclick="submitForm()">제출</button>
+    </div>
+    <script>
+        function submitForm() {
+            let valid = true;
+            let invalidField = null;
+            let invalidFieldName = "";
+
+            let applicant_infos = ["name", "phone_number"];
+            applicant_infos.forEach(function(applicant_info) {
+                let info = document.querySelector(`input[name='${applicant_info}']`);
+                if (info.value.trim() == "" && valid) {
+                    valid = false;
+                    invalidField = info;
+                    invalidFieldName = info.placeholder;
+                }
+            });
+
+            if (valid) {
+                document.getElementById("statuscheck_form").submit();
+            } else {
+                alert(invalidFieldName + "을(를) 작성해주세요");
+                invalidField.focus();
+                return false;
+            }
+        }
+     </script>
+{% endblock content %}

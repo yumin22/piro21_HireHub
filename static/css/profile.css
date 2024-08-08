@@ -17,6 +17,9 @@ section {
 .profile_logo a {
     text-decoration: none;
 }
+.profile_logo a i:hover{
+    cursor: pointer;
+}
 .actions {
     display: flex;
     justify-content: space-between;

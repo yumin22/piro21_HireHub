@@ -9,7 +9,7 @@
 <section>
     <div class="profile_header">
         <div class="profile_logo">
-            <a href='{% url "accounts:mainboard" pk=user.pk %}'><i class="ri-arrow-left-s-line"></i></a>
+            <a onclick="goBack()"><i class="ri-arrow-left-s-line"></i></a>
             <span>지원자 프로필</span>
         </div>
         <div class="actions">
@@ -61,4 +61,9 @@
         </div>
     </div>
 </section>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 {% endblock %}

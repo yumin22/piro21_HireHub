@@ -1,84 +1,69 @@
-
-.apply_container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.container {
+    padding: 30px;
+    height: 100%;
+}
+.container h2 {
+    font-size: 3rem;
+    margin-left: 10px;
+}
+.container p {
+    font-size: 2.4rem;
+    margin-left: 10px;
 }
 
-.apply_container h2 {
-    font-size: 30px;
-    text-align: center;
-    margin-bottom: 20px;
+#evaluationForm {
+    height: 80%;
+    background-color: rgba(49, 160, 235, 0.1);
+    border-radius: 30px;
+    margin-top: 15px;
+    padding: 30px;
 }
 
-.formTitle, .formContent, .formQuestion {
-    margin-bottom: 20px;
+.evaluate_content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 2.4rem;
+    overflow-y: scroll;
 }
 
+.evaluate_content::-webkit-scrollbar {
+    width: 8px;
+}
 
-.formTitle input[type="text"], .formContent textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+.evaluate_content::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    font-size: 16px;
-    box-sizing: border-box;
+    background: var(--main-color);
 }
-
-.formContent textarea {
-    height: 100px;
-    resize: none;
-}
-
-.formQuestion label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.formQuestion textarea, .formQuestion input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
 .questions_list {
-    list-style: none;
     padding: 0;
+    margin: 0;
+    counter-reset: section;
+    
 }
-
-.questions_list .question {
+.question {
     margin-bottom: 20px;
 }
 
-.questions_list label {
-    display: block;
-    margin-bottom: 5px;
+.question label {
+    margin-left: 10px;
+    font-weight: 400;
+    margin-bottom: 10px;
 }
-
-.questions_list input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 16px;
-    box-sizing: border-box;
+.question label::before {
+    counter-increment: section;
+    content: counter(section) ". ";
 }
-
-.submitBtn {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background-color: #000;
-    color: #fff;
-    font-size: 18px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
+.container button {
+    background-color: var(--main-color);
+    color: white;
+    width: 20%;
+    height: 65px;
+    font-weight: bold;
+    font-size: 3rem;
+    border-radius: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-top: auto;
 }

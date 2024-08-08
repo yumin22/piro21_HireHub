@@ -4,7 +4,6 @@ from template.models import EvaluationTemplate, EvaluationQuestion
 from applicants.models import Application
 from accounts.models import Interviewer
 from django.http import HttpResponseForbidden
-from django.contrib import messages
 # Create your views here.
 
 def create_evaluation(req, pk):
@@ -17,13 +16,8 @@ def create_evaluation(req, pk):
     
     existing_evaluation = Evaluation.objects.filter(application=application, interviewer=interviewer, template=template, is_submitted=True).first()
     if existing_evaluation:
-        messages.error(req, '이미 제출한 평가입니다.')
-        return render(req, 'evaluation_create.html', {
-            'application': application,
-            'template': template,
-            'questions': template.questions.all()
-        })
-    
+        return redirect ('evaluations:update_evaluation', existing_evaluation.id)
+
     if req.method == 'POST':
         evaluation = Evaluation.objects.create(
             application=application,
@@ -43,7 +37,7 @@ def create_evaluation(req, pk):
         evaluation.is_submitted = True
         evaluation.calculate_total_score()
         evaluation.save()
-        messages.success(req, '평가가 성공적으로 제출되었습니다.')
+
         return redirect('applicants:profile', application.id)
     
     ctx = {
@@ -52,4 +46,47 @@ def create_evaluation(req, pk):
         'questions': template.questions.all()
     }
     return render(req, 'evaluation_create.html', ctx)
+
+def update_evaluation(req,pk):
+    evaluation = Evaluation.objects.get(id=pk)
+    application = evaluation.application
+    interviewer = evaluation.interviewer
+    template = EvaluationTemplate.objects.get(id=18)
+
+    if req.user.id != interviewer.id:
+        return HttpResponseForbidden("이 평가를 수정할 권한이 없습니다.")
+
+    if req.method == 'POST':
+        evaluation.comments = req.POST.get('comments', '')
+
+        total_score = 0
+        for question in template.questions.all():
+            score = req.POST.get(f'score_{question.id}')
+            if score:
+                total_score += int(score)
+                EvaluationScore.objects.update_or_create(
+                    evaluation=evaluation,
+                    question=question,
+                    defaults={'score': score}
+                )
+
+        evaluation.is_submitted = True
+        evaluation.total_score = total_score
+        evaluation.save()
+
+        return redirect('applicants:profile', application.id)
+    
+    existing_scores = {
+        question.id: EvaluationScore.objects.filter(evaluation=evaluation, question=question).first().score
+        for question in template.questions.all()
+    }
+        
+    ctx = {
+        'evaluation': evaluation,
+        'application': application,
+        'template': template,
+        'questions': template.questions.all(),
+        'existing_scores': existing_scores,
+    }
+    return render(req, 'evaluation_update.html', ctx)
 

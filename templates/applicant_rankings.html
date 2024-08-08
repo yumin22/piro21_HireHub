@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/ranking.css' %}">
+{% endblock %}
+
 {% block content %}
 <h1>지원자 순위</h1>
 <table>

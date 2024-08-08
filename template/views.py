@@ -187,10 +187,9 @@ class InterviewDeleteView(DeleteView):
 
     def delete(self, req, *args, **kwargs):
         response = super().delete(req, *args, **kwargs)
-        if req.is_ajax():
-            return JsonResponse({'success': True, 'redirect': self.success_url})
-        else:
-            return response
+        if req.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'success': True, 'redirect': str(self.success_url)})
+        return response
         
 
 class EvaluationTemplateCreateView(View):
@@ -281,10 +280,9 @@ class EvaluateDeleteView(DeleteView):
 
     def delete(self, req, *args, **kwargs):
         response = super().delete(req, *args, **kwargs)
-        if req.is_ajax():
-            return JsonResponse({'success': True, 'redirect': self.success_url})
-        else:
-            return response
+        if req.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'success': True, 'redirect': str(self.success_url)})
+        return response
         
 
 
