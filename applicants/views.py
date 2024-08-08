@@ -1,14 +1,16 @@
-from django.db.models import Q
+from django.db.models import Q, Sum
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Application, Answer, Possible_date_list, Comment
 from accounts.models import Interviewer
 from django.http import JsonResponse
 from django.core.exceptions import PermissionDenied
 from template.models import ApplicationTemplate, ApplicationQuestion
-from .forms import ApplicationForm, CommentForm
+from django.db import models
+from .forms import ApplicationForm, CommentForm, ApplyForm
 from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
 from datetime import time
+
 
 def interview(request):
     applicants = Application.objects.all()
@@ -160,30 +162,66 @@ def schedule_update(request, pk):
 
 def apply(request, pk):
     template = ApplicationTemplate.objects.get(id=pk)
+    form = ApplyForm()
 
     if request.method == 'POST':
-        application = Application(
-            template = template,
-            name = request.POST['name'],
-            phone_number = request.POST['phone_number'],
-            school = request.POST['school'],
-            major = request.POST['major'],
-        )
-        application.save()
-
-        for question in template.questions.all():
-            answer_text = request.POST.get(f'answer_{question.id}')
-            Answer.objects.create(
-                application = application,
-                question = question,
-                answer_text = answer_text
-            )
-        return redirect('accounts:initialApplicant')
-        
+        form = ApplyForm(request.POST)
+        if form.is_valid():
+            applyContent = form.save(commit=False)
+            applyContent.template = template
+            applyContent.save()
+            form.save_m2m()
+            
+            for question in template.questions.all():
+                answer_text = request.POST.get(f'answer_{question.id}')
+                Answer.objects.create(
+                    application = applyContent,
+                    question = question,
+                    answer_text = answer_text,
+                )
+            
+            name = form.cleaned_data['name']
+            phone_number = form.cleaned_data['phone_number']
+            request.session['name'] = name
+            request.session['phone_number'] = phone_number
+            request.session['submitted'] = True
+            return redirect('applicants:apply_result')
+    
     context = {
+        'form': form,
         'template': template,
     }
     return render(request, 'for_applicant/write_apply.html', context)
+
+def apply_check(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        phone_number = request.POST.get('phone_number')
+        request.session['name'] = name
+        request.session['phone_number'] = phone_number
+        request.session['submitted'] = False
+        return redirect('applicants:apply_result')
+    return render(request, 'for_applicant/apply_check.html')
+
+def apply_result(request):
+    name = request.session.get('name')
+    phone_number = request.session.get('phone_number')
+    submitted = request.session.get('submitted')
+    if name and phone_number:
+        if submitted == False:
+            try:
+                application = Application.objects.get(name=name, phone_number=phone_number)
+                print(name, phone_number)
+                submitted = True
+            except Application.DoesNotExist:
+                submitted = False
+        context = {
+            'submitted': submitted,
+            'name': name
+        }
+        return render(request, 'for_applicant/apply_result.html', context)
+    else:
+        return redirect('applicants:apply_check')
 
 def comment(request, pk):
     applicant = get_object_or_404(Application, pk=pk)
@@ -221,3 +259,13 @@ def comment(request, pk):
         'form': form,
     }
     return render(request, 'applicant/comments.html', ctx)
+
+def applicant_rankings(req):
+    applications = Application.objects.annotate(
+        total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)) # Evaluation모델을 역참조
+    ).order_by('-total_score')
+    
+    context = {
+        'applications': applications
+    }
+    return render(req, 'applicant_rankings.html', context)

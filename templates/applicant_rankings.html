@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/ranking.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>지원자 순위</h1>
+<table>
+    <thead>
+        <tr>
+            <th>순위</th>
+            <th>이름</th>
+            <th>총점</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ application.name }}</td>
+            <td>{{ application.total_score }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

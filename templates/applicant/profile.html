@@ -9,13 +9,13 @@
 <section>
     <div class="profile_header">
         <div class="profile_logo">
-            <a href='{% url "accounts:mainboard" pk=user.pk %}'><i class="ri-arrow-left-s-line"></i></a>
+            <a onclick="goBack()"><i class="ri-arrow-left-s-line"></i></a>
             <span>지원자 프로필</span>
         </div>
         <div class="actions">
             <a href="{% url 'applicants:comment' applicant.pk %}">코멘트 작성 |</a>
             <a href="">개별 질문 |</a>
-            <a href="">평가표 확인 |</a>
+            <a href="{% url 'evaluations:evaluation_create' applicant.pk %}">평가표 확인</a>
         </div>
     </div>
     <div class="profile_section">
@@ -58,4 +58,9 @@
         </div>
     </div>
 </section>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 {% endblock %}

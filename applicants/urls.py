@@ -12,5 +12,9 @@ urlpatterns = [
     path("schedule", views.schedule, name='schedule'),
     path("auto_schedule", views.auto_schedule, name='auto_schedule'),
     path("document/profile/<int:pk>/comment/", views.comment, name='comment'),
-    path("schedule/update/<int:pk>s", views.schedule_update, name="schedule_update")
+    path('rankings/', views.applicant_rankings, name='rankings'),
+    path("schedule/update/<int:pk>s", views.schedule_update, name="schedule_update"),
+    # path('document/profile/<int:pk>/evaluate', views.evaluate, name='evaluate')
+    path("applycheck/", views.apply_check, name='apply_check'),
+    path("applyresult/", views.apply_result, name='apply_result'),
 ]
