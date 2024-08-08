@@ -3,18 +3,21 @@
     justify-content: center;
     align-content: space-around;
     height: 100%;
+    padding: 30px 0;
 }
 
 .evaluate_list{
     width: 60%;
-    margin: 30px;
-    overflow-y: auto;
+    height: 100%;
+    margin: 0 30px;
+    padding-top: 15px;
 }
 
 .main_title {
     margin:0;
     padding: 10px 0;
-    border-bottom: solid black;
+    padding-left: 1rem;
+    border-bottom: 0.5rem solid black;
     margin-bottom: 10px;
     font-size: 2.4rem;
     font-weight: bold;
@@ -23,6 +26,7 @@
 #interview_num {
     display: block;
     margin-left: auto;
+    padding-right: 1rem;
 }
 
 .sort_container {
@@ -69,7 +73,8 @@
 
 .my_schedule{
     width: 45%;
-    margin: 30px;
+    height: 100%;
+    margin: 0 30px;
     margin-left: 10px;
     padding: 15px 20px;
     background-color: var(--box-color);
@@ -95,8 +100,10 @@
 }
 
 .scroll_section {
+    height: calc(100% - 11rem);
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    overflow-y: scroll;
 }
 .scroll_section::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/

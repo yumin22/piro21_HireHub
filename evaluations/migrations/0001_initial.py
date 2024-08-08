@@ -14,6 +14,8 @@ class Migration(migrations.Migration):
         ('applicants', '0001_initial'),
         ('template', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('template', '0001_initial'),
+        ('applicants', '0001_initial'),
     ]
 
     operations = [
