@@ -9,7 +9,6 @@
 <section>
     <div class="profile_header">
         <div class="profile_logo">
-            <a onclick="goBack()"><i class="ri-arrow-left-s-line"></i></a>
             <span>지원자 프로필</span>
         </div>
         <div class="actions">
@@ -51,16 +50,11 @@
             <h3>지원서</h3>
             <div class="application_content">
                 {% for answer in answers %}
-                    <p class="application_question"><strong>{{ answer.question.id }}. {{ answer.question.question_text }}</strong></p>
+                    <p class="application_question"><strong>{{ answer.question.question_text }}</strong></p>
                     <p class="application_answer">{{ answer.answer_text }}</p>
                 {% endfor %}
             </div>
         </div>
     </div>
 </section>
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
 {% endblock %}

@@ -20,9 +20,9 @@
                     <h3 id="applicationTitle" class="clickable">지원서</h3>
                     <h3 id="commonQuestionTitle" class="clickable"> | 공통 질문</h3>
                 </div>
-                <div id="applicationContent">
+                <div class="applicationContent">
                     {% for answer in answers %}
-                        <p class="question"><strong>{{ answer.question.id }}. {{ answer.question.question_text }}</strong></p>
+                        <p class="question"><strong>{{ answer.question.question_text }}</strong></p>
                         <p>{{ answer.answer_text }}</p>
                     {% endfor %}
                 </div>
