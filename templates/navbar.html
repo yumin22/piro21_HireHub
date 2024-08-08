@@ -19,9 +19,26 @@
                 <a href='{% url "applicants:interview" %}'>면접 관리</a> 
             </div>
         </div>
-        <a href='{% url "template:template_list" %}'><h2>템플릿</h2></a><!--임시url-->
-        <a href='{% url "accounts:logout" %}'><h2>로그아웃</h2></a><!--임시url-->
+        <a href='{% url "template:template_list" %}'><h2>템플릿</h2></a>
+        <a href='{% url "accounts:logout" %}'><h2>로그아웃</h2></a>
     </div>
     {% endif %}
 </nav>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleTrigger = document.querySelector('.toggleTrigger');
+        const accountsToggle = document.querySelector('.accountsToggle');
+    
+        toggleTrigger.addEventListener('click', function(event) {
+            event.stopPropagation();
+            accountsToggle.style.display = (accountsToggle.style.display === 'block') ? 'none' : 'block';
+        });
+    
+        document.addEventListener('click', function(event) {
+            if (!accountsToggle.contains(event.target) && !toggleTrigger.contains(event.target)) {
+                accountsToggle.style.display = 'none';
+            }
+        });
+    });
+    </script>
 {% endblock %}
