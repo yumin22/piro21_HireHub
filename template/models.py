@@ -5,6 +5,7 @@ class ApplicationTemplate(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     created_by = models.ForeignKey(Interviewer, on_delete=models.CASCADE)
+    is_default = models.BooleanField(default=False, verbose_name="기본 템플릿으로 설정")
 
 # 여기서 질문을 추가할 수 있게 해놓음
 class ApplicationQuestion(models.Model):

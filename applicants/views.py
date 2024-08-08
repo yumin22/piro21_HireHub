@@ -2,13 +2,10 @@ from django.db.models import Q, Sum
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.core.exceptions import PermissionDenied
-from template.models import ApplicationTemplate, ApplicationQuestion
 from django.db import models
-from .forms import ApplicationForm, CommentForm, ApplyForm
 from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
 from datetime import time
-
 
 from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer
 from accounts.models import Interviewer
