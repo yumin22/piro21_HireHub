@@ -1,4 +1,5 @@
 from django import forms
+from .models import ApplicationTemplate, ApplicationQuestion, Comment, individualQuestion, individualAnswer
 from .models import ApplicationTemplate, Comment, Application, Possible_date_list
 
 
@@ -38,8 +39,18 @@ class ApplyForm(forms.ModelForm):
         fields = ['name', 'phone_number', 'school', 'major', 'possible_date']
     
     def __init__(self, *args, **kwargs):
-      super(ApplyForm, self).__init__(*args, **kwargs)
-      self.fields['name'].label = ''
-      self.fields['phone_number'].label = ''
-      self.fields['school'].label = ''
-      self.fields['major'].label = ''
+        super(ApplyForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = ''
+        self.fields['phone_number'].label = ''
+        self.fields['school'].label = ''
+        self.fields['major'].label = ''
+
+class QuestionForm(forms.ModelForm):
+    class Meta:
+        model = individualQuestion
+        fields = ['text']
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = individualAnswer
+        fields = ['text']

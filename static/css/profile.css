@@ -64,6 +64,7 @@ section {
     font-weight: bold;
     width: 40%;
 }
+
 .profile_detail {
     display: flex;
     padding-left: 60px;
@@ -115,6 +116,7 @@ section {
 .application_content::-webkit-scrollbar {
     width: 8px;
 }
+
 .application_content::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: black;
@@ -122,6 +124,7 @@ section {
 .application_question {
     font-size: 2rem;
 }
+
 .application_answer {
     margin: 10px 0;
     margin-left: 2rem;
