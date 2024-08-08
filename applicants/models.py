@@ -62,3 +62,20 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.interviewer} on {self.created_at}'
+    
+class individualQuestion(models.Model):
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='individual_questions')
+    interviewer = models.ForeignKey(Interviewer, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'question by {self.interviewer} on {self.created_at}'
+
+class individualAnswer(models.Model):
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='individual_answers')
+    question = models.ForeignKey(individualQuestion, on_delete=models.CASCADE, related_name='answers')
+    interviewer = models.ForeignKey(Interviewer, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'answer by {self.interviewer} on {self.created_at}'

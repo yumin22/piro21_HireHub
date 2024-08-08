@@ -1,7 +1,5 @@
 from django.db.models import Q, Sum
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Application, Answer, Possible_date_list, Comment
-from accounts.models import Interviewer
 from django.http import JsonResponse
 from django.core.exceptions import PermissionDenied
 from template.models import ApplicationTemplate, ApplicationQuestion
@@ -11,6 +9,11 @@ from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
 from datetime import time
 
+
+from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer
+from accounts.models import Interviewer
+from template.models import ApplicationTemplate, ApplicationQuestion, InterviewTemplate, InterviewQuestion
+from .forms import ApplicationForm, CommentForm, QuestionForm, AnswerForm
 
 def interview(request):
     applicants = Application.objects.all()
@@ -269,3 +272,67 @@ def applicant_rankings(req):
         'applications': applications
     }
     return render(req, 'applicant_rankings.html', context)
+
+
+def question(request, pk):
+    applicant = get_object_or_404(Application, pk=pk)
+    answers = Answer.objects.filter(application=applicant)
+    questions = individualQuestion.objects.filter(application=applicant).order_by('created_at')
+    question_form = QuestionForm()
+    answer_form = AnswerForm()
+
+    # 공통 질문 템플릿 및 질문 가져오기
+    common_template = InterviewTemplate.objects.first()  # 첫 번째 템플릿을 사용합니다. 필요에 따라 변경 가능
+    common_questions = InterviewQuestion.objects.filter(template=common_template)
+
+
+    if request.method == 'POST':
+        if 'question_submit' in request.POST:
+            interviewer = get_object_or_404(Interviewer, email=request.user.email)
+            question_form = QuestionForm(request.POST)
+            if question_form.is_valid():
+                question = question_form.save(commit=False)
+                question.application = applicant
+                question.interviewer = interviewer
+                question.save()
+                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                    return JsonResponse({
+                        'success': True,
+                        'question': {
+                            'text': question.text,
+                            'created_at': question.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                            'interviewer': interviewer.email
+                        }
+                    })
+                else:
+                    return redirect('applicants:question', pk=pk)
+        elif 'answer_submit' in request.POST:
+            interviewer = get_object_or_404(Interviewer, email=request.user.email)
+            answer_form = AnswerForm(request.POST)
+            if answer_form.is_valid():
+                answer = answer_form.save(commit=False)
+                answer.application = applicant
+                answer.interviewer = interviewer
+                answer.question_id = request.POST.get('question_id')
+                answer.save()
+                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                    return JsonResponse({
+                        'success': True,
+                        'answer': {
+                            'text': answer.text,
+                            'created_at': answer.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                            'interviewer': interviewer.email
+                        }
+                    })
+                else:
+                    return redirect('applicants:question', pk=pk)
+
+    ctx = {
+        'applicant': applicant,
+        'answers': answers,
+        'questions': questions,
+        'question_form': question_form,
+        'answer_form': answer_form,
+        'common_questions': common_questions
+    }
+    return render(request, 'applicant/questions.html', ctx)

@@ -14,7 +14,7 @@
         </div>
         <div class="actions">
             <a href="{% url 'applicants:comment' applicant.pk %}">코멘트 작성 |</a>
-            <a href="">개별 질문 |</a>
+            <a href="{% url 'applicants:question' applicant.pk %}">개별 질문 |</a>
             <a href="{% url 'evaluations:evaluation_create' applicant.pk %}">평가표 확인</a>
         </div>
     </div>
