@@ -86,4 +86,4 @@ class AudioRecording(models.Model):
     file = models.FileField(upload_to='recordings/', blank=True, null=True)
 
     def __str__(self):
-        return f"{self.application.applicant.name}'s Recording"
+        return f"{self.application.name}'s Recording"
