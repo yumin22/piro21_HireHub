@@ -1,10 +1,12 @@
 from django.urls import path
 from . import views
 
+
 app_name = 'applicants'
 
 urlpatterns = [
     path("interview", views.interview, name="interview"),
+    path('interview/change_status/<str:status_zone_id>/<str:applicant_id>/', views.change_status, name='change_status'),
     path("document", views.document, name="document"),
     path('search_applicant/', views.search_applicant, name='search_applicant'),
     path("document/profile/<int:pk>", views.profile, name='profile'),
@@ -18,4 +20,5 @@ urlpatterns = [
     path("applycheck/", views.apply_check, name='apply_check'),
     path("applyresult/", views.apply_result, name='apply_result'),
     path("document/profile/<int:pk>/question/", views.question, name='question'),
+    path('document/profile/<int:pk>/delete/', views.delete_recording, name='delete_recording'),
 ]

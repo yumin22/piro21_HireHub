@@ -7,7 +7,10 @@
 {% endblock %}
 
 {% block content %}
-<h1>지원자 순위</h1>
+<h1>팀별 지원자 순위</h1>
+{% for interview_team in interview_teams %}
+<h2>{{interview_team.team_name}}</h2>
+<p>점수 평균: {{interview_team.average_score}}</p>
 <table>
     <thead>
         <tr>
@@ -17,13 +20,22 @@
         </tr>
     </thead>
     <tbody>
+        <script> var counter = 0 </script>
         {% for application in applications %}
-        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ application.name }}</td>
-            <td>{{ application.total_score }}</td>
-        </tr>
+            {% if application.interview_team.id == interview_team.id %}
+            <tr>
+                <td id="{{forloop.counter}}">{{ forloop.counter }}</td>
+                <script>
+                    var counter = counter+1
+                    var s{{forloop.counter}} = counter
+                    document.getElementById("{{forloop.counter}}").innerHTML = s{{forloop.counter}};
+                </script>
+                <td>{{ application.name }}</td>
+                <td>{{ application.total_score }}</td>
+            </tr>
+            {% endif %}
         {% endfor %}
     </tbody>
 </table>
+{% endfor %}
 {% endblock %}

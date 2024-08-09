@@ -33,3 +33,11 @@ class Interviewer(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+class InterviewTeam(models.Model):
+    team_name = models.CharField(max_length=255)
+    members = models.ManyToManyField(Interviewer)
+    average_score = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.team_name

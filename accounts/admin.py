@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Interviewer
+from .models import Interviewer, InterviewTeam
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
@@ -21,3 +21,4 @@ class UserAdmin(admin.ModelAdmin):
    filter_horizontal = ('user_permissions', )
 
 admin.site.register(Interviewer, UserAdmin)
+admin.site.register(InterviewTeam)

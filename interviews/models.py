@@ -16,3 +16,5 @@ class InterviewAnswer(models.Model):
     answer_text = models.TextField()
     recorded_by = models.ForeignKey(Interviewer, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
+
+

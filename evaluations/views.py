@@ -51,7 +51,7 @@ def update_evaluation(req,pk):
     evaluation = Evaluation.objects.get(id=pk)
     application = evaluation.application
     interviewer = evaluation.interviewer
-    template = EvaluationTemplate.objects.get(id=18)
+    template = EvaluationTemplate.objects.get(is_default=True)
 
     if req.user.id != interviewer.id:
         return HttpResponseForbidden("이 평가를 수정할 권한이 없습니다.")
