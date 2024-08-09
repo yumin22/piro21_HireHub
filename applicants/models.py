@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import Interviewer
+from accounts.models import Interviewer, InterviewTeam
 from template.models import ApplicationTemplate, ApplicationQuestion
 import datetime as dt
 
@@ -38,6 +38,7 @@ class Application(models.Model):
     major = models.CharField(max_length=100)
     submission_date = models.DateTimeField(auto_now_add=True)
     interviewer = models.ManyToManyField(Interviewer)
+    interview_team = models.ForeignKey(InterviewTeam, on_delete=models.CASCADE, blank=True, null=True, related_name='interview_team')
     possible_date = models.ManyToManyField(Possible_date_list, blank=True)
     interview_date = models.ForeignKey(Possible_date_list, on_delete=models.SET_NULL, blank=True, null=True, related_name='interview_date')
     interview_time = models.TimeField(choices=TIME_CHOICES, blank=True, null=True)
@@ -47,7 +48,7 @@ class Application(models.Model):
         return f'{self.name}'
     
     def get_total_score(self):
-        return self.evaluations.filter(is_submitted=True).aggregate(total=Sum('total_score'))['total'] or 0
+        return self.evaluations.filter(is_submitted=True).aggregate(total=models.Sum('total_score'))['total'] or 0
 
 class Answer(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='answers')
