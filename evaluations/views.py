@@ -9,7 +9,7 @@ from django.http import HttpResponseForbidden
 def create_evaluation(req, pk):
     application = Application.objects.get(id=pk)
     interviewer = Interviewer.objects.get(id = req.user.id)
-    template = EvaluationTemplate.objects.get(id=18)
+    template = EvaluationTemplate.objects.get(id=1)
 
     if not interviewer in application.interviewer.all():  # 배정된 면접관인지 확인
         return HttpResponseForbidden("배정된 면접관이 아닙니다.")
