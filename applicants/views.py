@@ -20,6 +20,24 @@ def interview(request):
     ctx = {"applicants": applicants}
     return render(request, "applicant/interview.html", ctx)
 
+def change_status(request, status_zone_id, applicant_id):
+    if request.method == 'POST':
+        try:
+            applicant = Application.objects.get(id=applicant_id)
+            if status_zone_id == '1':
+                applicant.status = 'interview_scheduled'
+            elif status_zone_id == '2':
+                applicant.status = 'interview_in_progress'
+            elif status_zone_id == '3':
+                applicant.status = 'interview_completed'
+            applicant.save()
+            return JsonResponse({'message': 'Status updated successfully'})
+        except Applicant.DoesNotExist:
+            return JsonResponse({'error': 'Applicant not found'}, status=404)
+        except StatusZone.DoesNotExist:
+            return JsonResponse({'error': 'Status zone not found'}, status=404)
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
+            
 def document(request):
     applicants = Application.objects.all()
     ctx = {"applicants": applicants}
