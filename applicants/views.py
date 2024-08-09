@@ -1,17 +1,14 @@
 from django.db.models import Q, Sum
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
-from django.core.exceptions import PermissionDenied
 from template.models import ApplicationTemplate, ApplicationQuestion
 from django.db import models
 from .forms import ApplicationForm, CommentForm, ApplyForm
 from django.forms import modelformset_factory
-from django.views.decorators.csrf import csrf_exempt
-from datetime import time
 
 
 from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer
-from accounts.models import Interviewer
+from accounts.models import Interviewer, InterviewTeam
 from template.models import ApplicationTemplate, ApplicationQuestion, InterviewTemplate, InterviewQuestion
 from .forms import ApplicationForm, CommentForm, QuestionForm, AnswerForm
 
@@ -267,9 +264,24 @@ def applicant_rankings(req):
     applications = Application.objects.annotate(
         total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)) # Evaluation모델을 역참조
     ).order_by('-total_score')
-    
+
+    interview_teams = InterviewTeam.objects.all()
+
+    for interview_team in interview_teams:
+        score_list = []
+        for application in applications:
+            if list(interview_team.members.all()) == list(application.interviewer.all()):
+                application.interview_team = interview_team
+                application.save()
+                if application.total_score != None:
+                    score_list.append(application.total_score)
+        if len(score_list) != 0:
+            interview_team.average_score = sum(score_list)/len(score_list)
+            interview_team.save()
+
     context = {
-        'applications': applications
+        'applications': applications,
+        'interview_teams': interview_teams,
     }
     return render(req, 'applicant_rankings.html', context)
 

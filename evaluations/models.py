@@ -22,5 +22,3 @@ class EvaluationScore(models.Model):
     evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE, related_name='scores')
     question = models.ForeignKey(EvaluationQuestion, on_delete=models.CASCADE)
     score = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
-
-
