@@ -6,6 +6,7 @@ app_name = 'applicants'
 
 urlpatterns = [
     path("interview", views.interview, name="interview"),
+    path('interview/change_status/<str:status_zone_id>/<str:applicant_id>/', views.change_status, name='change_status'),
     path("document", views.document, name="document"),
     path('search_applicant/', views.search_applicant, name='search_applicant'),
     path("document/profile/<int:pk>", views.profile, name='profile'),

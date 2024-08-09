@@ -91,10 +91,11 @@
 }
 
 .each_applicant {
-    background-color: aliceblue;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
+    
+    cursor: move;
 }
 
 .scheduled {
@@ -161,6 +162,7 @@
     overflow: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    height: calc(100% - 7.5rem);
 }
 .scroll_section::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/

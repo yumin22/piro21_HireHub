@@ -18,12 +18,14 @@
             <div class="application_content">
                 <div class="applicant_title">
                     <h3>지원서</h3>
-                <h3 class="personal_info"> | 인적사항</h3>
+                    <h3 class="personal_info"> | 인적사항</h3>
                 </div>
-                {% for answer in answers %}
-                    <p class="question"><strong>{{ answer.question.id }}. {{ answer.question.question_text }}</strong></p>
-                    <p>{{ answer.answer_text }}</p>
-                {% endfor %}
+                <div class="application_content_list">
+                    {% for answer in answers %}
+                        <p class="question"><strong>{{ answer.question.question_text }}</strong></p>
+                        <p>{{ answer.answer_text }}</p>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="comments">

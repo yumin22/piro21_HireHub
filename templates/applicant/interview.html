@@ -30,10 +30,10 @@
 <div class="applicant_container">
     <div class="applicants_list">
         <p>면접 대기</p>
-        <div class="scroll_section">
+        <div class="scroll_section" id="1">
             {% for applicant in applicants %}
             {% if applicant.status == 'interview_scheduled' %}
-            <div class="each_applicant scheduled" onclick="location.href='{% url 'applicants:profile' applicant.pk %}';" style="cursor:pointer;">
+            <div class="each_applicant scheduled" draggable="true" id="{{applicant.id}}" onclick="location.href='{% url 'applicants:profile' applicant.pk %}';" style="cursor:pointer;">
                 <ul class="applicant_info">
                     <li id="name" class="infoName">{{applicant.name}}</li>
                     <li class="infoSch">{{applicant.school}}</li>
@@ -46,14 +46,14 @@
     </div>
     <div class="applicants_list">
         <p>면접 진행 중</p>
-        <div class="scroll_section">
+        <div class="scroll_section" id="2">
             {% for applicant in applicants %}
             {% if applicant.status == 'interview_in_progress' %}
-                <div class="each_applicant in_progress">
+                <div class="each_applicant in_progress" draggable="true" id="{{applicant.id}}" onclick="location.href='{% url 'applicants:profile' applicant.pk %}';" style="cursor:pointer;">
                     <ul class="applicant_info">
-                        <li id="name">{{applicant.name}}</li>
-                        <li class="info">{{applicant.school}}</li>
-                        <li class="info">{{applicant.major}}</li>
+                        <li id="name" class="infoName">{{applicant.name}}</li>
+                        <li class="infoSch">{{applicant.school}}</li>
+                        <li class="infoMajor">{{applicant.major}}</li>
                     </ul>
                 </div>
             {% endif %}
@@ -62,14 +62,14 @@
     </div>
     <div class="applicants_list">
         <p>면접 완료</p>
-        <div class="scroll_section">
+        <div class="scroll_section" id="3">
             {% for applicant in applicants %}
             {% if applicant.status == 'interview_completed' %}
-                <div class="each_applicant completed">
+                <div class="each_applicant completed" draggable="true" id="{{applicant.id}}" onclick="location.href='{% url 'applicants:profile' applicant.pk %}';" style="cursor:pointer;">
                     <ul class="applicant_info">
-                        <li id="name">{{applicant.name}}</li>
-                        <li class="info">{{applicant.school}}</li>
-                        <li class="info">{{applicant.major}}</li>
+                        <li id="name" class="infoName">{{applicant.name}}</li>
+                        <li class="infoSch">{{applicant.school}}</li>
+                        <li class="infoMajor">{{applicant.major}}</li>
                     </ul>
                 </div>
             {% endif %}

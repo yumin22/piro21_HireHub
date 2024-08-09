@@ -8,18 +8,14 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
 }
 .profile_logo {
     font-size: 4rem;
     font-weight: bold;
+    margin-left: 2rem;
 }
-.profile_logo a {
-    text-decoration: none;
-}
-.profile_logo a i:hover{
-    cursor: pointer;
-}
+
 .actions {
     display: flex;
     justify-content: space-between;
@@ -34,8 +30,8 @@ section {
 
 .profile_section {
     display: flex;
-    /* height: calc(100% - 80px); */
-    height: 100%;
+    height: calc(100% - 80px);
+    /* height: 100%; */
     /* padding-bottom: 20px; */
 }
 
@@ -132,6 +128,12 @@ section {
     padding: 1.5rem 2rem;
     overflow-y: scroll;
     flex-direction: column;
+    counter-reset: section;
+}
+.application_question::before {
+    counter-increment: section;
+    content: counter(section) ". ";
+    font-weight: 600;
 }
 .application_content::-webkit-scrollbar {
     width: 8px;
