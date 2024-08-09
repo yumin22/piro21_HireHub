@@ -1,6 +1,8 @@
 from django.db.models import Q, Sum
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
+from .models import AudioRecording
+from applicants.models import Application
 from django.core.exceptions import PermissionDenied
 from django.db import models
 from django.forms import modelformset_factory
@@ -31,11 +33,40 @@ def search_applicant(request):
 def profile(request, pk):
     applicant = get_object_or_404(Application, pk=pk)
     answers = Answer.objects.filter(application=applicant)
+    recording = AudioRecording.objects.filter(application=applicant).first()
+
+    # 녹음 파일 업로드 처리
+    if request.method == 'POST' and request.FILES.get('audio_data'):
+        try:
+            # AudioRecording 객체 생성 또는 가져오기
+            recording, created = AudioRecording.objects.get_or_create(application=applicant)
+            recording.file = request.FILES['audio_data']
+            recording.save()
+            return JsonResponse({'file_url': recording.file.url})
+        except Exception as e:
+            print(f"Error saving file: {e}")
+            return JsonResponse({'error': f'File upload failed: {str(e)}'}, status=500)
+
     ctx = {
         'applicant': applicant,
         'answers': answers,
+        'recording_exists': recording is not None
     }
+    
     return render(request, 'applicant/profile.html', ctx)
+
+def delete_recording(request, pk):
+    applicant = get_object_or_404(Application, pk=pk)
+    if request.method == 'POST':
+        try:
+            application = get_object_or_404(Application, pk=pk)
+            recording = get_object_or_404(AudioRecording, application=applicant)
+            recording.file.delete()  # 파일 시스템에서 파일 삭제
+            recording.delete()  # DB에서 레코드 삭제
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+    return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
 
 def schedule(request):
     applicants = Application.objects.filter(~Q(status ='submitted'))
@@ -348,3 +379,6 @@ def question(request, pk):
         'common_questions': common_questions
     }
     return render(request, 'applicant/questions.html', ctx)
+
+
+

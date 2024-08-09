@@ -3,6 +3,7 @@
 {% block head %}
 <head>
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
 {% endblock %}
 {% block content %}
@@ -22,45 +23,17 @@
         <div class="profile_container">
             <div class="profile_personal">
                 <div class="profile_name">{{ applicant.name }}</div>
-                <div class="profile_detail">
-                    <div class="profile_detail1">
-                        <p>학교</p>
-                        <p>학과</p>
-                        <p>연락처</p>
-                    </div>
-                    <div class="profile_detail2">
-                        <p>{{ applicant.school }}</p>
-                        <p>{{ applicant.major }}</p>
-                        <p>{{ applicant.phone_number }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="profile_interview">
-                <p><strong>면접일:</strong> {{ applicant.interview_date }}</p>
-                <div style="display: flex; gap: 0.5rem;">
-                    <strong>면접관:</strong>
-                    <div>
-                        {% for interviewer in applicant.interviewer.all%}
-                        <p> {{ interviewer.name }}</p>
-                        {% endfor %}
-                    </div>
-                </div>
             </div>
         </div>
         <div class="application_container">
-            <h3>지원서</h3>
-            <div class="application_content">
-                {% for answer in answers %}
-                    <p class="application_question"><strong>{{ answer.question.id }}. {{ answer.question.question_text }}</strong></p>
-                    <p class="application_answer">{{ answer.answer_text }}</p>
-                {% endfor %}
+            <div class="application_text">
+                <h3>지원서</h3>
+                <button id="recordBtn">녹음</button>
+                <audio id="audioPlayback" controls style="display: none;"></audio>
+                <button id="deleteRecordingBtn" style="{% if not recording_exists %}display: none;{% endif %}">삭제</button>
             </div>
         </div>
     </div>
 </section>
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
+<script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}

@@ -80,3 +80,11 @@ class individualAnswer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f'answer by {self.interviewer} on {self.created_at}'
+
+
+class AudioRecording(models.Model):
+    application = models.OneToOneField(Application, on_delete=models.CASCADE, related_name='recording')
+    file = models.FileField(upload_to='recordings/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.application.name}'s Recording"
