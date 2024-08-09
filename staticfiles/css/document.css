@@ -1,0 +1,83 @@
+.document_container {
+    height: 100%;
+    padding: 2rem 4rem;
+}
+.title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+.title span {
+    font-size: 2.4rem;
+}
+
+.applicant_container {
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+    gap: 2rem;
+    height: calc(100% - 8rem);
+    padding-bottom: 2rem;
+}
+
+.applicants_list {
+    width: 50%;
+    /* height: 100%; */
+}
+
+.applicants_list > p {
+    margin:0;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    padding-left: 1rem;
+    border-bottom: solid black;
+    font-size: 2.4rem;
+    font-weight: bold;
+}
+
+.each_applicant {
+    background-color: aliceblue;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.all {
+    background-color: var(--box-color);
+}
+
+.pass {
+    background-color: var(--mediumprocess-color);
+}
+
+.applicant_info{
+    list-style: none;
+    padding-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 5px 0;
+}
+
+#name {
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding-right: 1rem;
+    border-right: solid black;
+}
+
+.info {
+    font-size: 1.3rem;
+    padding-right: 0.5rem;
+}
+
+.scroll_section {
+    overflow:scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    height: calc(100% - 7rem);
+    overflow-y: scroll;
+}
+.scroll_section::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}

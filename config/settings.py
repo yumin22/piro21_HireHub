@@ -28,7 +28,7 @@ SECRET_KEY=env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['13.125.25.250','test.hirehub.r-e.kr']
 
 
 # Application definition
@@ -150,6 +150,8 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = 'accounts.Interviewer'
 LOGIN_FIELDS = ['email']
 
+
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+ ([배포전])

@@ -1,0 +1,92 @@
+/* initialInterviewer.html */
+.initial_interviewer, .initial_applicant {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+   color: black;
+}
+h3 {
+   font-size: 12.8rem;
+   font-weight: bold;
+   margin-bottom: 100px;
+}
+.initial_btns {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.initial_btns a {
+   margin-bottom: 26px;
+   border-radius: 30px;
+   font-size: 4rem;
+   font-weight: bold;
+   text-align: center;
+   padding: 12px 0;
+   text-decoration: none;
+   background-color: var(--main-color);
+   width: 555px;
+   color: white;
+}
+
+/* signup.html, login.html */
+.login_container, .signup_container {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+.logo, .login_logo {
+   font-size: 6.4rem;
+   font-weight: bold;
+   margin-bottom: 45px;
+   text-align: center;
+}
+
+.signupform_container form, .loginform_container form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+#signup_form input, #login_form input {
+   width: 580px;
+   height: 70px;
+   border-radius: 30px;
+   font-size: 2.4rem;
+   font-weight: bold;
+   color: black;
+   padding-left: 20px;
+   border: 2px solid var(--main-color);
+   margin-bottom: 28px;
+}
+.signup_input:visited, .login_input:visited {
+   outline: none;
+}
+.signup_btn, .login_btn {
+   background-color: var(--main-color);
+   margin-top: 26px;
+}
+.signup_btn:hover, .login_btn:hover {
+   cursor: pointer;
+}
+
+/* signupcheck.html, requiredapproval.html */
+.signupCheck_container, .requiredapproval_container {
+   text-align: center;
+   position: relative;
+   top: 40%;
+}
+.signupCheck_container h2 {
+   font-size: 55px;
+   margin: 0;
+}
+.signupCheck_container p, .requiredapproval_container p {
+   font-size: 40px;
+   font-weight: bold;
+   margin-top: 10px;
+}
+.requiredapproval_container h2 {
+   font-size: 5rem;
+   margin: 0;
+}

@@ -1,0 +1,71 @@
+header {
+    height: 95px;
+    z-index: 1;
+    position: relative;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--main-color); 
+    padding: 20px 20px 10px;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#nav_title a {
+    font-family: 'SBAggroB';
+    text-decoration: none;
+    font-size: 3.6rem;
+    font-weight: bold;
+    color: white;
+}
+
+.template-link h2 {
+    text-align: start;
+    /* 추가 스타일을 여기에 적용할 수 있습니다 */
+}
+
+#nav_menu {
+    display: flex;
+}
+
+#nav_menu a, #nav_menu h2 {
+    margin-left: 30px;
+    margin-bottom: 2px;
+    text-decoration: none;
+    color: white;
+    font-size: 1.6rem;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.accountsToggle {
+    display: none; /* 기본적으로 보이지 않게 설정 */
+}
+
+.toggleTrigger:hover + .accountsToggle {
+    display: block; /* 호버 시 보이게 설정 */
+}
+
+
+#nav_menu div {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+}
+
+#nav_menu div div {
+    display: inline-block;
+    
+}
+
+#nav_menu div div a {
+    margin-left: 5px;
+    font-size: 1.4rem;
+}
+
+main {
+	height: calc(100vh - 95px);
+    background-color: #EEEEEE;
+}
