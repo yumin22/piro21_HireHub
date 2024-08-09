@@ -279,7 +279,7 @@ def question(request, pk):
     answer_form = AnswerForm()
 
     # 공통 질문 템플릿 및 질문 가져오기
-    common_template = InterviewTemplate.objects.first()  # 첫 번째 템플릿을 사용합니다. 필요에 따라 변경 가능
+    common_template = InterviewTemplate.objects.get(is_default=True)  # 첫 번째 템플릿을 사용합니다. 필요에 따라 변경 가능
     common_questions = InterviewQuestion.objects.filter(template=common_template)
 
 
