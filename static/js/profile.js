@@ -1,3 +1,27 @@
+$(document).ready(function(){
+    $('#load-comment').click(function(){
+        var applicantId = $(this).data('applicant-id');
+        console.log(applicantId);
+        var url = applicantId + "/comment/";
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function(response){
+                $('.profile_logo').append(
+                    `<span>>코멘트 작성</span>`
+                );
+                $('.profile_section').hide();
+                $('#comment-section').html(response);
+            },
+            error: function(response){
+                alert("Error loading comment.");
+            }
+        });
+    });
+});
+
+// 녹음 ajax
 let mediaRecorder;
 let recordedChunks = [];
 let isRecording = false;
