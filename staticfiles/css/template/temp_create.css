@@ -1,0 +1,201 @@
+body {
+    min-width: 1280px;
+    height: 100%;
+}
+
+.createEntire {
+    margin-left: 57px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.createWrite {
+    height: auto;
+}
+
+.createPrev {
+    display: block;
+    margin: 40px 30px 10px 30px;
+    border-radius: 20px 20px 10px 10px;
+    min-width: 60%;
+    min-height: 600px;
+    background-color: #E2E2E2;
+}
+
+.createPrev > h2 {
+    background-color: black;
+    padding: 10px 0 10px 20px;
+    border-radius: 20px 20px 0 0;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 240%;
+}
+
+
+.createHeader {
+    display: flex;
+    margin-top: 30px;
+}
+
+.createHeader > h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.createHeader > i {
+    font-size: 30px;
+    font-weight:500;
+    line-height: 200%;
+}
+
+.createHeader > p {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 240%;
+}
+
+.templateForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.formTitle > h2{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 240%;
+    margin-left: 5px;
+}
+
+.formTitle > input {
+    border: 3px solid #E2E2E2;
+    border-radius: 7px;
+    width: 43rem;
+    height: 4.3rem;
+    font-size: 16px;
+    padding: 0 10px 0 10px;
+    margin-bottom: 20px;
+}
+
+.formTitle > input::placeholder {
+    color: #CACACA;
+}
+
+.formContent > textarea {
+    border: 3px solid #E2E2E2;
+    border-radius: 7px;
+    width: 43rem;
+    height:15rem;
+    font-size: 16px;
+    padding: 10px 10px 0 10px;
+    margin-bottom: 20px;
+}
+
+.formContent > textarea::placeholder {
+    color: #CACACA;
+}
+
+.formQuestion{
+    display: flex;
+    flex-direction: column;
+}
+
+.formQuestion > h2 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 240%;
+    margin-left: 5px;
+}
+
+.formQuestion > div {
+    display: block;
+    border: 3px solid #E2E2E2;
+    border-radius: 7px;
+    width: 43rem;
+    height:15rem;
+    font-size: 16px;
+    padding: 0 10px 0 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.formQuestion > div > input {
+    margin-top: 10px;
+    border: none;
+    background: none;
+    box-shadow: none;
+    outline: none;
+    padding: 0;
+
+}
+
+.formQuestion > div > input::placeholder {
+    color: #CACACA;
+}
+
+.formQuestion > div > button {
+    display: inline;
+    background-color: #D9D9D9;
+    color: white;
+    text-align: center;
+    width: 150px;
+    margin-left: 25rem;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    padding: 3px 0 3px 0;
+}
+
+.createBtn {
+    background-color: black;
+    height: 5rem;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 15px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.createBtn > i {
+    color: white;
+    font-size: 30px;
+}
+
+.preview {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-left: 20px;
+    gap:10px;
+}
+
+.preview > h3, h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #A3A3A3;
+    width: auto;
+    display: inline;
+}
+
+.preview span {
+    font-size: 16px;
+    font-weight: 500;
+    min-height: 30px;
+    display: block;
+}
+
+.questionList > li {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px 0 5px 0 !important;
+    
+}
+

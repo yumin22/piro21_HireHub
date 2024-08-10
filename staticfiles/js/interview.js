@@ -21,8 +21,6 @@ const searchApplicant = () => {
     requestUserSearch.send();
 };
 
-
-
 const draggables = document.querySelectorAll('.each_applicant');
 const droppables = document.querySelectorAll('.scroll_section');
 var applicant_id = '0';
