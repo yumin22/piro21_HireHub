@@ -55,12 +55,11 @@
    flex-direction: column;
 }
 .apply_content input, .question textarea {
-   width: auto;
+   width: 97%;
    border: 2px solid var(--green-color);
    border-radius: 20px;
    padding: 10px 20px;
    margin-bottom: 15px;
-   margin-right: 20px;
    color: black;
 }
 .apply_content input::placeholder {
@@ -80,6 +79,7 @@
    margin: 0;
    margin-left: 0.5rem;
    margin-right: 1rem !important;
+   width: auto !important;
 }
 
 .apply_container button {
