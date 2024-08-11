@@ -277,16 +277,27 @@ def comment(request, pk):
     answers = Answer.objects.filter(application=applicant)
     comments = Comment.objects.filter(application=applicant).order_by('created_at')
     form = CommentForm()
-    
-    if request.method == 'POST':
-        interviewer = get_object_or_404(Interviewer, email=request.user.email)  # 인터뷰어 객체 가져오기
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.application = applicant
-            comment.interviewer = interviewer
-            comment.save()
-            if request.headers.get('x-requested-with') == 'XMLHttpRequest':  # AJAX 요청 확인
+
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        if request.method == "GET":
+            ctx = {
+            'applicant_id':pk,
+            'applicant': applicant,
+            'answers': answers,
+            'comments': comments,
+            'form': form,
+            }
+            return render(request, 'applicant/comments.html', ctx)
+
+        # POST 일때
+        else:
+            interviewer = get_object_or_404(Interviewer, email=request.user.email)  # 인터뷰어 객체 가져오기
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.application = applicant
+                comment.interviewer = interviewer
+                comment.save()
                 return JsonResponse({
                     'success': True,
                     'comment': {
@@ -295,19 +306,8 @@ def comment(request, pk):
                         'interviewer': interviewer.email  # 인터뷰어 이메일 반환
                     }
                 })
-            else:
-                return redirect('applicants:comment', pk=pk)
-        else:
-            if request.headers.get('x-requested-with') == 'XMLHttpRequest':  # AJAX 요청 확인
-                return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': form.errors.as_json()})
-    
-    ctx = {
-        'applicant': applicant,
-        'answers': answers,
-        'comments': comments,
-        'form': form,
-    }
-    return render(request, 'applicant/comments.html', ctx)
+    return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': form.errors.as_json()})
+
 
 def applicant_rankings(req):
     applications = Application.objects.annotate(
