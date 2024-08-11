@@ -20,10 +20,10 @@ class Possible_date_list(models.Model):
 
 class Application(models.Model):
     STATUS_CHOICES = [
-        ('submitted', 'Submitted'),
-        ('interview_scheduled', 'Interview Scheduled'),
-        ('interview_in_progress', 'Interview In Progress'),
-        ('interview_completed', 'Interview Completed'),
+        ('submitted', '서류 제출'),
+        ('interview_scheduled', '면접 대기'),
+        ('interview_in_progress', '면접 진행 중'),
+        ('interview_completed', '면접 완료'),
     ]
     TIME_CHOICES = [(None, '------')]
 
