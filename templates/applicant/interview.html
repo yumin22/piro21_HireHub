@@ -21,11 +21,10 @@
     <a href='{% url "applicants:schedule" %}'>면접 일정 보러가기</a>
     <div class="search-applicant">
         <input type="text" id="applicant-search-input" placeholder="지원자 이름을 검색하세요.">
-        <button type="button" onclick="searchApplicant()"><i class="ri-search-line searchBtn"></i></button>
-        <!-- <ul id="applicant-search-results">
-            
-        </ul> -->
+        <button type="button" id="search-button"><i class="ri-search-line searchBtn"></i></button>
+        <ul id="applicant-search-results"></ul>
     </div>
+    
 </div>
 <div class="applicant_container">
     <div class="applicants_list">
@@ -77,5 +76,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    const searchApplicantUrl = "{% url 'applicants:search_applicant' %}";
+</script>
 <script src="{% static 'js/interview.js' %}"></script>
 {% endblock %}
