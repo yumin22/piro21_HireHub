@@ -20,10 +20,10 @@ class Possible_date_list(models.Model):
 
 class Application(models.Model):
     STATUS_CHOICES = [
-        ('submitted', 'Submitted'),
-        ('interview_scheduled', 'Interview Scheduled'),
-        ('interview_in_progress', 'Interview In Progress'),
-        ('interview_completed', 'Interview Completed'),
+        ('submitted', '서류 제출'),
+        ('interview_scheduled', '면접 대기'),
+        ('interview_in_progress', '면접 진행 중'),
+        ('interview_completed', '면접 완료'),
     ]
     TIME_CHOICES = [(None, '------')]
 
@@ -37,7 +37,10 @@ class Application(models.Model):
     school = models.CharField(max_length=100)
     major = models.CharField(max_length=100)
     submission_date = models.DateTimeField(auto_now_add=True)
-    interviewer = models.ManyToManyField(Interviewer)
+    interviewer = models.ManyToManyField(
+        Interviewer,
+        limit_choices_to={'is_approved': True, 'is_active': True}
+    )
     interview_team = models.ForeignKey(InterviewTeam, on_delete=models.CASCADE, blank=True, null=True, related_name='interview_team')
     possible_date = models.ManyToManyField(Possible_date_list, blank=True)
     interview_date = models.ForeignKey(Possible_date_list, on_delete=models.SET_NULL, blank=True, null=True, related_name='interview_date')
