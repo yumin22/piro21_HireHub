@@ -113,6 +113,9 @@ function getCookie(name) {
 function updateColor(applicant_id, status_zone_id) {
     const applicantElement = document.getElementById(applicant_id);
 
+    applicantElement.addEventListener('dragstart', (event) => event.stopPropagation());
+    applicantElement.addEventListener('dragend', (event) => event.stopPropagation());
+
     applicantElement.classList.remove('scheduled', 'in_progress', 'completed');
     
     if (status_zone_id === '1') {
