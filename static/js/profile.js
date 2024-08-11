@@ -8,14 +8,38 @@ $(document).ready(function(){
             url: url,
             type: "GET",
             success: function(response){
-                $('.profile_logo').append(
-                    `<span>>코멘트 작성</span>`
+                $('.profile_logo').html(
+                    `<span>코멘트 작성</span>`
                 );
                 $('.profile_section').hide();
+                $('#comment-section').show();
                 $('#comment-section').html(response);
             },
             error: function(response){
                 alert("Error loading comment.");
+            }
+        });
+    });
+});
+
+$(document).ready(function(){
+    $('#load-profile').click(function(){
+        var applicantId = $(this).data('applicant-id');
+        console.log(applicantId);
+        var url = applicantId;
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function(response){
+                $('.profile_logo').html(
+                    `<span>지원자 프로필</span>`
+                );
+                $('.profile_section').show();
+                $('#comment-section').hide();
+            },
+            error: function(response){
+                alert("Error loading profile.");
             }
         });
     });

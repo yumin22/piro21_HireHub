@@ -13,6 +13,7 @@
             <span>지원자 프로필</span>
         </div>
         <div class="actions">
+            <button id="load-profile" data-applicant-id="{{applicant.pk}}">프로필 정보 |</button>
             <button id="load-comment" data-applicant-id="{{applicant.pk}}">코멘트 작성 |</button>
             <a href="{% url 'applicants:question' applicant.pk %}">개별 질문 |</a>
             <a href="{% url 'evaluations:evaluation_create' applicant.pk %}">평가표 확인</a>
