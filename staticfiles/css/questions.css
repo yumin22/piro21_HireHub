@@ -48,6 +48,14 @@ section {
     overflow-y: scroll;
     flex-direction: column;
 }
+.applicationContent {
+    counter-reset: section;
+}
+.applicationContent .question::before {
+    counter-increment: section;
+    content: counter(section) ". ";
+    font-weight: 600;
+}
 .application_content::-webkit-scrollbar {
     width: 8px;
 }

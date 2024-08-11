@@ -28,6 +28,7 @@ nav {
 
 #nav_menu {
     display: flex;
+    margin-top: -10px;
 }
 
 #nav_menu a, #nav_menu h2 {
@@ -41,24 +42,27 @@ nav {
 }
 
 .accountsToggle {
-    display: none; /* 기본적으로 보이지 않게 설정 */
+    display: none; /*기본적으로 보이지 않게 설정 */
+    position: absolute;
 }
+
 
 .toggleTrigger:hover + .accountsToggle {
-    display: block; /* 호버 시 보이게 설정 */
+    display: block;
 }
 
-
+/*
 #nav_menu div {
-    display: flex;
     flex-direction: column; 
     align-items: flex-start;
 }
+*/
 
+/*
 #nav_menu div div {
     display: inline-block;
-    
 }
+    */
 
 #nav_menu div div a {
     margin-left: 5px;

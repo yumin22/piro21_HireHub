@@ -55,8 +55,16 @@ section {
     border-radius: 10px;
     background: black;
 }
+.application_content_list {
+    counter-reset: section;
+}
 .question {
     font-size: 2rem;
+}
+.question::before {
+    counter-increment: section;
+    content: counter(section) ". ";
+    font-weight: 600;
 }
 .answers p {
     margin: 10px 0;
