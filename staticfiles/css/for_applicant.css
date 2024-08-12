@@ -38,12 +38,6 @@
    background: var(--main-color);
 }
 
-[id^="id_possible_date_"] {
-   transform: scale(1.5);
-   margin: 0;
-   margin-left: 0.5rem;
-   margin-right: 1rem;
-}
 .apply_content label {
    font-weight: 500;
    margin-left: 1.8rem;
@@ -61,11 +55,12 @@
    flex-direction: column;
 }
 .apply_content input, .question textarea {
-   max-width: 97%;
+   width: auto;
    border: 2px solid var(--green-color);
    border-radius: 20px;
    padding: 10px 20px;
    margin-bottom: 15px;
+   margin-right: 20px;
    color: black;
 }
 .apply_content input::placeholder {
@@ -79,6 +74,12 @@
 .question label::before {
    counter-increment: section;
    content: counter(section) ". ";
+}
+[id^="id_possible_date_"] {
+   transform: scale(1.5);
+   margin: 0;
+   margin-left: 0.5rem;
+   margin-right: 1rem !important;
 }
 
 .apply_container button {
@@ -147,4 +148,4 @@
    align-items: center;
    font-size: 6.4rem;
    font-weight: bold;
-
+}
