@@ -1,0 +1,150 @@
+
+/* write_apply.html */
+.apply_container {
+   padding: 30px;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+
+}
+.apply_container h2 {
+   font-size: 2.5rem;
+   margin-left: 10px;
+}
+.apply_container p {
+   font-size: 2rem;
+   margin-left: 10px;
+}
+
+#applyForm {
+   height: calc(100% - 15rem);
+   background-color: rgba(49, 160, 235, 0.1);
+   border-radius: 30px;
+   margin-top: 15px;
+   padding: 30px;
+}
+.apply_content {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   font-size: 2rem;
+   overflow-y: scroll;
+}
+.apply_content::-webkit-scrollbar {
+   width: 8px;
+}
+.apply_content::-webkit-scrollbar-thumb {
+   border-radius: 10px;
+   background: var(--main-color);
+}
+
+[id^="id_possible_date_"] {
+   transform: scale(1.5);
+   margin: 0;
+   margin-left: 0.5rem;
+   margin-right: 1rem;
+}
+.apply_content label {
+   font-weight: 500;
+   margin-left: 1.8rem;
+   margin-bottom: 1rem;
+}
+
+.questions_list {
+   padding: 0;
+   margin: 0;
+   margin-top: 1rem;
+   counter-reset: section;
+}
+.question {
+   display: flex;
+   flex-direction: column;
+}
+.apply_content input, .question textarea {
+   max-width: 97%;
+   border: 2px solid var(--green-color);
+   border-radius: 20px;
+   padding: 10px 20px;
+   margin-bottom: 15px;
+   color: black;
+}
+.apply_content input::placeholder {
+   font-weight: 500;
+}
+.question label {
+   margin-left: 10px;
+   font-weight: 500;
+   margin-bottom: 10px;
+}
+.question label::before {
+   counter-increment: section;
+   content: counter(section) ". ";
+}
+
+.apply_container button {
+   background-color: var(--main-color);
+   color: white;
+   width: 45%;
+   height: 65px;
+   font-weight: bold;
+   font-size: 3rem;
+   border-radius: 30px;
+   position: absolute;
+   left: 50%;
+   bottom: 0;
+   margin-bottom: 2rem;
+   transform: translate(-50%, 0);
+}
+
+/* apply_check.html */
+.status_container {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.status_logo {
+   font-size: 6.4rem;
+   font-weight: bold;
+   margin-bottom: 4.5rem;
+   text-align: center;
+}
+#statuscheck_form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+#statuscheck_form input {
+   width: 580px;
+   height: 70px;
+   border-radius: 30px;
+   font-size: 2.4rem;
+   font-weight: 600;
+   color: black;
+   padding-left: 20px;
+   border: 2px solid var(--main-color);
+   margin-bottom: 28px;
+}
+.status_container button {
+   width: 580px;
+   height: 70px;
+   border-radius: 30px;
+   font-size: 2.4rem;
+   font-weight: bold;
+   color: white;
+   border: 2px solid var(--main-color);
+   background-color: var(--main-color);
+   margin-top: 26px;
+}
+
+/* apply_result.html */
+.applyResult_container {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   font-size: 6.4rem;
+   font-weight: bold;
+}

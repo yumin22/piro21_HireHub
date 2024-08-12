@@ -12,7 +12,7 @@ from datetime import time
 from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer
 from accounts.models import Interviewer, InterviewTeam
 from template.models import ApplicationTemplate, ApplicationQuestion, InterviewTemplate, InterviewQuestion
-from .forms import ApplicationForm, CommentForm, QuestionForm, AnswerForm
+from .forms import ApplicationForm, CommentForm, QuestionForm, AnswerForm, ApplyForm
 
 def interview(request):
     applicants = Application.objects.all()

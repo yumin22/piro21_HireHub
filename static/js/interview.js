@@ -1,8 +1,8 @@
-const requestUserSearch = new XMLHttpRequest();
-
-const searchApplicant = () => {
+document.getElementById('search-button').addEventListener('click', () => {
     const query = document.getElementById('applicant-search-input').value;
-    const url = `{% url 'applicants:search_applicant' %}?search_txt=${query}`;
+    const url = `${searchApplicantUrl}?search_txt=${encodeURIComponent(query)}`;
+
+    const requestUserSearch = new XMLHttpRequest();
     requestUserSearch.open('GET', url, true);
     requestUserSearch.onreadystatechange = () => {
         if (requestUserSearch.readyState === XMLHttpRequest.DONE) {
@@ -13,13 +13,19 @@ const searchApplicant = () => {
                 data.forEach(user => {
                     const li = document.createElement('li');
                     li.textContent = user.name;
+                    li.addEventListener('click', () => {
+                        window.location.href = `/applicants/document/profile/${user.id}`;
+                    });
                     userSearchResults.appendChild(li);
                 });
             }
         }
     };
     requestUserSearch.send();
-};
+});
+
+
+
 
 const draggables = document.querySelectorAll('.each_applicant');
 const droppables = document.querySelectorAll('.scroll_section');
@@ -106,6 +112,9 @@ function getCookie(name) {
 }
 function updateColor(applicant_id, status_zone_id) {
     const applicantElement = document.getElementById(applicant_id);
+
+    applicantElement.addEventListener('dragstart', (event) => event.stopPropagation());
+    applicantElement.addEventListener('dragend', (event) => event.stopPropagation());
 
     applicantElement.classList.remove('scheduled', 'in_progress', 'completed');
     
