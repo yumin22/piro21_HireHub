@@ -1,71 +1,73 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block head %}
+<!DOCTYPE html>
+<html lang="ko">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/variable.css' %}">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif !important;
+        }
+    </style>
     <link rel="stylesheet" href="{% static 'css/questions.css' %}">
 </head>
-{% endblock %}
-{% block content %}
-<section>
-    <div class="questions_header">
-        <div class="questions_logo">
-            <a href='{% url "applicants:profile" pk=applicant.pk %}'><i class="ri-arrow-left-s-line"></i></a>
-            <span>개별 질문</span>
-        </div>
-    </div>
-    <div class="questions_section">
-        <div class="application_container">
-            <div class="application_content">
-                <div class="applicant_title">
-                    <h3 id="applicationTitle" class="clickable">지원서</h3>
-                    <h3 id="commonQuestionTitle" class="clickable"> | 공통 질문</h3>
-                </div>
-                <div class="applicationContent">
-                    {% for answer in answers %}
-                        <p class="question"><strong>{{ answer.question.question_text }}</strong></p>
-                        <p>{{ answer.answer_text }}</p>
-                    {% endfor %}
-                </div>
-                <div id="commonQuestionContent">
-                    <!-- 공통 질문 목록 추가 -->
-                    {% for common_question in common_questions %}
-                        <p class="question"><strong>{{ common_question.id }}. {{ common_question.question_text }}</strong></p>
-                    {% endfor %}
+<main>
+    <section>
+        <div class="questions_section">
+            <div class="application_container">
+                <div class="application_content">
+                    <div class="applicant_title">
+                        <h3 id="applicationTitle" class="clickable">지원서</h3>
+                        <h3 id="commonQuestionTitle" class="clickable"> | 공통 질문</h3>
+                    </div>
+                    <div class="applicationContent">
+                        {% for answer in answers %}
+                            <p class="question"><strong>{{ answer.question.question_text }}</strong></p>
+                            <p>{{ answer.answer_text }}</p>
+                        {% endfor %}
+                    </div>
+                    <div id="commonQuestionContent">
+                        <!-- 공통 질문 목록 추가 -->
+                        {% for common_question in common_questions %}
+                            <p class="question"><strong>{{ common_question.id }}. {{ common_question.question_text }}</strong></p>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
+            <div class="questions">
+                <h1>Questions for Applicant</h1>
+        
+                <form id="questionForm" method="post" action="{% url 'applicants:question' applicant.pk %}">
+                    {% csrf_token %}
+                    {{ question_form.as_p }}
+                    <button type="submit" name="question_submit" value="Add Question">Add Question</button>
+                </form>
+        
+                <ul id="questionList">
+                    {% for question in questions %}
+                        <li>
+                            {{ question.text }} ({{ question.created_at }})
+                            <ul>
+                                {% for answer in question.answers.all %}
+                                    <li>{{ answer.text }} ({{ answer.created_at }})</li>
+                                {% endfor %}
+                            </ul>
+                            <form class="answerForm" method="post" action="{% url 'applicants:question' applicant.pk %}">
+                                {% csrf_token %}
+                                {{ answer_form.as_p }}
+                                <input type="hidden" name="question_id" value="{{ question.id }}">
+                                <button type="submit" name="answer_submit">Add Answer</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        <div class="questions">
-            <h1>Questions for Applicant</h1>
-    
-            <form id="questionForm" method="post" action="{% url 'applicants:question' applicant.pk %}">
-                {% csrf_token %}
-                {{ question_form.as_p }}
-                <button type="submit" name="question_submit">Add Question</button>
-            </form>
-    
-            <ul id="questionList">
-                {% for question in questions %}
-                    <li>
-                        {{ question.text }} ({{ question.created_at }})
-                        <ul>
-                            {% for answer in question.answers.all %}
-                                <li>{{ answer.text }} ({{ answer.created_at }})</li>
-                            {% endfor %}
-                        </ul>
-                        <form class="answerForm" method="post" action="{% url 'applicants:question' applicant.pk %}">
-                            {% csrf_token %}
-                            {{ answer_form.as_p }}
-                            <input type="hidden" name="question_id" value="{{ question.id }}">
-                            <button type="submit" name="answer_submit">Add Answer</button>
-                        </form>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</section>
-{% endblock %}
-{% block extra_scripts %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'js/questions.js' %}"></script>
-{% endblock %}
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/questions.js' %}"></script>
+</main>

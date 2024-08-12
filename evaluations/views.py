@@ -58,7 +58,6 @@ def update_evaluation(req,pk):
 
     if req.method == 'POST':
         evaluation.comments = req.POST.get('comments', '')
-
         total_score = 0
         for question in template.questions.all():
             score = req.POST.get(f'score_{question.id}')
@@ -72,6 +71,7 @@ def update_evaluation(req,pk):
 
         evaluation.is_submitted = True
         evaluation.total_score = total_score
+        print(total_score)
         evaluation.save()
 
         return redirect('applicants:profile', application.id)
@@ -80,7 +80,7 @@ def update_evaluation(req,pk):
         question.id: EvaluationScore.objects.filter(evaluation=evaluation, question=question).first().score
         for question in template.questions.all()
     }
-        
+    print(existing_scores)
     ctx = {
         'evaluation': evaluation,
         'application': application,

@@ -1,31 +1,7 @@
-$(document).ready(function(){
-    $('#load-comment').click(function(){
-        var applicantId = $(this).data('applicant-id');
-        console.log(applicantId);
-        var url = applicantId + "/comment/";
-
-        $.ajax({
-            url: url,
-            type: "GET",
-            success: function(response){
-                $('.profile_logo').html(
-                    `<span>코멘트 작성</span>`
-                );
-                $('.profile_section').hide();
-                $('#comment-section').show();
-                $('#comment-section').html(response);
-            },
-            error: function(response){
-                alert("Error loading comment.");
-            }
-        });
-    });
-});
-
+// 프로필 확인
 $(document).ready(function(){
     $('#load-profile').click(function(){
         var applicantId = $(this).data('applicant-id');
-        console.log(applicantId);
         var url = applicantId;
 
         $.ajax({
@@ -37,9 +13,91 @@ $(document).ready(function(){
                 );
                 $('.profile_section').show();
                 $('#comment-section').hide();
+                $('#question-section').hide();
+                $('#evaluation-section').hide();
             },
             error: function(response){
                 alert("Error loading profile.");
+            }
+        });
+    });
+});
+
+// 코멘트 작성
+$(document).ready(function(){
+    $('#load-comment').click(function(){
+        var applicantId = $(this).data('applicant-id');
+        var url = applicantId + "/comment/";
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function(response){
+                $('.profile_logo').html(
+                    `<span>코멘트 작성</span>`
+                );
+                $('.profile_section').hide();
+                $('#question-section').hide();
+                $('#evaluation-section').hide();
+                $('#comment-section').show();
+                $('#comment-section').html(response);
+            },
+            error: function(response){
+                alert("Error loading comment.");
+            }
+        });
+    });
+});
+
+// 개별 질문
+$(document).ready(function(){
+    $('#load-question').click(function(){
+        var applicantId = $(this).data('applicant-id');
+        var url = applicantId + "/question/";
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function(response){
+                console.log("success")
+                $('.profile_logo').html(
+                    `<span>개별 질문</span>`
+                );
+                $('.profile_section').hide();
+                $('#comment-section').hide();
+                $('#evaluation-section').hide();
+                $('#question-section').show();
+                $('#question-section').html(response);
+            },
+            error: function(response){
+                alert("Error loading question.");
+            }
+        });
+    });
+});
+
+// 평가표 확인
+$(document).ready(function(){
+    $('#load-evaluation').click(function(){
+        var applicantId = $(this).data('applicant-id');
+        var url = `/evaluations/evaluations/create/${applicantId}`;
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function(response){
+                console.log("success")
+                $('.profile_logo').html(
+                    `<span>평가표</span>`
+                );
+                $('.profile_section').hide();
+                $('#comment-section').hide();
+                $('#question-section').hide();
+                $('#evaluation-section').show();
+                $('#evaluation-section').html(response);
+            },
+            error: function(response){
+                alert("Error loading evaluation.");
             }
         });
     });
