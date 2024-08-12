@@ -12,6 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accounts', '0001_initial'),
+        ('accounts', '0001_initial'),
         ('template', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
@@ -62,6 +63,14 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='AudioRecording',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('file', models.FileField(blank=True, null=True, upload_to='recordings/')),
+                ('application', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='recording', to='applicants.application')),
+            ],
+        ),
+        migrations.CreateModel(
             name='Comment',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -69,6 +78,27 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('application', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='applicants.application')),
                 ('interviewer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='individualQuestion',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('text', models.TextField()),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('application', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='individual_questions', to='applicants.application')),
+                ('interviewer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='individualAnswer',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('text', models.TextField()),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('application', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='individual_answers', to='applicants.application')),
+                ('interviewer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='answers', to='applicants.individualquestion')),
             ],
         ),
         migrations.CreateModel(
