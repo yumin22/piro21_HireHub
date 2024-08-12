@@ -15,8 +15,8 @@
         <div class="actions">
             <button id="load-profile" data-applicant-id="{{applicant.pk}}">프로필 정보 |</button>
             <button id="load-comment" data-applicant-id="{{applicant.pk}}">코멘트 작성 |</button>
-            <a href="{% url 'applicants:question' applicant.pk %}">개별 질문 |</a>
-            <a href="{% url 'evaluations:evaluation_create' applicant.pk %}">평가표 확인</a>
+            <button id="load-question" data-applicant-id="{{applicant.pk}}">개별 질문 |</button>
+            <button id="load-evaluation" data-applicant-id="{{applicant.pk}}">평가표 확인 |</button>
             <div class="application_text">
                 <button id="recordBtn">녹음</button>
                 <audio id="audioPlayback" controls style="display: none;"></audio>
@@ -65,6 +65,8 @@
         </div>
     </div>
     <div id="comment-section"></div>
+    <div id="question-section"></div>
+    <div id="evaluation-section"></div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'js/profile.js' %}"></script>

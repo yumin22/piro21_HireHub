@@ -52,10 +52,6 @@ $(document).ready(function() {
 
 
 
-
-
-
-
 // $(document).ready(function() {
 //     console.log('Document is ready'); // JavaScript 코드 실행 확인
 

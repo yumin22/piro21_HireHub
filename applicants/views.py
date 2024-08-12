@@ -48,30 +48,6 @@ def search_applicant(request):
     results = [{'id': applicant.id, 'name': applicant.name} for applicant in applicants]
     return JsonResponse(results, safe=False)
 
-def profile(request, pk):
-    applicant = get_object_or_404(Application, pk=pk)
-    answers = Answer.objects.filter(application=applicant)
-    recording = AudioRecording.objects.filter(application=applicant).first()
-
-    # 녹음 파일 업로드 처리
-    if request.method == 'POST' and request.FILES.get('audio_data'):
-        try:
-            # AudioRecording 객체 생성 또는 가져오기
-            recording, created = AudioRecording.objects.get_or_create(application=applicant)
-            recording.file = request.FILES['audio_data']
-            recording.save()
-            return JsonResponse({'file_url': recording.file.url})
-        except Exception as e:
-            print(f"Error saving file: {e}")
-            return JsonResponse({'error': f'File upload failed: {str(e)}'}, status=500)
-
-    ctx = {
-        'applicant': applicant,
-        'answers': answers,
-        'recording_exists': recording is not None
-    }
-    
-    return render(request, 'applicant/profile.html', ctx)
 
 def delete_recording(request, pk):
     applicant = get_object_or_404(Application, pk=pk)
@@ -272,6 +248,31 @@ def apply_result(request):
     else:
         return redirect('applicants:apply_check')
 
+def profile(request, pk):
+    applicant = get_object_or_404(Application, pk=pk)
+    answers = Answer.objects.filter(application=applicant)
+    recording = AudioRecording.objects.filter(application=applicant).first()
+
+    # 녹음 파일 업로드 처리
+    if request.method == 'POST' and request.FILES.get('audio_data'):
+        try:
+            # AudioRecording 객체 생성 또는 가져오기
+            recording, created = AudioRecording.objects.get_or_create(application=applicant)
+            recording.file = request.FILES['audio_data']
+            recording.save()
+            return JsonResponse({'file_url': recording.file.url})
+        except Exception as e:
+            print(f"Error saving file: {e}")
+            return JsonResponse({'error': f'File upload failed: {str(e)}'}, status=500)
+
+    ctx = {
+        'applicant': applicant,
+        'answers': answers,
+        'recording_exists': recording is not None
+    }
+    
+    return render(request, 'applicant/profile.html', ctx)
+
 def comment(request, pk):
     applicant = get_object_or_404(Application, pk=pk)
     answers = Answer.objects.filter(application=applicant)
@@ -308,6 +309,71 @@ def comment(request, pk):
                 })
     return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': form.errors.as_json()})
 
+def question(request, pk):
+    applicant = get_object_or_404(Application, pk=pk)
+    answers = Answer.objects.filter(application=applicant)
+    questions = individualQuestion.objects.filter(application=applicant).order_by('created_at')
+    question_form = QuestionForm()
+    answer_form = AnswerForm()
+
+    # 공통 질문 템플릿 및 질문 가져오기
+    common_template = InterviewTemplate.objects.get(is_default=True)
+    common_questions = InterviewQuestion.objects.filter(template=common_template)
+    
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        if request.method == 'POST':
+            if 'question_submit' in request.POST:
+                interviewer = get_object_or_404(Interviewer, email=request.user.email)
+                question_form = QuestionForm(request.POST)
+                if question_form.is_valid():
+                    question = question_form.save(commit=False)
+                    question.application = applicant
+                    question.interviewer = interviewer
+                    question.save()
+                    return JsonResponse({
+                        'success': True,
+                        'question': {
+                            'text': question.text,
+                            'created_at': question.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                            'interviewer': interviewer.email
+                        }
+                    })
+                else:
+                    # 폼이 유효하지 않은 경우 오류 메시지 반환
+                    return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': question_form.errors.as_json()})
+            
+            elif 'answer_submit' in request.POST:
+                interviewer = get_object_or_404(Interviewer, email=request.user.email)
+                answer_form = AnswerForm(request.POST)
+                if answer_form.is_valid():
+                    answer = answer_form.save(commit=False)
+                    answer.application = applicant
+                    answer.interviewer = interviewer
+                    answer.question_id = request.POST.get('question_id')
+                    answer.save()
+                    return JsonResponse({
+                        'success': True,
+                        'answer': {
+                            'text': answer.text,
+                            'created_at': answer.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                            'interviewer': interviewer.email
+                        }
+                    })
+                else:
+                    return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': answer_form.errors.as_json()})
+        else:
+            ctx = {
+                'applicant': applicant,
+                'answers': answers,
+                'questions': questions,
+                'question_form': question_form,
+                'answer_form': answer_form,
+                'common_questions': common_questions
+            }
+            return render(request, 'applicant/questions.html', ctx)
+    
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
 
 def applicant_rankings(req):
     applications = Application.objects.annotate(
@@ -333,70 +399,3 @@ def applicant_rankings(req):
         'interview_teams': interview_teams,
     }
     return render(req, 'applicant_rankings.html', context)
-
-
-def question(request, pk):
-    applicant = get_object_or_404(Application, pk=pk)
-    answers = Answer.objects.filter(application=applicant)
-    questions = individualQuestion.objects.filter(application=applicant).order_by('created_at')
-    question_form = QuestionForm()
-    answer_form = AnswerForm()
-
-    # 공통 질문 템플릿 및 질문 가져오기
-    common_template = InterviewTemplate.objects.get(is_default=True)  # 첫 번째 템플릿을 사용합니다. 필요에 따라 변경 가능
-    common_questions = InterviewQuestion.objects.filter(template=common_template)
-
-
-    if request.method == 'POST':
-        if 'question_submit' in request.POST:
-            interviewer = get_object_or_404(Interviewer, email=request.user.email)
-            question_form = QuestionForm(request.POST)
-            if question_form.is_valid():
-                question = question_form.save(commit=False)
-                question.application = applicant
-                question.interviewer = interviewer
-                question.save()
-                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                    return JsonResponse({
-                        'success': True,
-                        'question': {
-                            'text': question.text,
-                            'created_at': question.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                            'interviewer': interviewer.email
-                        }
-                    })
-                else:
-                    return redirect('applicants:question', pk=pk)
-        elif 'answer_submit' in request.POST:
-            interviewer = get_object_or_404(Interviewer, email=request.user.email)
-            answer_form = AnswerForm(request.POST)
-            if answer_form.is_valid():
-                answer = answer_form.save(commit=False)
-                answer.application = applicant
-                answer.interviewer = interviewer
-                answer.question_id = request.POST.get('question_id')
-                answer.save()
-                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                    return JsonResponse({
-                        'success': True,
-                        'answer': {
-                            'text': answer.text,
-                            'created_at': answer.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                            'interviewer': interviewer.email
-                        }
-                    })
-                else:
-                    return redirect('applicants:question', pk=pk)
-
-    ctx = {
-        'applicant': applicant,
-        'answers': answers,
-        'questions': questions,
-        'question_form': question_form,
-        'answer_form': answer_form,
-        'common_questions': common_questions
-    }
-    return render(request, 'applicant/questions.html', ctx)
-
-
-
