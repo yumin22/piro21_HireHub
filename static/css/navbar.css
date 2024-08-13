@@ -129,3 +129,10 @@ main {
     display: none;
     position: relative;
 }
+
+/* for applicant */
+.applicant_navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

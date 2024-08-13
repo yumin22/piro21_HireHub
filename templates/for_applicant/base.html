@@ -22,10 +22,10 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div id="nav_title">
-                <a href='{% url "accounts:initialApplicant" %}'>Hire Hub</a>
-            </div>
+        <nav class="applicant_navbar">
+            <a href="{% url 'accounts:initialApplicant' %}">
+                <img id="mainLogo" src="{% static 'images/main_logo.png' %}" alt="Hire Hub">
+            </a>
             {% block header %}
             
             {% endblock %}
