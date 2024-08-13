@@ -15,7 +15,7 @@
 {% block content %}
     <div class="DetailTitle">
         <a class="back-link" href="{% url 'template:template_list' %}"><i class="ri-arrow-left-s-line"></i></a>
-        <h1>면접 질문지</h1>
+        <h1>질문지</h1>
     </div>
     <div class="container">
         <div class="tempDetail">
@@ -35,10 +35,10 @@
                 </div>
             </div>
             <div class="actions">
-                <a class="btn-custom" href="{% url 'template:interview_update' pk=template.pk %}">수정</a>
+                <a class="btn-custom" href="{% url 'template:interview_update' pk=template.pk %}">수정하기</a>
                 <form class="delete-form" action="{% url 'template:interview_delete' pk=template.pk %}" method="post">
                     {% csrf_token %}
-                    <button class="btn-delete" type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+                    <button class="btn-delete" type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">삭제하기</button>
                 </form>
             </div>
         </div>

@@ -12,7 +12,8 @@
 {% block content %}
     <div class="createEntire">
         <div class="createWrite">
-            <h1>평가표 수정</h1>
+            <h1>Evaluation</h1>
+            <div class="createform">
             <form method="post" id="template-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="formTitle">
@@ -46,10 +47,12 @@
                         </div>
                     {% endfor %}
                 </div>
+                <button type="button" class="createBtn" onclick="submitForm()">수정 완료</button>
             </div>
             <button type="submit" style="display: none;"></button>
         </form>
-        </div>
+    </div>
+    </div>
         <!-- 미리보기 영역 -->
         <div class="createPrev">
             <h2>평가표 양식</h2>
@@ -61,7 +64,6 @@
 
                 </ol>
             </div>
-            <button type="button" class="createBtn" onclick="submitForm()">수정 완료</button>
         </div>
     </div>
     

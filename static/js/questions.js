@@ -1,3 +1,83 @@
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const csrftoken = getCookie('csrftoken');
+
+$(document).ready(function() {
+    $('#questionForm').submit(function(e) {
+        e.preventDefault();
+
+        // 기존 폼 데이터를 가져옴
+        var formData = $('#questionForm').serializeArray();
+
+        // 폼 데이터에 question_submit 항목 추가
+        formData.push({ name: 'question_submit', value: 'Add Question' });
+
+        $.ajax({
+            type: 'POST',
+            url: $('#questionForm').attr('action'),
+            data: $.param(formData),
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('#questionList').append('<li>' + response.question.text + ' (' + response.question.created_at + ')</li>');
+                    $('#questionForm')[0].reset();
+                } else {
+                    alert('Failed to add question: ' + response.error);
+                    console.error(response.form_errors);  // 폼 오류 메시지 출력
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error);
+                console.error('AJAX request failed:', error);
+            }
+        });
+    });
+
+    // $('.answerForm').submit(function(e) {
+    //     e.preventDefault();
+    //     var form = $(this);
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: form.attr('action'),
+    //         data: form.serialize(),
+    //         headers: {
+    //             'X-CSRFToken': csrftoken
+    //         },
+    //         success: function(response) {
+    //             if (response.success) {
+    //                 form.closest('li').find('ul').append('<li>' + response.answer.text + ' (' + response.answer.created_at + ')</li>');
+    //                 form[0].reset();
+    //             } else {
+    //                 alert('Failed to add answer: ' + response.error);
+    //                 console.error(response.form_errors);  // 폼 오류 메시지 출력
+    //             }
+    //         },
+    //         error: function(xhr, status, error) {
+    //             alert('An error occurred: ' + error);
+    //             console.error('AJAX request failed:', error);
+    //         }
+    //     });
+    // });
+});
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
     // 공통 질문 클릭 이벤트
@@ -27,40 +107,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});
-
-
-$('#questionForm').submit(function(e) {
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: $('#questionForm').attr('action'),
-        data: $('#questionForm').serialize(),
-        success: function(response) {
-            if (response.success) {
-                $('#questionList').append('<li>' + response.question.text + ' (' + response.question.created_at + ')</li>');
-                $('#questionForm')[0].reset();
-            } else {
-                alert('Failed to add question');
-            }
-        }
-    });
-});
-
-$('.answerForm').submit(function(e) {
-    e.preventDefault();
-    var form = $(this);
-    $.ajax({
-        type: 'POST',
-        url: form.attr('action'),
-        data: form.serialize(),
-        success: function(response) {
-            if (response.success) {
-                form.closest('li').find('ul').append('<li>' + response.answer.text + ' (' + response.answer.created_at + ')</li>');
-                form[0].reset();
-            } else {
-                alert('Failed to add answer');
-            }
-        }
-    });
 });

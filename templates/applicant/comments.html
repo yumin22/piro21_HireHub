@@ -14,49 +14,48 @@
             font-family: 'Pretendard', sans-serif !important;
         }
     </style>
-    <head>
-        <link rel="stylesheet" href="{% static 'css/comments.css' %}">
-    </head>
+    <link rel="stylesheet" href="{% static 'css/comments.css' %}">
 </head>
 <body>
     <main>
-        <div class="comments_section">
-            <div class="application_container">
-                <div class="application_content">
-                    <div class="applicant_title">
-                        <h3>지원서</h3>
-                        <h3 class="personal_info"> | 인적사항</h3>
+        <section>
+            <div class="comments_section">
+                <div class="application_container">
+                    <div class="application_content">
+                        <div class="applicant_title">
+                            <h3>지원서</h3>
+                            <h3 class="personal_info"> | 인적사항</h3>
+                        </div>
+                        <div class="application_content_list">
+                            {% for answer in answers %}
+                                <p class="question"><strong>{{ answer.question.question_text }}</strong></p>
+                                <p>{{ answer.answer_text }}</p>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div class="application_content_list">
-                        {% for answer in answers %}
-                            <p class="question"><strong>{{ answer.question.question_text }}</strong></p>
-                            <p>{{ answer.answer_text }}</p>
+                </div>
+                <div class="comments">
+                    <div id="comment_list">
+                        {% for comment in comments %}
+                            <div class="comment">
+                                <small><strong>작성자:</strong> {{ comment.interviewer.email }}</small>
+                                <p>| {{ comment.text }}</p>
+                                <!--<small>작성일: {{ comment.created_at }}</small>-->
+                            </div>
                         {% endfor %}
                     </div>
+                    <div class="comment_box">
+                        <form id="comment-form" action="{% url 'applicants:comment' applicant.pk %}" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Add Comment</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="comments">
-                <div id="comment_list">
-                    {% for comment in comments %}
-                        <div class="comment">
-                            <small><strong>작성자:</strong> {{ comment.interviewer.email }}</small>
-                            <p>| {{ comment.text }}</p>
-                            <!--<small>작성일: {{ comment.created_at }}</small>-->
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="comment_box">
-                    <form id="comment-form" action="{% url 'applicants:comment' applicant.pk %}" method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit">Add Comment</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{% static 'js/comments.js' %}"></script>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{% static 'js/comments.js' %}"></script>
     </main>
 </body>
 </html>

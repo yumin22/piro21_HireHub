@@ -13,6 +13,7 @@
     <div class="createEntire">
         <div class="createWrite">
             <h1>템플릿 수정</h1>
+            <div class="createform">
             <form method="post" id="template-form" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="formTitle">
@@ -45,9 +46,11 @@
                             </div>
                         {% endfor %}
                     </div>
+                    <button type="button" class="createBtn" onclick="submitForm()">수정 완료</button>
                 </div>
                 <button type="submit" style="display: none;"></button>
             </form>
+        </div>
         </div>
         <!-- 미리보기 영역 -->
         <div class="createPrev">
@@ -58,7 +61,6 @@
                 <h4 style="margin-top: 10px;">| 질문 추가 </h4>
                 <ol id="question-list" class="questionList"></ol>
             </div>
-            <button type="button" class="createBtn" onclick="submitForm()">수정 완료</button>
         </div>
     </div>
     
