@@ -12,38 +12,46 @@ body {
     position: relative;
 }
 
+
 .DetailTitle {
     margin-left: 7px;
     display: flex;
+
 }
 
 .DetailTitle > a {
+    position: absolute;
     text-decoration: none;
-}
-
-.DetailTitle > a > i {
-    font-size: 5rem;
-    color: #1C65EF;
-}
-
-.DetailTitle > h1 {
-    color: #1C65EF;
     font-size: 4rem;
-    font-weight: 700;
-    line-height: 180%;
+    color: var(--main-color);
+    z-index: 1;
+    margin-left: 65px;
 }
 
 .tempDetail {
     display: flex;
     flex-direction: column;
-    border-radius: 20px 20px 0 0;
-    width: 60%;
-    height: 100%;
+    border-radius: 20px;
+    width: 944px;
+    height: 120%;
     background-color: #FFFFFF;
     position: absolute;
     box-shadow: 0 0.4rem 2rem rgba(28,101,239, 0.2);
     top: 0;
     padding-right: 10px;
+}
+
+.detail_more {
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.detail_more > i {
+    font-size: 4rem;
+    color: var(--main-color);
+    padding-right: 5px;
+    cursor: pointer;
 }
 
 .form-title {
@@ -100,42 +108,30 @@ body {
 .question-item {
     font-weight: 500;
 }
+
 .question-item > p { 
     font-weight: bold;
 }
 
 .actions {
-    gap: 20px;
-    display: flex;
+    display: none;
+    background-color: var(--box-color);
+    padding: 10px;
     position: absolute;
-    bottom: 20px;
-    right: 30px;
+    right: 20px;
+    top: 40px;
 }
 
 .btn-custom {
-    width: 96px;
-    height: 33px;
-    border-radius: 7px;
-    display: block;
-    text-decoration: none;
-    background-color: #1C65EF;
-    color:#FFFFFF;
-    font-size: 1.6rem;
-    font-weight: 700;
-    text-align: center;
-    line-height: 200%;
+   text-decoration: none;
+   color: var(--main-color);
+   font-size: 1.6rem;
+   font-weight: 500;
 }
 
 .btn-delete {
-    width: 96px;
-    height: 33px;
-    background-color: #1C65EF;
-    color:#FFFFFF;
-    border-radius: 7px;
-    display: block;
     text-decoration: none;
+    color: var(--main-color);
     font-size: 1.6rem;
-    font-weight: 700;
-    text-align: center;
-    line-height: 200%;
+    font-weight: 500;
 }
