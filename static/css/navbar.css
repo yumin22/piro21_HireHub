@@ -1,19 +1,20 @@
 header {
     height: 80px;
-    z-index: 1;
-    position: relative;
+    font-family: var(--eng-font);
 }
 
 nav {
+    height: 100%;
     display: flex;
     flex-direction: row;
+    align-items: center;
     background-color: #ffffff;
 }
 
 #mainLogo {
     display: block;
     width: 214px;
-    padding-left: 15px;
+    padding-left: 20px;
 }
 
 .template-link h2 {
@@ -96,17 +97,19 @@ nav {
     padding-bottom: 7px;
     text-decoration: none;
     font-size: 1.2rem;
-    font-weight: 500;
+    font-weight: 700;
+    font-family: "Pretandard", sans-serif !important;
 }
 
 #logout {
     position: absolute;
-    right: 30px; /*원래 20px인데 좀 어색해보여서 합치기 전에 임시로 해둠*/
+    margin-right: 45px;
+    right: 0;
 }
 
 main {
 	height: calc(100vh - 80px);
-    padding: 60px 50px 30px;
+    padding: 50px 50px 40px;
     background-color: #ffffff;
 }
 
