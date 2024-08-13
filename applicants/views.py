@@ -236,13 +236,11 @@ def apply_result(request):
         if submitted == False:
             try:
                 application = Application.objects.get(name=name, phone_number=phone_number)
-                print(name, phone_number)
                 submitted = True
             except Application.DoesNotExist:
                 submitted = False
         context = {
             'submitted': submitted,
-            'name': name
         }
         return render(request, 'for_applicant/apply_result.html', context)
     else:

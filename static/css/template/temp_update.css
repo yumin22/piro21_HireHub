@@ -1,33 +1,40 @@
 .createEntire {
-    margin-left: 57px;
     display: flex;
     justify-content: space-between;
-
+}
+.createform {
+    padding: 18px;
+    box-shadow: 0 0.4rem 2rem rgba(28,101,239, 0.2);
+    border-radius: 8px;
+    background-color: #FFFFFF;
 }
 
 .createWrite {
     height: auto;
-    margin-top: 30px;
 }
 
 .createWrite > h1 {
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-weight: 700;
     margin-right: 10px;
+    margin-bottom: 10px;
+    color: #1C65EF;
 }
 
 .createPrev {
     display: block;
     position: relative;
-    margin: 40px 30px 10px 30px;
+    margin: 0 30px 10px 30px;
     border-radius: 20px 20px 10px 10px;
     min-width: 60%;
     min-height: 600px;
-    background-color: #E2E2E2;
+    background-color: #FFFFFF;
+    margin-right: 10px;
+    border: 2px solid rgba(28,101,239, 0.2)
 }
 
 .createPrev > h2 {
-    background-color: black;
+    background-color: #1C65EF;
     padding: 10px 0 10px 20px;
     border-radius: 20px 20px 0 0;
     color: white;
@@ -65,7 +72,6 @@
 
 
 .formTitle > h2{
-    padding-top: 10px;
     font-size: 16px;
     font-weight: 700;
     line-height: 240%;
@@ -73,13 +79,13 @@
 }
 
 .formTitle > input {
-    border: 3px solid #E2E2E2;
+    border: 2px solid #E2E2E2;
     border-radius: 7px;
     width: 43rem;
     height: 4.3rem;
     font-size: 16px;
     padding: 0 10px 0 10px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .formTitle > input::placeholder {
@@ -87,14 +93,13 @@
 }
 
 .formContent > textarea {
-    border: 3px solid #E2E2E2;
+    border: 2px solid #E2E2E2;
     border-radius: 7px;
     width: 43rem;
-    height:7rem;
+    height:12rem;
     font-size: 16px;
     padding: 10px 10px 0 10px;
-    margin-bottom: 20px;
-
+    margin-bottom: 5px;
 }
 
 .formContent > h2 {
@@ -128,7 +133,7 @@
     height:10rem;
     font-size: 16px;
     padding: 0 10px 0 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -178,7 +183,7 @@
     border-radius: 7px;
     width: 42.5rem !important;
     height: 95px !important;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     display: block;
     margin-bottom: 5px;
     font-size: 1.6rem;
@@ -204,7 +209,7 @@
 .form-field2 > textarea {
     width: 42.5rem !important;
     height: 50px !important;
-    background-color: #f9f9f9;
+    background-color: #FFFFFF;
     display: block;
     margin-bottom: 5px;
     font-size: 1.6rem;
@@ -220,27 +225,24 @@
 }
 
 .createBtn {
-
-    background-color: black;
+    background-color: #1C65EF;
     height: 5rem;
     border-radius: 7px;
     display: block;
     padding: 5px 25px 5px 25px;
     color: white;
+    width: 430px;
     font-size: 24px;
     font-weight: 700;
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    z-index: 10;
+    margin-top: 20px;
 }
 
 .preview {
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    padding-left: 20px;
+    padding: 20px;
     gap:10px;
+
 }
 
 .preview > h3, h4 {
@@ -251,14 +253,19 @@
     display: inline;
 }
 
+.preview > h4 {
+    margin-top: 15px !important;
+}
+
 .preview span {
+    color: #000;
     font-size: 16px;
     font-weight: 500;
     min-height: 30px;
     display: block;
     margin-left: 10px;
-    margin-top: 5px;
-
+    margin-top: 10px;
+    line-height: 1.5;
 }
 
 .questionList {

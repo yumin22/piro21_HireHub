@@ -7,11 +7,26 @@
 
 {% block content %}
 <div class="applyResult_container">
-   <p>{{ name }}님</p>
    {% if submitted %}
-      <p>지원서 제출되었습니다!</p>
+      <div class="result_head">
+         <img src="{% static 'image/check.png' %}" alt="">
+         <p>SUCCESS</p>
+      </div>
+      <p class="result_comment">지원이 완료되었습니다.</p>
+      <a href='{% url "accounts:initialApplicant" %}'>
+         <img src="{% static 'image/home.png' %}" alt="">
+         메인 페이지로 돌아가기
+      </a>
    {% else %}
-      <p>지원서 제출 이력이 없습니다.</p>
+      <div class="result_head">
+         <p>404</p>
+         <p>NOT FOUND</p>
+      </div>
+      <p class="result_comment">지원 이력이 존재하지 않습니다.</p>
+      <a href='{% url "accounts:initialApplicant" %}'>
+         <img src="{% static 'image/home.png' %}" alt="">
+         메인 페이지로 돌아가기
+      </a>
    {% endif %}
 </div>
 {% endblock content %}

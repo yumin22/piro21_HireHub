@@ -2,15 +2,17 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+<link rel="stylesheet" href="{% static 'css/for_applicant.css' %}">
 {% endblock %}
-
+{% block header %}
+    <div class="initial_btns">
+        <a class="link_check" href="{% url 'applicants:apply_check' %}">지원 상태 확인하기</a>
+        <a class="link_write" href="{% url 'applicants:apply' pk=template.pk %}">지원하러 바로가기</a>
+    </div>
+{% endblock %}
 {% block content %}
     <div class="initial_applicant">
-        <h3>지원자</h3>
-        <div class="initial_btns">
-        <a href="{% url 'applicants:apply' pk=template.pk %}">지원서 작성 바로가기</a>
-        <a href="{% url 'applicants:apply_check' %}">지원 상태 확인</a>
-        </div>
+        <p class="main_comment">효율적인 인재 영입의 시작</p>
+        <p class="main_logo">HIREHUB</p>
     </div>
 {% endblock content %}

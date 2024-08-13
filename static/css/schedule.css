@@ -1,8 +1,9 @@
 .title {
     font-size: 4rem;
     font-weight: 700;
-    padding-top: 45px;
-    padding-left: 57px;
+    padding-left: 54px;
+    padding-top: 4px;
+    color: var(--main-color);
 
 }
 
@@ -47,6 +48,13 @@
 
 .reschedule_container {
     width: 20%;
+    height: 100%;
+    margin: 0 30px;
+    margin-left: 10px;
+    padding: 15px 20px;
+    background-color: var(--box-color);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 55, 255, 0.25);
 }
 
 .grid_container > p {
@@ -60,11 +68,17 @@
 
 .applicant_info {
     font-size: 0.6rem;
-    background-color: var(--mediumprocess-color);
+    background-color: var(--box-color);
     display: inline-block;
-    border-radius: 5px;
     padding: 10px 5px 10px 15px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease; 
+}
+
+.applicant_info:hover {
+    transform: perspective(500px) translateZ(10px);
 }
 
 .applicant_info > p {

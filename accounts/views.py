@@ -6,6 +6,7 @@ from .models import Interviewer
 from applicants.models import Application
 from template.models import ApplicationTemplate
 from .forms import SignupForm, LoginForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -31,13 +32,11 @@ def signup(request):
          interviewer = form.save(commit=False)
          interviewer.is_approved = False # 관리자의 승인이 필요하므로 비활성화
          interviewer.save()
-         return render(request, 'accounts/signupcheck.html')
+         messages.success(request, '회원가입이 완료되었습니다. 관리자의 승인을 기다려주세요!')
+         return redirect('accounts:initialInterviewer')
       else:
          context = {'form': form}
          return render(request, 'accounts/signup.html', context)
-
-def signupCheck(request):
-   return render(request, 'accounts/signupcheck.html')
 
 def login(request):
    if request.method == 'POST':
@@ -51,7 +50,8 @@ def login(request):
                auth_login(request, user)
                return redirect(reverse('accounts:mainboard', kwargs={'pk': user.pk})) # 로그인한 유저의 mainboard로 이동
             else:
-               return render(request, 'accounts/requiredapproval.html')
+               messages.info(request, '관리자의 승인이 필요하거나 계정이 비활성화되었습니다. 관리자에게 문의해주세요!')
+               return redirect('accounts:initialInterviewer')
          else:
             form.add_error(None, '이메일 또는 비밀번호가 잘못되었습니다.')
    else:
@@ -59,9 +59,6 @@ def login(request):
 
    context = {'form': form}
    return render(request, 'accounts/login.html', context)
-
-def requiredApproval(request):
-   return render(request, 'accounts/requiredapproval.html')
 
 def logout(request):
    auth_logout(request)
