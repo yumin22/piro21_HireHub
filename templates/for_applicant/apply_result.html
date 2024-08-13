@@ -9,12 +9,12 @@
 <div class="applyResult_container">
    {% if submitted %}
       <div class="result_head">
-         <img src="{% static 'image/check.png' %}" alt="">
+         <img src="{% static 'images/check.png' %}" alt="">
          <p>SUCCESS</p>
       </div>
       <p class="result_comment">지원이 완료되었습니다.</p>
       <a href='{% url "accounts:initialApplicant" %}'>
-         <img src="{% static 'image/home.png' %}" alt="">
+         <img src="{% static 'images/home.png' %}" alt="">
          메인 페이지로 돌아가기
       </a>
    {% else %}
@@ -24,7 +24,7 @@
       </div>
       <p class="result_comment">지원 이력이 존재하지 않습니다.</p>
       <a href='{% url "accounts:initialApplicant" %}'>
-         <img src="{% static 'image/home.png' %}" alt="">
+         <img src="{% static 'images/home.png' %}" alt="">
          메인 페이지로 돌아가기
       </a>
    {% endif %}
