@@ -20,8 +20,8 @@ def generate_questions(request, application_id):
         content += f"A: {answer.answer_text}\n\n"
 
     # OpenAI API 호출 (최신 버전)
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",  # GPT-4를 사용하려면 'gpt-4'로 변경
+    completion = openai.chat.completions.create(
+        model='gpt-4o',  
         messages=[
             {"role": "system", "content": "You are an interview assistant. Based on the content of the candidate's application, generate relevant and insightful interview questions that could help assess their fit for the role."},
             {"role": "user", "content": content}
@@ -30,6 +30,6 @@ def generate_questions(request, application_id):
         temperature=0.5
     )
 
-    questions = completion.choices[0].message['content']
+    questions = completion.choices[0].message.content
 
-    return render(request, 'interviews/questions.html', {'questions': questions})
+    return render(request, 'applicant/openai.html', {'questions': questions})
