@@ -19,6 +19,7 @@
     margin-right: 10px;
     margin-bottom: 10px;
     color: #1C65EF;
+    font-family: var(--eng-font);
 }
 
 .createPrev {
