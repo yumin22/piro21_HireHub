@@ -2,7 +2,9 @@
    --lightprocess-color: rgba(21,52,72, .2);
    --mediumprocess-color: rgba(21,52,72, .5);
    --process-color: rgba(21,52,72, .7);
-   --main-color: rgb(21,52,72);
+   --main-color: #1C65EF;
 
    --box-color: #DDDDDD;
+
+   --eng-font: "Montserrat", sans-serif;
 }
