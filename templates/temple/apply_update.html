@@ -11,43 +11,47 @@
 
 {% block content %}
     <div class="createEntire">
-        <div class="createWrite">
-            <h1>템플릿 수정</h1>
-            <form method="post" id="template-form" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="formTitle">
-                    <h2>지원서 제목</h2>
-                    {{ template_form.name }}
-                </div>
-                <div class="formContent">
-                    <h2>지원서 설명</h2>
-                    {{ template_form.description }}
-                </div>
-                <div class="formQuestion">
-                    <h2>지원서 항목 추가</h2>
-                    <div>
-                        <input type="text" id="new_question_text" placeholder="항목을 입력하세요">
-                        <button type="button" onclick="addQuestion()">추가하기</button>
+        <div class="createWrite">   
+            <h1>Application</h1>
+            <div class="createform">
+                <form method="post" id="template-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="formTitle">
+                        <h2>지원서 제목</h2>
+                        {{ template_form.name }}
                     </div>
-                </div>
-                <div class="question-form-container">
-                    <h2>항목 수정</h2>
-                    <div id="question-form-container">
-                        <p>{{ formset.management_form }}</p>
-                        {% for form in formset %}
-                            <div class="form-group">
-                                {% for field in form %}
-                                <div class="form-field">
-                                    {{ field.errors }}
-                                    {{ field }}
+                    <div class="formContent">
+                        {{ template_form.description }}
+                    </div>
+                    <div class="formQuestion">
+                        <h2>지원서 항목 추가</h2>
+                        <div>
+                            <input type="text" id="new_question_text" placeholder="항목을 입력하세요">
+                            <button type="button" onclick="addQuestion()">추가하기</button>
+                        </div>
+                    </div>
+                    <div class="question-form-container">
+                        <h2>항목 수정</h2>
+                        <div id="question-form-container">
+                            <p>{{ formset.management_form }}</p>
+                            {% for form in formset %}
+                                <div class="form-group">
+                                    {% for field in form %}
+                                    <div class="form-field">
+                                        {{ field.errors }}
+                                        {{ field }}
+                                    </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
-                            </div>
-                        {% endfor %}
+                            {% endfor %} 
+                        </div>
+                        <div>
+                            <button type="button" class="createBtn" onclick="submitForm()">수정 완료하기</button>
+                        </div>
                     </div>
-                </div>
-                <button type="submit" style="display: none;"></button>
-            </form>
+                    <button type="submit" style="display: none;"></button>
+                </form>
+            </div>
         </div>
         <!-- 미리보기 영역 -->
         <div class="createPrev">
@@ -58,7 +62,6 @@
                 <h4 style="margin-top: 10px;">| 항목 추가 </h4>
                 <ol id="question-list" class="questionList"></ol>
             </div>
-            <button type="button" class="createBtn" onclick="submitForm()">수정 완료</button>
         </div>
     </div>
     

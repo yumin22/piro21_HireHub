@@ -15,10 +15,9 @@
     <div class="createEntire">
         <div class="createWrite">
             <div class="createHeader">
-                <h1>템플릿</h1>
-                <i class="ri-arrow-right-s-line"></i>
-                <p>지원서작성</p>
+                <p>+ Application</p>
             </div>
+            <div class="createform">
             <form method="post" id="template-form" class="templateForm" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="formTitle">
@@ -44,6 +43,7 @@
                     템플릿 생성하기
                 </button>
             </form>
+            </div>
         </div>
 
         <div class="createPrev">
