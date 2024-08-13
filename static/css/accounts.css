@@ -1,5 +1,5 @@
 /* initialInterviewer.html */
-.initial_interviewer, .initial_applicant {
+.initial_interviewer {
    display: flex;
    flex-direction: column;
    height: 100%;

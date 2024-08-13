@@ -73,3 +73,18 @@ main {
 	height: calc(100vh - 95px);
     padding: 60px 50px 30px;
 }
+
+.initial_btns a {
+    text-decoration: none;
+    font-size: 2rem;
+}
+.link_check {
+    color: black;
+}
+.link_write {
+    background-color: var(--main-color);
+    padding: 1.3rem 4rem;
+    border-radius: 1rem;
+    color: white;
+    font-weight: 500;
+}
