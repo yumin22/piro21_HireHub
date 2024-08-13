@@ -6,39 +6,35 @@
 
 {% block content %}
 <nav>
-    <div id="nav_title">
-        <a href='/'>Hire Hub</a>
-    </div>
+    <a href='/'>
+        <img id="mainLogo" src="{% static 'images/main_logo.png' %}" alt="Hire Hub">
+    </a>
     {% if user.is_authenticated %}<!--로그인한 상태일 때 출력-->
     <div id="nav_menu">
-        <a href='{% url "accounts:mainboard" pk=user.pk %}'><h2>내 작업보드</h2></a> 
-        <div class="template-link">
-            <h2 class="toggleTrigger">지원자 관리</h2>
-            <div class="accountsToggle">
-                <a href='{% url "applicants:document" %}'>서류 관리 |</a> 
-                <a href='{% url "applicants:interview" %}'>면접 관리</a> 
+        <div class="nav_left">
+            <a href='{% url "accounts:mainboard" pk=user.pk %}'>mainboard</a>
+            <a href='{% url "applicants:document" %}'>document</a>
+            <div class="toggle_section">
+                <div>
+                    <a href=''>interview</a>
+                    <i class="ri-arrow-up-s-line"></i>
+                    <i class="ri-arrow-down-s-line"></i>
+
+                    <div class="toggle_view">
+                        <a href='{% url "applicants:interview" %}'>면접 관리</a>
+                        <a href='{% url "applicants:schedule" %}'>면접 일정</a>
+                        <a href='{% url "applicants:rankings" %}'>지원자 순위</a>
+                    </div>
+                </div>
             </div>
+            
+            <a style="margin-left: 52px;" href='{% url "template:template_list" %}'>template</a>
+            <a  id="logout" href='{% url "accounts:logout" %}'>logout</a>
         </div>
-        <a href='{% url "template:template_list" %}'><h2>템플릿</h2></a>
-        <a href='{% url "accounts:logout" %}'><h2>로그아웃</h2></a>
     </div>
     {% endif %}
 </nav>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggleTrigger = document.querySelector('.toggleTrigger');
-        const accountsToggle = document.querySelector('.accountsToggle');
     
-        toggleTrigger.addEventListener('click', function(event) {
-            event.stopPropagation();
-            accountsToggle.style.display = (accountsToggle.style.display === 'block') ? 'none' : 'block';
-        });
-    
-        document.addEventListener('click', function(event) {
-            if (!accountsToggle.contains(event.target) && !toggleTrigger.contains(event.target)) {
-                accountsToggle.style.display = 'none';
-            }
-        });
-    });
-    </script>
+</script>
 {% endblock %}
