@@ -4,15 +4,13 @@ body {
 }
 
 .createEntire {
-    margin-left: 57px;
     display: flex;
     justify-content: space-between;
 
 }
 .createform {
-    border: 3px solid #E2E2E2;
     padding: 10px;
-    box-shadow: 3px 1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.4rem 2rem rgba(28,101,239, 0.2);
     border-radius: 8px;
     background-color: #FFFFFF;
 }
@@ -23,11 +21,12 @@ body {
 
 .createPrev {
     display: block;
-    margin: 40px 30px 10px 30px;
+    margin: 0 30px 10px 30px;
     border-radius: 20px 20px 10px 10px;
     min-width: 60%;
     min-height: 600px;
     background-color: #FFFFFF;
+    border: 2px solid rgba(28,101,239, 0.2)
 }
 
 .createPrev > h2 {
@@ -43,7 +42,6 @@ body {
 
 .createHeader {
     display: flex;
-    margin-top: 30px;
 }
 
 .createHeader > h1 {

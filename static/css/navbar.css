@@ -105,8 +105,9 @@ nav {
 }
 
 main {
-    height: calc(100vh - 95px);
-    background-color: #FFFFFF;
+	height: calc(100vh - 80px);
+    padding: 60px 50px 30px;
+    background-color: #ffffff;
 }
 
 .toggle_section:hover .toggle_view {

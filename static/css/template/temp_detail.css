@@ -13,7 +13,6 @@ body {
 }
 
 .DetailTitle {
-    padding-top: 30px;
     margin-left: 7px;
     display: flex;
 }
@@ -42,8 +41,9 @@ body {
     height: 100%;
     background-color: #FFFFFF;
     position: absolute;
-    box-shadow: 3px 1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.4rem 2rem rgba(28,101,239, 0.2);
     top: 0;
+    padding-right: 10px;
 }
 
 .form-title {
