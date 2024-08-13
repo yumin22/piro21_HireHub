@@ -17,9 +17,21 @@
             font-family: 'Pretendard', sans-serif;
         }
     </style>
+    <script>
+        function showMessage(message) {
+            alert(message);
+        }
+    </script>
     {% block head %} {% endblock %}
 </head>
 <body>
+    {% if messages %}
+        <script>
+            {% for message in messages %}
+                showMessage("{{ message }}");
+            {% endfor %}
+        </script>
+    {% endif %}
     <header>
         {% include 'navbar.html'%}
     </header>
