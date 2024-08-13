@@ -1,2 +1,35 @@
-from django.shortcuts import render, redirect
+import openai
+from dotenv import load_dotenv
+import os
+from django.shortcuts import render
+from applicants.models import Application, Answer
 
+# .env 파일 로드
+load_dotenv()
+
+# OpenAI API 키 설정
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
+def generate_questions(request, application_id):
+    application = Application.objects.get(pk=application_id)
+    answers = application.answers.all()
+
+    content = ""
+    for answer in answers:
+        content += f"Q: {answer.question.question_text}\n"
+        content += f"A: {answer.answer_text}\n\n"
+
+    # OpenAI API 호출 (최신 버전)
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # GPT-4를 사용하려면 'gpt-4'로 변경
+        messages=[
+            {"role": "system", "content": "You are an interview assistant. Based on the content of the candidate's application, generate relevant and insightful interview questions that could help assess their fit for the role."},
+            {"role": "user", "content": content}
+        ],
+        max_tokens=700,
+        temperature=0.5
+    )
+
+    questions = completion.choices[0].message['content']
+
+    return render(request, 'interviews/questions.html', {'questions': questions})
