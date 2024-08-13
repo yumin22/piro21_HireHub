@@ -204,6 +204,10 @@ main {
    height: 3.5rem;
 }
 
+fieldset {
+   border: none !important;
+}
+
 /* apply_result.html */
 .applyResult_container {
    height: 100%;

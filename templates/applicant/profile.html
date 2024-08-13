@@ -17,6 +17,7 @@
             <button id="load-comment" data-applicant-id="{{applicant.pk}}">코멘트 작성 |</button>
             <button id="load-question" data-applicant-id="{{applicant.pk}}">개별 질문 |</button>
             <button id="load-evaluation" data-applicant-id="{{applicant.pk}}">평가표 확인 |</button>
+            <a href="{% url 'interviews:generate_questions' applicant.pk %}">질문 추천받기</a>
             <div class="application_text">
                 <button id="recordBtn">녹음</button>
                 <audio id="audioPlayback" controls style="display: none;"></audio>
