@@ -13,18 +13,20 @@ body {
     box-shadow: 0 0.4rem 2rem rgba(28,101,239, 0.2);
     border-radius: 8px;
     background-color: #FFFFFF;
+    height: calc(100vh - 23rem);
 }
 
 .createWrite {
     height: auto;
+    width: 40%;
 }
 
 .createPrev {
     display: block;
-    margin: 0 30px 10px 30px;
-    border-radius: 20px 20px 10px 10px;
+    margin-left: 30px;
+    border-radius: 30px 30px 10px 10px;
     min-width: 60%;
-    min-height: 600px;
+    height: calc(100vh - 17rem);
     background-color: #FFFFFF;
     border: 2px solid rgba(28,101,239, 0.2)
 }
@@ -54,6 +56,7 @@ body {
     font-size: 30px;
     font-weight:500;
     line-height: 200%;
+    color: var(--main-color);
 }
 
 .createHeader > p {
@@ -78,7 +81,7 @@ body {
 .formTitle > input {
     border: 3px solid #E2E2E2;
     border-radius: 7px;
-    width: 43rem;
+    width: 100%;
     height: 4.3rem;
     font-size: 16px;
     padding: 0 10px 0 10px;
@@ -92,8 +95,8 @@ body {
 .formContent > textarea {
     border: 3px solid #E2E2E2;
     border-radius: 7px;
-    width: 43rem;
-    height:15rem;
+    width: 100%;
+    min-height:15rem;
     font-size: 16px;
     padding: 10px 10px 0 10px;
     margin-bottom: 20px;
@@ -120,8 +123,8 @@ body {
     border: 3px solid #E2E2E2;
     background-color: #FFFFFF;
     border-radius: 7px;
-    width: 43rem;
-    height:15rem;
+    width: 100%;
+    height: 15rem;
     font-size: 16px;
     padding: 0 10px 0 10px;
     margin-bottom: 20px;

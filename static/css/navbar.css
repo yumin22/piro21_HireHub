@@ -1,5 +1,6 @@
 header {
     height: 80px;
+    font-family: var(--eng-font);
 }
 
 nav {
@@ -96,7 +97,8 @@ nav {
     padding-bottom: 7px;
     text-decoration: none;
     font-size: 1.2rem;
-    font-weight: 500;
+    font-weight: 700;
+    font-family: "Pretandard", sans-serif !important;
 }
 
 #logout {
@@ -107,7 +109,7 @@ nav {
 
 main {
 	height: calc(100vh - 80px);
-    padding: 60px 50px 30px;
+    padding: 50px 50px 40px;
     background-color: #ffffff;
 }
 

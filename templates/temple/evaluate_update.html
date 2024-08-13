@@ -12,7 +12,10 @@
 {% block content %}
     <div class="createEntire">
         <div class="createWrite">
-            <h1>Evaluation</h1>
+            <div class="createTitle">
+                <i class="ri-edit-2-fill"></i>
+                <h1>Evaluation</h1>
+            </div>
             <div class="createform">
             <form method="post" id="template-form" enctype="multipart/form-data">
             {% csrf_token %}
@@ -47,7 +50,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <button type="button" class="createBtn" onclick="submitForm()">수정 완료</button>
+                <button type="button" class="createBtn" onclick="submitForm()"><i class="ri-check-line"></i>수정 완료</button>
             </div>
             <button type="submit" style="display: none;"></button>
         </form>
