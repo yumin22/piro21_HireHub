@@ -7,13 +7,21 @@
 
 {% block content %}
     <div class="status_container">
-        <p class="status_logo">지원 상태 확인</p>
-        <form method="POST" action="" id="statuscheck_form">
-            {% csrf_token %}
-            <input type="text" name="name" placeholder="이름 (예: 김피로)">
-            <input type="text" name="phone_number" placeholder="전화번호 (예: 01012345678)">
-        </form>
-        <button type="submit" onclick="submitForm()">제출</button>
+        <div class="status_left_container">
+            <div class="club_container">
+                <p class="club_name">피로그래밍</p>
+                <p class="club_description">동아리 설명</p>
+            </div>
+        </div>
+        <div class="status_right_container">
+            <p class="status_logo">HIREHUB</p>
+            <form method="POST" action="" id="statuscheck_form">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="이름 (예: 김피로)">
+                <input type="text" name="phone_number" placeholder="전화번호 (예: 01012345678)">
+            </form>
+            <button type="submit" onclick="submitForm()">지원 상태 확인하기<img src="{% static 'images/right_arrow.png' %}" alt=""></button>
+        </div>
     </div>
     <script>
         function submitForm() {
