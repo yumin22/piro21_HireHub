@@ -1,29 +1,4 @@
-.around {
-    height: 100%;
-}
 
-
-.title {
-    display: flex;
-    justify-content: start;
-    padding-top: 45px;
-    padding-left: 57px;
-}
-
-.title > h1 {
-    font-size: 4rem;
-    font-weight: 700;
-}
-
-.title > i {
-    font-size: 3.5rem;
-}
-
-.title > p {
-    font-size: 2.4rem;
-    font-weight: 700;
-    line-height: 210%;
-}
 
 .sideCtx {
     display: flex;
@@ -32,17 +7,17 @@
 
 .sideCtx > a {
     font-size: 1.8rem;
-    font-weight: 900;
+    font-weight: bold;
     padding: 5px 30px 0 0;
     text-decoration: none;
 }
 
 .search-applicant {
-    width: 400px;
+    width: 230px;
     height: 35px;
     border-radius: 20px;
-    background-color: var(--box-color);
-    margin-right: 90px;
+    background-color: var(--lightprocess-color);
+    margin-right: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -66,63 +41,66 @@
 }
 
 
-.applicant_container {
+.applicant_container{
     display: flex;
     justify-content: center;
     align-content: space-around;
-    gap: 10px;
-    height: calc(100% - 14rem);
-    padding: 5rem;
+    height: 100%;
+    padding: 20px 0;
 }
     
 .applicants_list {
     width: 32%;
+    height: 100%;
+    padding: 10px;
 }
 
 .applicants_list > p {
-    margin:0;
-    padding: 10px 0;
-    border-bottom: 5px solid black;
+    margin:10;
     margin-bottom: 20px;
-    font-size: 2rem;
-    font-weight: 700;
-    margin-right: 20px;
+    padding: 10px 0;
+    padding-left: 1rem;
+    color: var(--main-color);
+    border-bottom: 0.5rem solid var(--main-color);
+    font-size: 3.5rem;
+    font-weight: bold;
 
 }
-
+/*
 .each_applicant {
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    
-    cursor: move;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+.each_applicant:hover {
+    transform: perspective(500px) translateZ(10px);
+    transition: transform 0.3s ease;
+}
+*/
+.each_applicant {
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease; /* 호버가 끝난 후 원래 상태로 돌아가기 위한 전환 효과 */
+}
+
+.each_applicant:hover {
+    transform: translateX(-10px); /* 요소를 왼쪽으로 10px 이동 */
 }
 
 .scheduled {
-    background-color: var(--lightprocess-color);
-    width: 89%;
-    height: 39px;
-    padding: 0 10px 0 10px;
-    margin-top: 20px;
-    margin-left: 10px;
+    background-color: var(--box-color);
 }
 
 .in_progress {
-    background-color: var(--mediumprocess-color);
-    width: 89%;
-    height: 39px;
-    padding: 0 10px 0 10px;
-    margin-top: 20px;
-    margin-left: 10px;
+    background-color: var(--box-color);
 }
 
 .completed {
-    background-color: var(--process-color);
-    width: 89%;
-    height: 39px;
-    padding: 0 10px 0 10px;
-    margin-top: 20px;
-    margin-left: 10px;
+    background-color: var(--box-color);
 }
 
 .applicant_info {
@@ -163,6 +141,8 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
     height: calc(100% - 7.5rem);
+    padding: 20px;
+
 }
 .scroll_section::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
