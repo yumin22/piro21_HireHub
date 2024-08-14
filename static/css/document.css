@@ -1,45 +1,50 @@
 .document_container {
-    height: 100%;
-    padding: 2rem 4rem;
-}
-.title {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
-}
-.title span {
-    font-size: 2.4rem;
-}
-
-.applicant_container {
     display: flex;
     justify-content: center;
     align-content: space-around;
-    gap: 2rem;
-    height: calc(100% - 8rem);
-    padding-bottom: 2rem;
+    height: 100%;
+    padding: 30px 0;
 }
 
-.applicants_list {
+
+.applicant_container,
+.passed_container {
     width: 50%;
-    /* height: 100%; */
+    height: 100%;
+    margin: 0 30px;
+    padding-top: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    /*box-shadow: 0px 0px 10px rgba(0, 55, 255, 0.25);*/
 }
 
-.applicants_list > p {
+.applicants_list,
+.passed_list {
+    height: 100%;
+}
+
+.applicants_list > p,
+.passed_list > p {
     margin:0;
     margin-bottom: 20px;
     padding: 10px 0;
     padding-left: 1rem;
-    border-bottom: 0.5rem solid black;
-    font-size: 2.4rem;
+    color: var(--main-color);
+    border-bottom: 0.5rem solid var(--main-color);
+    font-size: 3.5rem;
     font-weight: bold;
 }
 
 .each_applicant {
-    background-color: aliceblue;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease; /* 호버가 끝난 후 원래 상태로 돌아가기 위한 전환 효과 */
+}
+
+.each_applicant:hover {
+    transform: translateX(-10px); /* 요소를 왼쪽으로 10px 이동 */
 }
 
 .all {
@@ -47,7 +52,7 @@
 }
 
 .pass {
-    background-color: var(--mediumprocess-color);
+    background-color: var(--box-color);
 }
 
 .applicant_info{
@@ -72,11 +77,11 @@
 }
 
 .scroll_section {
-    overflow:scroll;
+    height: calc(100% - 13rem);
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
-    height: calc(100% - 7rem);
     overflow-y: scroll;
+    padding: 20px;
 }
 .scroll_section::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/

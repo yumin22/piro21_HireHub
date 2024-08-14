@@ -48,6 +48,33 @@ $(document).ready(function() {
         });
     });
 
+    $('.answerForm').submit(function(e) {
+        e.preventDefault();
+        var form = $(this);
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'),
+            data: form.serialize(),
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            success: function(response) {
+                if (response.success) {
+                    form.closest('li').find('ul').append('<li>' + response.answer.text + ' (' + response.answer.created_at + ')</li>');
+                    form[0].reset();
+                } else {
+                    alert('Failed to add answer: ' + response.error);
+                    console.error(response.form_errors);  // 폼 오류 메시지 출력
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error);
+                console.error('AJAX request failed:', error);
+            }
+        });
+    });
+    
+
     // $('.answerForm').submit(function(e) {
     //     e.preventDefault();
     //     var form = $(this);
