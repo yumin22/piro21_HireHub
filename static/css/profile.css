@@ -198,3 +198,10 @@ section {
     margin-left: 2rem;
     font-size: 1.5rem;
 }
+
+
+/* 귀찮아서 일단 패스... */
+::-webkit-scrollbar {
+    width: 5px; /* 수직 스크롤바의 너비 */
+    height: 12px; /* 수평 스크롤바의 높이 */
+}
