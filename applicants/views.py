@@ -199,15 +199,13 @@ def apply(request, pk):
             applyContent.save()
             form.save_m2m()
 
-            transaction.commit()
-
             answers = {}
             for question in template.questions.all():
                 answer_text = request.POST.get(f'answer_{question.id}')
                 answers[question.id] = answer_text
-            
-            transaction.on_commit(lambda: process_application.apply_async((applyContent.id, answers), countdown=5))
 
+            
+            transaction.on_commit(lambda: process_application.apply_async(args=(applyContent.id, answers), countdown=5))
 
             name = form.cleaned_data['name']
             phone_number = form.cleaned_data['phone_number']
