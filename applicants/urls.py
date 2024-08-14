@@ -14,11 +14,13 @@ urlpatterns = [
     path("schedule", views.schedule, name='schedule'),
     path("auto_schedule", views.auto_schedule, name='auto_schedule'),
     path("document/profile/<int:pk>/comment/", views.comment, name='comment'),
+    path("document/profile/<int:pk>/comment/<int:comment_id>/delete/", views.delete_comment, name='delete_comment'),
     path('rankings/', views.applicant_rankings, name='rankings'),
     path("schedule/update/<int:pk>s", views.schedule_update, name="schedule_update"),
     # path('document/profile/<int:pk>/evaluate', views.evaluate, name='evaluate')
     path("applycheck/", views.apply_check, name='apply_check'),
     path("applyresult/", views.apply_result, name='apply_result'),
     path("document/profile/<int:pk>/question/", views.question, name='question'),
+    path('document/profile/<int:pk>/question/<int:question_id>/delete/', views.delete_question, name='delete_question'),
     path('document/profile/<int:pk>/delete/', views.delete_recording, name='delete_recording'),
 ]
