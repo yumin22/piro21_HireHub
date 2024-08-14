@@ -15,8 +15,10 @@
     <a href="{% url 'applicants:rankings' %}">지원자 순위</a>
     <a href='{% url "applicants:schedule" %}'>면접 일정 보러가기</a>
     <div class="search-applicant">
-        <input type="text" id="applicant-search-input" placeholder="지원자 이름을 검색하세요.">
-        <button type="button" id="search-button"><i class="ri-search-line searchBtn"></i></button>
+        <div class="search_box">
+            <input type="text" id="applicant-search-input" placeholder="지원자 이름을 검색하세요.">
+            <button type="button" id="search-button"><i class="ri-search-line searchBtn"></i></button>
+        </div>
         <ul id="applicant-search-results"></ul>
     </div>
     
