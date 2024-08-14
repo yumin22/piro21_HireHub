@@ -4,12 +4,24 @@
 <link rel="stylesheet" href="{% static 'css/schedule.css' %}">
 {% endblock %}
 {% block content %}
-<div class="title">| Interview Schedule</div>
+<div class="title_box">
+    <div class="title">| Interview Schedule</div>
+<div class="scheduleTitle">
+    <form class="schedule_btn" action="{% url 'applicants:auto_schedule' %}" method="POST">
+        {% csrf_token %}
+        <button class="btn" type="submit">자동 스케줄링</button>
+    </form>
+</div>
+</div>
 <div class="page_container">
     <div class="schedule_container">
         {% for schedule in schedules %}
             <div class="grid_container">
-                <p>{{ schedule.possible_date|date:"l Y.m.d" }} {{ schedule.get_possible_ampm_display }}</p>
+                <p>
+                    <span id="before_day">|</span>
+                    <span id="day">{{ schedule.possible_date|date:"l" }}</span>
+                    <span id="date">{{ schedule.possible_date|date:"Y.m.d" }} {{ schedule.get_possible_ampm_display }}</span>
+                </p>
                 {% for applicant in applicants %}
                     {% if applicant.interview_date == schedule %}
                     <div class="applicant_info">
@@ -40,23 +52,19 @@
         {% endfor %}
     </div>
     <div class="reschedule_container">
-        <div class="scheduleTitle">
-            <form class="schedule_btn" action="{% url 'applicants:auto_schedule' %}" method="POST">
-                {% csrf_token %}
-                <button class="btn" type="submit">자동 스케줄링</button>
-            </form>
-        </div>
         <div class="reschedule_applicant">
         {% for applicant in applicants %}
             {% if applicant.interview_date == null %}
-            <div class="applicant_info">
+            <div class="reschedule_info">
                 <p>{{ applicant.name }}</p>
                 <div class="appliCtx">
                     {% for possible_date in applicant.possible_date.all %}
-                    <p>{{ possible_date|date:"l Y.m.d" }} {{ applicant.get_possible_ampm_display }}</p>    
+                    <p>
+                        {{ possible_date|date:"Y-m-d" }} {{ applicant.get_possible_ampm_display }}
+                    </p>
                     {% endfor %}
                 </div>
-                <span class="spanUpdate{{ applicant.id }} sideText" style="margin-right: 5px; color: white;"><input type="button" value="일정 설정하기" onclick="Update({{ applicant.id }})"></span>
+                <span class="spanUpdate{{ applicant.id }} sideText" style="margin-right: 5px; color: white;"><input type="button" value="수동 스케줄링" onclick="Update({{ applicant.id }})"></span>
                 <form class="form_update" action="{% url 'applicants:schedule_update' applicant.id %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" id="date" name="date" value="{{ date }}">
