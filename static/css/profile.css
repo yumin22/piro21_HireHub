@@ -1,5 +1,4 @@
 section {
-    padding: 30px 20px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -10,22 +9,49 @@ section {
     align-items: center;
     margin-bottom: 1.5rem;
 }
-.profile_logo {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-left: 2rem;
+.profile_logo > span {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--main-color);
+    font-family: var(--eng-font);
+}
+
+.profile_navbar {
+    display: flex;
+}
+
+.profile_navbar > i {
+    color: var(--main-color);
+    font-size: 2.6rem;
+    font-weight: 700;
 }
 
 .actions {
-    display: flex;
-    justify-content: space-between;
-    font-size: 2rem;
+    background-color: var(--box-color);
+    display: none;
+    padding: 10px;
+    position: absolute;
+    text-align: end;
+    flex-direction: column;
+    font-size: 1.8rem;
     font-weight: bold;
-    gap: 1.5rem;
-    margin-right: 1rem;
+    gap: 3px;
+    right: 40px;
+    top: 180px;
+    z-index: 10;
 }
+
+.actions > button {
+    text-align: end;
+    color: var(--main-color);
+    font-family: var(--eng-font);
+}
+
 .actions a {
     text-decoration: none;
+    text-align: end;
+    color: var(--main-color);
+    font-family: var(--eng-font);
 }
 
 .profile_section {
@@ -45,6 +71,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 0.4rem 2rem rgba(28, 101, 239, 0.2);
 }
 
 .profile_section .profile_personal {
@@ -94,42 +121,60 @@ section {
 .profile_section .application_container{
     width: 60%;
     height: 100%;
-    padding: 0 10px;
+
 }
 
-.profile_section .application_text {
-    display: flex;
-    justify-content: start;
+.application_container > p {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--main-color);
+    font-family: var(--eng-font);
 }
 
-.profile_section .application_text p {
+.application_text {
+    display: flex ;
+    flex-direction: row;
+    gap: 5px;
+ 
+}
+
+.application_text p {
     font-size: 2rem;
     padding-left: 10px;
     font-weight: bold;
 }
 
-.profile_section .application_text > button {
-    width: 50px;
-    height: 30px;
-    background-color: black;
-    color: white;
-    font-size: 1.2rem;
-    padding: 10px; 
-    text-align: center;
-    line-height: 100%;
-    margin-left: 30px;
-    border-radius: 10px;
+#deleteRecordingBtn {
+    font-size: 3rem;
+    color: var(--main-color);
+}
+
+#recordBtn {
+    display: flex;
+    background-color: var(--main-color);
+    color: var(--box-color);
+    font-family: var(--eng-font);
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 2px 15px 2px;
+    border-radius: 7px;
+    gap: 5px;
+    margin-right: 10px;
+}
+
+.ri-circle-fill {
+    color: red;
 }
 
 .profile_section .application_content {
-    height: calc(100% - 3rem);
-    border: 2px solid black;
-    border-radius: 1rem s;
+    height: calc(100% - 5rem);
+    border-radius: 10px;
     margin-top: 1rem;
     padding: 1.5rem 2rem;
     overflow-y: scroll;
     flex-direction: column;
     counter-reset: section;
+    box-shadow: 0 0.4rem 2rem rgba(28, 101, 239, 0.2);
 }
 .profile_section .application_question::before {
     counter-increment: section;

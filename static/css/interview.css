@@ -3,6 +3,7 @@
 .sideCtx {
     display: flex;
     justify-content: end;
+    min-height: 70px;
 }
 
 .sideCtx > a {
@@ -12,27 +13,27 @@
     text-decoration: none;
 }
 
-.search-applicant {
-    width: 230px;
+.search_box {
+    width: auto;
     height: 35px;
     border-radius: 20px;
     background-color: var(--lightprocess-color);
-    margin-right: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 10px;
+    padding: 0 10px 0;
 }
 
-.search-applicant > input {
+.search_box > input {
     border: none;
     background-color: transparent;
     font-size: 1.6rem;
     padding-left: 5px;
 }
 
-.search-applicant > input:focus {
+.search_box > input:focus {
     outline: none;
+    background-color: transparent !important;
 }
 
 .searchBtn  {
@@ -40,6 +41,22 @@
     margin-right: 15px;
 }
 
+#applicant-search-results {
+    display: flex;
+    position: absolute;
+    cursor: pointer;
+}
+
+.search_box >  ul > li {
+    display: block;
+    min-height: 10px;
+    z-index: 10;
+}
+
+.search_box > ul > li::before {
+    content: '\00a0'; /* 공백 문자 추가 */
+    visibility: hidden; /* 화면에 보이지 않지만 공간은 차지함 */
+}
 
 .applicant_container{
     display: flex;
@@ -56,14 +73,11 @@
 }
 
 .applicants_list > p {
-    margin:10;
-    margin-bottom: 20px;
-    padding: 10px 0;
-    padding-left: 1rem;
+    padding-left: 10px;
     color: var(--main-color);
     border-bottom: 0.5rem solid var(--main-color);
-    font-size: 3.5rem;
-    font-weight: bold;
+    font-size: 2.6rem;
+    font-weight: 700;
 
 }
 /*
@@ -88,7 +102,7 @@
 }
 
 .each_applicant:hover {
-    transform: translateX(-10px); /* 요소를 왼쪽으로 10px 이동 */
+    transform: translateY(-3px); /* 요소를 왼쪽으로 10px 이동 */
 }
 
 .scheduled {
@@ -109,10 +123,9 @@
     justify-content: start;
     list-style: none;
     padding-left: 0;
-    display: flex;
     gap: 10px;
-    margin: 5px 0;
-    padding-top: 7px;
+    flex-wrap: nowrap;
+    margin: 0;
 }
 
 .infoName {
@@ -127,7 +140,7 @@
     font-size: 1.4rem;
     font-weight: 500;
     padding-right: 10px;
-    margin-left: 20px;
+
 }
 
 .infoMajor {
