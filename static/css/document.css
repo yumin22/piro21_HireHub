@@ -1,18 +1,14 @@
 .document_container {
     display: flex;
-    justify-content: center;
-    align-content: space-around;
+    justify-content: space-between;
     height: 100%;
 }
 
 
 .applicant_container,
 .passed_container {
-    width: 50%;
+    width: 48%;
     height: 100%;
-    margin: 0 30px;
-    padding-top: 15px;
-    padding: 15px;
     border-radius: 5px;
     /*box-shadow: 0px 0px 10px rgba(0, 55, 255, 0.25);*/
 }
@@ -25,13 +21,11 @@
 .applicants_list > p,
 .passed_list > p {
     margin:0;
-    margin-bottom: 20px;
-    padding: 10px 0;
-    padding-left: 1rem;
+    padding-left: 10px;
     color: var(--main-color);
     border-bottom: 0.5rem solid var(--main-color);
-    font-size: 3.5rem;
-    font-weight: bold;
+    font-size: 2.6rem;
+    font-weight: 700;
 }
 
 .each_applicant {
@@ -43,7 +37,7 @@
 }
 
 .each_applicant:hover {
-    transform: translateX(-10px); /* 요소를 왼쪽으로 10px 이동 */
+    transform: translateY(-3px); /* 요소를 왼쪽으로 10px 이동 */
 }
 
 .all {
@@ -76,7 +70,7 @@
 }
 
 .scroll_section {
-    height: calc(100% - 13rem);
+    height: calc(100% - 10rem);
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
     overflow-y: scroll;
