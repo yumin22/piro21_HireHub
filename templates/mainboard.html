@@ -6,7 +6,7 @@
 {% block content %}
 <div class = "mainboard_container">
     <div class="evaluate_list">
-        <p class="main_title">평가 목록</p>
+        <p class="main_title">Work Space</p>
         <div class="sort_container">
             <select class="form-control" id="sortOrder">
                 <option value="">전체</option>
@@ -25,19 +25,19 @@
                     <li class="info">{{applicant.school}}</li>
                     <li class="info">{{applicant.major}}</li>
                 </ul>
-                <p>지원 날짜: {{applicant.submission_date}}</p>
+                <p>지원 날짜 : {{applicant.submission_date}}</p>
             </div>
             {% endfor %}
         </div>
     </div>
     <div class="my_schedule">
-        <p class="main_title">내 일정 <span id="interview_num">{{interview_num}}</span></p>
+        <p class="main_title">My Schedule</p>
         <div class="scroll_section">
             {% for applicant in applicants %}
             <div class="schedule_content">
                 {% if applicant.status != 'submitted' %}
                 <p id="schedule_name">{{applicant.name}}</p>
-                <p id="schedule_date">면접 날짜: {{applicant.interview_date}}</p>
+                <p id="schedule_date">면접 날짜 : {{applicant.interview_date}}</p>
                 {% endif %}
             </div>
             {% endfor %}

@@ -1,73 +1,84 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" href="{% static 'css/variable.css' %}">
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
-    <style>
-        body {
-            font-family: 'Pretendard', sans-serif !important;
-        }
-    </style>
+<head id="header_style">
     <link rel="stylesheet" href="{% static 'css/questions.css' %}">
 </head>
-<main>
-    <section>
-        <div class="questions_section">
-            <div class="application_container">
-                <div class="application_content">
-                    <div class="applicant_title">
-                        <h3 id="applicationTitle" class="clickable">지원서</h3>
-                        <h3 id="commonQuestionTitle" class="clickable"> | 공통 질문</h3>
-                    </div>
-                    <div class="applicationContent">
-                        {% for answer in answers %}
-                            <p class="question"><strong>{{ answer.question.question_text }}</strong></p>
-                            <p>{{ answer.answer_text }}</p>
-                        {% endfor %}
-                    </div>
-                    <div id="commonQuestionContent">
-                        <!-- 공통 질문 목록 추가 -->
-                        {% for common_question in common_questions %}
-                            <p class="question"><strong>{{ common_question.id }}. {{ common_question.question_text }}</strong></p>
-                        {% endfor %}
-                    </div>
+<section>
+    <div class="questions_section">
+        <div class="application_container">
+            <div class="application_content">
+                <div class="applicant_title">
+                    <h3 id="applicationTitle" class="clickable">지원서</h3>
+                    <h3 id="commonQuestionTitle" class="clickable"> | 공통 질문</h3>
+                </div>
+                <div id="applicationContent">
+                    {% for answer in answers %}
+                        <p class="question"><strong>{{ answer.question.question_text }}</strong></p>
+                        <p>{{ answer.answer_text }}</p>
+                        <p><small>작성자: {{ answer.user.username }}</small></p>
+                    {% endfor %}
+                </div>
+                <div id="commonQuestionContent" style="display:none;">
+                    {% for common_question in common_questions %}
+                        <p class="question"><strong>{{ common_question.id }}. {{ common_question.question_text }}</strong></p>
+                    {% endfor %}
                 </div>
             </div>
-            <div class="questions">
-                <h1>Questions for Applicant</h1>
-        
-                <form id="questionForm" method="post" action="{% url 'applicants:question' applicant.pk %}">
+        </div>
+        <div class="questions">
+            <h1>개별 질문</h1>
+            <ul id="question_list">
+                {% for question in questions %}
+                <li class="individualquestion" data-question-id="{{ question.id }}">
+                    <div class="question" data-question-id="{{ question.id }}">
+                        질문: {{ question.text }}
+                        <ul>
+                            {% for answer in question.answers.all %}
+                                <li class="answer">답변: {{ answer.text }}</li>
+                            {% endfor %}
+                        </ul>
+                        <button class="deleteQuestionBtn" data-question-id="{{ question.id }}">삭제</button>
+                        {% comment %} <button class="toggleAnswerForm">답변 추가하기</button> {% endcomment %}
+                        {% comment %} <form class="answerForm" method="post" action="{% url 'applicants:question' applicant.pk %}">
+                            {% csrf_token %}
+                            {{ answer_form.as_p }}
+                            <button type="submit" name="answer_submit">Submit Answer</button>
+                        </form> {% endcomment %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="question_box">
+                <form id="question-form" action="{% url 'applicants:question' applicant.pk %}" method="post">
                     {% csrf_token %}
                     {{ question_form.as_p }}
-                    <button type="submit" name="question_submit" value="Add Question">Add Question</button>
+                    <button type="submit">Add Question</button>
                 </form>
-        
-                <ul id="questionList">
-                    {% for question in questions %}
-                        <li>
-                            {{ question.text }} ({{ question.created_at }})
-                            <ul>
-                                {% for answer in question.answers.all %}
-                                    <li>{{ answer.text }} ({{ answer.created_at }})</li>
-                                {% endfor %}
-                            </ul>
-                            <form class="answerForm" method="post" action="{% url 'applicants:question' applicant.pk %}">
-                                {% csrf_token %}
-                                {{ answer_form.as_p }}
-                                <input type="hidden" name="question_id" value="{{ question.id }}">
-                                <button type="submit" name="answer_submit">Add Answer</button>
-                            </form>
-                        </li>
-                    {% endfor %}
-                </ul>
             </div>
         </div>
-    </section>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{% static 'js/questions.js' %}"></script>
-</main>
+    </div>
+</section>
+<script>
+    $(document).ready(function() {
+        console.log('Document ready and jQuery is working');
+    
+        // 공통 질문/지원서 탭 전환
+        $('#commonQuestionTitle').on('click', function() {
+            console.log('공통 질문 클릭됨');
+            $('#commonQuestionContent').show();
+            $('#applicationContent').hide();
+        });
+    
+        $('#applicationTitle').on('click', function() {
+            console.log('지원서 클릭됨');
+            $('#applicationContent').show();
+            $('#commonQuestionContent').hide();
+        });
+
+        // 답변 폼 토글 기능 추가
+        $('.toggleAnswerForm').on('click', function() {
+            $(this).siblings('.answerForm').toggle(); // 현재 클릭된 버튼과 동일한 개별 질문 내의 폼만 토글
+        });
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/questions.js' %}"></script>

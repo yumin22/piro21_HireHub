@@ -48,6 +48,7 @@ class QuestionForm(forms.ModelForm):
         model = individualQuestion
         fields = ['text']
 
+
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = individualAnswer

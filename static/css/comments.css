@@ -1,45 +1,45 @@
-section {
+#comment_section section {
     padding: 30px 20px;
     height: 100%;
 }
-.comments_header {
+#comment_section .comments_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
-.comments_logo {
+#comment_section .comments_logo {
     font-size: 4rem;
     font-weight: bold;
 }
-.comments_logo a {
+#comment_section .comments_logo a {
     text-decoration: none;
 }
-.comments_section {
+#comment_section .comments_section {
     display: flex;
     height: 700px;
     margin: 20px 0;
     padding: 20px;
 }
 
-.application_container{
+#comment_section .application_container{
     width: 50%;
     padding: 0 20px;
     margin-top: 20px;
 }
-.applicant_title {
+#comment_section .applicant_title {
     display: flex; 
     align-items: center;
 }
-.application_container h3 {
+#comment_section .application_container h3 {
     font-size: 2rem;
     padding-left: 10px;
 }
-.personal_info {
+#comment_section .personal_info {
     color: gray; 
     font-size: 80%; 
 }
-.application_content {
+#comment_section .application_content {
     background-color: #dfdede;
     height: 95%;
     border-radius: 10px;
@@ -48,49 +48,49 @@ section {
     overflow-y: scroll;
     flex-direction: column;
 }
-.application_content::-webkit-scrollbar {
+#comment_section .application_content::-webkit-scrollbar {
     width: 8px;
 }
-.application_content::-webkit-scrollbar-thumb {
+#comment_section .application_content::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: black;
 }
-.application_content_list {
+#comment_section .application_content_list {
     counter-reset: section;
 }
-.question {
+#comment_section .question {
     font-size: 2rem;
 }
-.question::before {
+#comment_section .question::before {
     counter-increment: section;
     content: counter(section) ". ";
     font-weight: 600;
 }
-.answers p {
+#comment_section .answers p {
     margin: 10px 0;
     font-size: 1.5rem;
 }
 
-.comments {
+#comment_section .comments {
     width: 50%;
     padding: 0 20px;
     margin-top: 20px;
 }
 
-#comment_list {
+#comment_section #comment_list {
     height: 70%;
     overflow-y: scroll;
     flex-direction: column;
 }
-#comment_list::-webkit-scrollbar {
+#comment_section #comment_list::-webkit-scrollbar {
     width: 8px;
 }
-#comment_list::-webkit-scrollbar-thumb {
+#comment_section #comment_list::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: black;
 }
 
-.comment {
+#comment_section .comment {
     background-color: var(--mediumprocess-color);
     border-radius: 10px;
     margin: 10px 0;
@@ -101,15 +101,15 @@ section {
     display: flex; 
     margin-bottom: 1rem; 
 }
-.comment > p {
+#comment_section .comment > p {
     font-size: 1.6rem;
 }
 
-.comment small {
+#comment_section .comment small {
     margin-left: auto; 
 }
 
-.comment_box {
+#comment_section .comment_box {
     height: 20%;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -119,18 +119,18 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.comment_box form {
+#comment_section .comment_box form {
     display: flex;
     flex-direction: column;
 }
 
-.comment_box form p {
+#comment_section .comment_box form p {
     margin-bottom: 5px;
     flex: 1;
 }
 
-.comment_box input[type="text"],
-.comment_box textarea {
+#comment_section .comment_box input[type="text"],
+#comment_section .comment_box textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -141,7 +141,7 @@ section {
     max-height: 70px;
 }
 
-.comment_box button[type="submit"] {
+#comment_section .comment_box button[type="submit"] {
     background-color: var(--main-color);
     color: white;
     border: none;
