@@ -1,17 +1,17 @@
-.container {
+#evaluation_section .container {
     padding: 30px;
     height: 100%;
 }
-.container h2 {
+#evaluation_section .container h2 {
     font-size: 3rem;
     margin-left: 10px;
 }
-.container p {
+#evaluation_section .container p {
     font-size: 2.4rem;
     margin-left: 10px;
 }
 
-#evaluationForm {
+#evaluation_section #evaluationForm {
     height: 80%;
     background-color: rgba(49, 160, 235, 0.1);
     border-radius: 30px;
@@ -19,7 +19,7 @@
     padding: 30px;
 }
 
-.evaluate_content {
+#evaluation_section .evaluate_content {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -27,34 +27,34 @@
     overflow-y: scroll;
 }
 
-.evaluate_content::-webkit-scrollbar {
+#evaluation_section .evaluate_content::-webkit-scrollbar {
     width: 8px;
 }
 
-.evaluate_content::-webkit-scrollbar-thumb {
+#evaluation_section .evaluate_content::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: var(--main-color);
 }
-.questions_list {
+#evaluation_section .questions_list {
     padding: 0;
     margin: 0;
     counter-reset: section;
     
 }
-.question {
+#evaluation_section .question {
     margin-bottom: 20px;
 }
 
-.question label {
+#evaluation_section .question label {
     margin-left: 10px;
     font-weight: 400;
     margin-bottom: 10px;
 }
-.question label::before {
+#evaluation_section .question label::before {
     counter-increment: section;
     content: counter(section) ". ";
 }
-.container button {
+#evaluation_section .container button {
     background-color: var(--main-color);
     color: white;
     width: 20%;

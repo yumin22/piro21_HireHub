@@ -5,7 +5,6 @@
 {% endblock %}
 {% block content %}
 <div class="document_container">
-    <div class="title">지원자 관리 <span>> 서류 관리</span></div>
     <div class="applicant_container">
         <div class="applicants_list">
             <p>지원자</p>
@@ -21,7 +20,9 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="applicants_list">
+    </div>
+    <div class="passed_container">
+        <div class="passed_list">
             <p>서류 합격자</p>
             <div class="scroll_section">
                 {% for applicant in applicants %}
