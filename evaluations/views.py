@@ -41,6 +41,7 @@ def create_evaluation(req, pk):
         return redirect('applicants:profile', application.id)
     
     ctx = {
+        'pk': pk,
         'application': application,
         'template': template,
         'questions': template.questions.all()
@@ -58,6 +59,7 @@ def update_evaluation(req,pk):
 
     if req.method == 'POST':
         evaluation.comments = req.POST.get('comments', '')
+
         total_score = 0
         for question in template.questions.all():
             score = req.POST.get(f'score_{question.id}')
@@ -79,6 +81,7 @@ def update_evaluation(req,pk):
         question.id: EvaluationScore.objects.filter(evaluation=evaluation, question=question).first().score
         for question in template.questions.all()
     }
+        
     ctx = {
         'evaluation': evaluation,
         'application': application,
