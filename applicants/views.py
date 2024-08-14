@@ -307,6 +307,16 @@ def comment(request, pk):
                 })
     return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': form.errors.as_json()})
 
+def delete_comment(request, pk, comment_id):
+    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        try:
+            comment = Comment.objects.get(pk=comment_id, application_id=pk)
+            comment.delete()
+            return JsonResponse({'success': True})
+        except individualQuestion.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Question does not exist.'})
+    return JsonResponse({'success': False, 'error': 'Invalid request method.'})
+
 def question(request, pk):
     applicant = get_object_or_404(Application, pk=pk)
     answers = Answer.objects.filter(application=applicant)
@@ -317,61 +327,67 @@ def question(request, pk):
     # 공통 질문 템플릿 및 질문 가져오기
     common_template = InterviewTemplate.objects.get(is_default=True)
     common_questions = InterviewQuestion.objects.filter(template=common_template)
+    if request.method == "GET":
+        ctx = {
+            'applicant': applicant,
+            'answers': answers,
+            'questions': questions,
+            'question_form': question_form,
+            'answer_form': answer_form,
+            'common_questions': common_questions,
+        }
+        return render(request, 'applicant/questions.html', ctx)    
     
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        if request.method == 'POST':
-            if 'question_submit' in request.POST:
-                interviewer = get_object_or_404(Interviewer, email=request.user.email)
-                question_form = QuestionForm(request.POST)
-                if question_form.is_valid():
-                    question = question_form.save(commit=False)
-                    question.application = applicant
-                    question.interviewer = interviewer
-                    question.save()
-                    return JsonResponse({
-                        'success': True,
-                        'question': {
-                            'text': question.text,
-                            'created_at': question.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                            'interviewer': interviewer.email
-                        }
-                    })
-                else:
-                    # 폼이 유효하지 않은 경우 오류 메시지 반환
-                    return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': question_form.errors.as_json()})
-            
-            elif 'answer_submit' in request.POST:
-                interviewer = get_object_or_404(Interviewer, email=request.user.email)
-                answer_form = AnswerForm(request.POST)
-                if answer_form.is_valid():
-                    answer = answer_form.save(commit=False)
-                    answer.application = applicant
-                    answer.interviewer = interviewer
-                    answer.question_id = request.POST.get('question_id')
-                    answer.save()
-                    return JsonResponse({
-                        'success': True,
-                        'answer': {
-                            'text': answer.text,
-                            'created_at': answer.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                            'interviewer': interviewer.email
-                        }
-                    })
-                else:
-                    return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': answer_form.errors.as_json()})
+    else:
+        interviewer = get_object_or_404(Interviewer, email=request.user.email)
+        question_form = QuestionForm(request.POST)
+        answer_form = AnswerForm(request.POST)
+        if question_form.is_valid() :
+            question = question_form.save(commit=False)
+            question.application = applicant
+            question.interviewer = interviewer
+            question.save()
+            return JsonResponse({
+                'success': True,
+                'question': {
+                    'text': question.text,
+                    'created_at': question.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                    'interviewer': interviewer.email
+                }
+            })
         else:
-            ctx = {
-                'applicant': applicant,
-                'answers': answers,
-                'questions': questions,
-                'question_form': question_form,
-                'answer_form': answer_form,
-                'common_questions': common_questions
-            }
-            return render(request, 'applicant/questions.html', ctx)
-    
-    return JsonResponse({'success': False, 'error': 'Invalid request method'})
-    
+            # 폼이 유효하지 않은 경우 오류 메시지 반환
+            return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': question_form.errors.as_json()})
+            
+        # elif 'answer_submit' in request.POST:
+        #     interviewer = get_object_or_404(Interviewer, email=request.user.email)
+        #     answer_form = AnswerForm(request.POST)
+        #     if answer_form.is_valid():
+        #         answer = answer_form.save(commit=False)
+        #         answer.application = applicant
+        #         answer.interviewer = interviewer
+        #         answer.question_id = request.POST.get('question_id')
+        #         answer.save()
+        #         return JsonResponse({
+        #             'success': True,
+        #             'answer': {
+        #                 'text': answer.text,
+        #                 'created_at': answer.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+        #                 'interviewer': interviewer.email
+        #             }
+        #         })
+        #     else:
+        #         return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': answer_form.errors.as_json()})
+
+def delete_question(request, pk, question_id):
+    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        try:
+            question = individualQuestion.objects.get(pk=question_id, application_id=pk)
+            question.delete()
+            return JsonResponse({'success': True})
+        except individualQuestion.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Question does not exist.'})
+    return JsonResponse({'success': False, 'error': 'Invalid request method.'})
 
 def applicant_rankings(req):
     applications = Application.objects.annotate(

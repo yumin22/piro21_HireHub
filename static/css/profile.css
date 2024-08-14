@@ -35,7 +35,7 @@ section {
     /* padding-bottom: 20px; */
 }
 
-.profile_container {
+.profile_section .profile_container {
     background-color: var(--box-color);
     border-radius: 10px;
     width: 40%;
@@ -47,7 +47,7 @@ section {
     align-items: center;
 }
 
-.profile_personal {
+.profile_section .profile_personal {
     display: flex;
     align-items: center;
     text-align: center;
@@ -55,19 +55,19 @@ section {
     width: 100%;
     border-bottom: 2px solid black;
 }
-.profile_name {
+.profile_section .profile_name {
     font-size: 2.5rem;
     font-weight: bold;
     width: 40%;
 }
 
-.profile_detail {
+.profile_section .profile_detail {
     display: flex;
     padding-left: 60px;
     gap: 30px;
     width: 60%;
 }
-.profile_detail1 {
+.profile_section .profile_detail1 {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -75,7 +75,7 @@ section {
     font-size: 2rem;
     text-align: start;
 }
-.profile_detail2 {
+.profile_section .profile_detail2 {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -83,7 +83,7 @@ section {
     text-align: start;
 }
 
-.profile_interview {
+.profile_section .profile_interview {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,23 +91,24 @@ section {
     height: 50%;
 }
 
-.application_container{
+.profile_section .application_container{
     width: 60%;
     height: 100%;
     padding: 0 10px;
 }
 
-.application_text {
+.profile_section .application_text {
     display: flex;
     justify-content: start;
 }
 
-.application_text h3 {
+.profile_section .application_text p {
     font-size: 2rem;
     padding-left: 10px;
+    font-weight: bold;
 }
 
-.application_text > button {
+.profile_section .application_text > button {
     width: 50px;
     height: 30px;
     background-color: black;
@@ -120,7 +121,7 @@ section {
     border-radius: 10px;
 }
 
-.application_content {
+.profile_section .application_content {
     height: calc(100% - 3rem);
     border: 2px solid black;
     border-radius: 1rem s;
@@ -130,24 +131,24 @@ section {
     flex-direction: column;
     counter-reset: section;
 }
-.application_question::before {
+.profile_section .application_question::before {
     counter-increment: section;
     content: counter(section) ". ";
     font-weight: 600;
 }
-.application_content::-webkit-scrollbar {
+.profile_section .application_content::-webkit-scrollbar {
     width: 8px;
 }
 
-.application_content::-webkit-scrollbar-thumb {
+.profile_section .application_content::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: black;
 }
-.application_question {
+.profile_section .application_question {
     font-size: 2rem;
 }
 
-.application_answer {
+.profile_section .application_answer {
     margin: 10px 0;
     margin-left: 2rem;
     font-size: 1.5rem;

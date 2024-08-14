@@ -8,13 +8,16 @@ $(document).ready(function(){
             url: url,
             type: "GET",
             success: function(response){
+                $('#header_style').html(
+                    `<link rel="stylesheet" href="${profileCssUrl}">`
+                );
                 $('.profile_logo').html(
                     `<span>지원자 프로필</span>`
                 );
+                $('#evaluation_section').hide();
+                $('#question_section').hide();
+                $('#comment_section').hide();
                 $('.profile_section').show();
-                $('#comment-section').hide();
-                $('#question-section').hide();
-                $('#evaluation-section').hide();
             },
             error: function(response){
                 alert("Error loading profile.");
@@ -36,11 +39,14 @@ $(document).ready(function(){
                 $('.profile_logo').html(
                     `<span>코멘트 작성</span>`
                 );
+                $('#header_style').html(
+                    `<link rel="stylesheet" href="${commentsCssUrl}">`
+                );
                 $('.profile_section').hide();
-                $('#question-section').hide();
-                $('#evaluation-section').hide();
-                $('#comment-section').show();
-                $('#comment-section').html(response);
+                $('#evaluation_section').hide();
+                $('#question_section').hide();
+                $('#comment_section').show();
+                $('#comment_section').html(response);
             },
             error: function(response){
                 alert("Error loading comment.");
@@ -63,11 +69,14 @@ $(document).ready(function(){
                 $('.profile_logo').html(
                     `<span>개별 질문</span>`
                 );
+                $('#header_style').html(
+                    `<link rel="stylesheet" href="${questionsCssUrl}">`
+                );
                 $('.profile_section').hide();
-                $('#comment-section').hide();
-                $('#evaluation-section').hide();
-                $('#question-section').show();
-                $('#question-section').html(response);
+                $('#comment_section').hide();
+                $('#evaluation_section').hide();
+                $('#question_section').show();
+                $('#question_section').html(response);
             },
             error: function(response){
                 alert("Error loading question.");
@@ -91,10 +100,10 @@ $(document).ready(function(){
                     `<span>평가표</span>`
                 );
                 $('.profile_section').hide();
-                $('#comment-section').hide();
-                $('#question-section').hide();
-                $('#evaluation-section').show();
-                $('#evaluation-section').html(response);
+                $('#comment_section').hide();
+                $('#question_section').hide();
+                $('#evaluation_section').show();
+                $('#evaluation_section').html(response);
             },
             error: function(response){
                 alert("Error loading evaluation.");

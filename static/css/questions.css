@@ -1,48 +1,48 @@
-section {
+.questions_section section {
     padding: 30px 20px;
     height: 100%;
 }
 
-.questions_header {
+.questions_section .questions_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.questions_logo {
+.questions_section .questions_logo {
     font-size: 4rem;
     font-weight: bold;
 }
 
-.questions_logo a {
+.questions_section .questions_logo a {
     text-decoration: none;
 }
 
-.questions_section {
+.questions_section .questions_section {
     display: flex;
     height: 700px;
     margin: 20px 0;
     padding: 20px;
 }
 
-.application_container {
+.questions_section .application_container {
     width: 50%;
     padding: 0 20px;
     margin-top: 20px;
 }
 
-.applicant_title {
+.questions_section .applicant_title {
     display: flex;
     align-items: center;
 }
 
-.application_container h3 {
+.questions_section .application_container h3 {
     font-size: 2rem;
     padding-left: 10px;
 }
 
-.application_content {
+.questions_section .application_content {
     background-color: #dfdede;
     height: 95%;
     border-radius: 10px;
@@ -52,36 +52,36 @@ section {
     flex-direction: column;
 }
 
-.application_content::-webkit-scrollbar {
+.questions_section .application_content::-webkit-scrollbar {
     width: 8px;
 }
 
-.application_content::-webkit-scrollbar-thumb {
+.questions_section .application_content::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: black;
 }
 
-.question {
+.questions_section .question {
     font-size: 2rem;
 }
 
-.answers p {
+.questions_section .answers p {
     margin: 10px 0;
     font-size: 1.5rem;
 }
 
-#applicationContent {
+.questions_section #applicationContent {
     counter-reset: section;
     display: block; /* 기본적으로 표시 */
 }
 
-#applicationContent .question::before {
+.questions_section #applicationContent .question::before {
     counter-increment: section;
     content: counter(section) ". ";
     font-weight: 600;
 }
 
-#commonQuestionContent {
+.questions_section #commonQuestionContent {
     display: none; /* 초기 상태에서 숨김 */
     background-color: #dfdede;
     height: 95%;
@@ -92,32 +92,32 @@ section {
     flex-direction: column;
 }
 
-.clickable {
+.questions_section .clickable {
     cursor: pointer;
 }
 
 
-.questions {
+.questions_section .questions {
     width: 50%;
     padding: 0 20px;
     margin-top: 20px;
 }
 
-#questionList {
+.questions_section #questionList {
     height: 70%;
     overflow-y: scroll;
     flex-direction: column;
 }
 
-#questionList::-webkit-scrollbar {
+.questions_section #questionList::-webkit-scrollbar {
     width: 8px;
 }
-#questionList::-webkit-scrollbar-thumb {
+.questions_section #questionList::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: black;
 }
 
-.individualquestion{
+.questions_section .individualquestion{
     background-color: var(--mediumprocess-color);
     border-radius: 10px;
     margin: 10px 0;
@@ -125,20 +125,20 @@ section {
     overflow-y: scroll;
     flex-direction: column;
 }
-.individualquestion > p {
+.questions_section .individualquestion > p {
     font-size: 1.6rem;
 }
 
-.individualquestion small {
+.questions_section .individualquestion small {
     display: inline-block;
     margin-left: auto; 
 }
 
-.answers{
+.questions_section .answers{
     margin-bottom: 5px;
 }
 
-#questionForm {
+.questions_section #questionForm {
     height: 20%;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -148,7 +148,7 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#id_text{
+.questions_section #id_text{
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -160,7 +160,7 @@ section {
 }
 
 
-#questionForm button {
+.questions_section #questionForm button {
     background-color: var(--main-color);
     color: white;
     border: none;
