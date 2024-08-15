@@ -22,5 +22,6 @@ urlpatterns = [
     path("applyresult/", views.apply_result, name='apply_result'),
     path("document/profile/<int:pk>/question/", views.question, name='question'),
     path('document/profile/<int:pk>/question/<int:question_id>/delete/', views.delete_question, name='delete_question'),
+    path('document/profile/<int:pk>/question/<int:answer_id>/answer_delete/', views.delete_answer, name='delete_answer'),
     path('document/profile/<int:pk>/delete/', views.delete_recording, name='delete_recording'),
 ]

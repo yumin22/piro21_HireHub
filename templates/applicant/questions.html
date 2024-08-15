@@ -31,18 +31,22 @@
                 <li class="individualquestion" data-question-id="{{ question.id }}">
                     <div class="question" data-question-id="{{ question.id }}">
                         질문: {{ question.text }}
-                        <ul>
-                            {% for answer in question.answers.all %}
-                                <li class="answer">답변: {{ answer.text }}</li>
-                            {% endfor %}
-                        </ul>
                         <button class="deleteQuestionBtn" data-question-id="{{ question.id }}">삭제</button>
-                        {% comment %} <button class="toggleAnswerForm">답변 추가하기</button> {% endcomment %}
-                        {% comment %} <form class="answerForm" method="post" action="{% url 'applicants:question' applicant.pk %}">
-                            {% csrf_token %}
-                            {{ answer_form.as_p }}
-                            <button type="submit" name="answer_submit">Submit Answer</button>
-                        </form> {% endcomment %}
+                        <button class="toggleAnswerForm">답변 보기</button>
+                        <div class="answersheet" style="display:none">
+                            <ul class="answerList">
+                                {% for answer in question.answers.all %}
+                                    <li class="individualanswer" data-answer-id="{{ answer.id }}">답변: {{ answer.text }}
+                                    <button class="deleteAnswerBtn" data-answer-id="{{ answer.id }}">삭제</button>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <form class="answerForm" data-question-id="{{ question.id }}" method="post" action="{% url 'applicants:question' applicant.pk %}">
+                                {% csrf_token %}
+                                {{ answer_form.as_p }}
+                                <button type="submit" name="answer_submit">답변 작성</button>
+                            </form>
+                        </div>
                     </div>
                 </li>
                 {% endfor %}
@@ -78,7 +82,7 @@
 
         // 답변 폼 토글 기능 추가
         $('.toggleAnswerForm').on('click', function() {
-            $(this).siblings('.answerForm').toggle(); // 현재 클릭된 버튼과 동일한 개별 질문 내의 폼만 토글
+            $(this).siblings('.answersheet').toggle(); // 현재 클릭된 버튼과 동일한 개별 질문 내의 폼만 토글
         });
     });
 </script>
