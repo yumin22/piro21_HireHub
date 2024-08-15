@@ -30,6 +30,7 @@ def generate_questions(request, application_id):
     )
 
     questions = completion.choices[0].message.content
-    questions = questions.replace("\n", "<br>")
+    questions = questions.replace("\n\n", "</p><p>").replace("\n", "<br>")
+    questions = f"<p>{questions}</p>"
 
     return render(request, 'applicant/openai.html', {'questions': questions})
