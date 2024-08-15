@@ -4,25 +4,35 @@ $(document).ready(function(){
         var applicantId = $(this).data('applicant-id');
         var url = applicantId;
 
-        $.ajax({
-            url: url,
-            type: "GET",
-            success: function(response){
-                $('#header_style').html(
-                    `<link rel="stylesheet" href="${profileCssUrl}">`
-                );
-                $('.profile_logo').html(
-                    `<span>지원자 프로필</span>`
-                );
-                $('#evaluation_section').hide();
-                $('#question_section').hide();
-                $('#comment_section').hide();
-                $('.profile_section').show();
-            },
-            error: function(response){
-                alert("Error loading profile.");
-            }
-        });
+        // 보이는 페이지 변경
+        $('#evaluation_section').hide();
+        $('#question_section').hide();
+        $('#comment_section').hide();
+        $('.profile_section').show();
+
+        // 헤더 수정
+        $('#header_style').html(
+            `<link rel="stylesheet" href="${profileCssUrl}">`
+        );
+        $('.profile_logo').html(
+            `<span>지원자 프로필</span>`
+        );
+
+        // $.ajax({
+        //     url: url,
+        //     type: "GET",
+        //     success: function(response){
+        //         $('#header_style').html(
+        //             `<link rel="stylesheet" href="${profileCssUrl}">`
+        //         );
+        //         $('.profile_logo').html(
+        //             `<span>지원자 프로필</span>`
+        //         );
+        //     },
+        //     error: function(response){
+        //         alert("Error loading profile.");
+        //     }
+        // });
     });
 });
 
@@ -32,26 +42,37 @@ $(document).ready(function(){
         var applicantId = $(this).data('applicant-id');
         var url = applicantId + "/comment/";
 
-        $.ajax({
-            url: url,
-            type: "GET",
-            success: function(response){
-                $('.profile_logo').html(
-                    `<span>코멘트 작성</span>`
-                );
-                $('#header_style').html(
-                    `<link rel="stylesheet" href="${commentsCssUrl}">`
-                );
-                $('.profile_section').hide();
-                $('#evaluation_section').hide();
-                $('#question_section').hide();
-                $('#comment_section').show();
-                $('#comment_section').html(response);
-            },
-            error: function(response){
-                alert("Error loading comment.");
-            }
-        });
+        // 보이는 페이지 변경
+        $('.profile_section').hide();
+        $('#evaluation_section').hide();
+        $('#question_section').hide();
+        $('#comment_section').show();
+
+        // 헤더 수정
+        $('.profile_logo').html(
+            `<span>코멘트 작성</span>`
+        );
+        $('#header_style').html(
+            `<link rel="stylesheet" href="${commentsCssUrl}">`
+        );
+
+        // $.ajax({
+        //     url: url,
+        //     type: "GET",
+        //     success: function(response){
+        //         $('.profile_logo').html(
+        //             `<span>코멘트 작성</span>`
+        //         );
+        //         $('#header_style').html(
+        //             `<link rel="stylesheet" href="${commentsCssUrl}">`
+        //         );
+
+        //         // $('#comment_section').html(response);
+        //     },
+        //     error: function(response){
+        //         alert("Error loading comment.");
+        //     }
+        // });
     });
 });
 
@@ -61,27 +82,36 @@ $(document).ready(function(){
         var applicantId = $(this).data('applicant-id');
         var url = applicantId + "/question/";
 
-        $.ajax({
-            url: url,
-            type: "GET",
-            success: function(response){
-                console.log("success")
-                $('.profile_logo').html(
-                    `<span>개별 질문</span>`
-                );
-                $('#header_style').html(
-                    `<link rel="stylesheet" href="${questionsCssUrl}">`
-                );
-                $('.profile_section').hide();
-                $('#comment_section').hide();
-                $('#evaluation_section').hide();
-                $('#question_section').show();
-                $('#question_section').html(response);
-            },
-            error: function(response){
-                alert("Error loading question.");
-            }
-        });
+        // 보이는 페이지 변경
+        $('.profile_section').hide();
+        $('#comment_section').hide();
+        $('#evaluation_section').hide();
+        $('#question_section').show();
+
+        // 헤더 수정
+        $('.profile_logo').html(
+            `<span>개별 질문</span>`
+        );
+        $('#header_style').html(
+            `<link rel="stylesheet" href="${questionsCssUrl}">`
+        );
+
+        // $.ajax({
+        //     url: url,
+        //     type: "GET",
+        //     success: function(response){
+        //         console.log("success")
+        //         $('.profile_logo').html(
+        //             `<span>개별 질문</span>`
+        //         );
+        //         $('#header_style').html(
+        //             `<link rel="stylesheet" href="${questionsCssUrl}">`
+        //         );
+        //     },
+        //     error: function(response){
+        //         alert("Error loading question.");
+        //     }
+        // });
     });
 });
 
@@ -90,6 +120,10 @@ $(document).ready(function(){
     $('#load-evaluation').click(function(){
         var applicantId = $(this).data('applicant-id');
         var url = `/evaluations/evaluations/create/${applicantId}`;
+        $('.profile_section').hide();
+        $('#comment_section').hide();
+        $('#question_section').hide();
+        $('#evaluation_section').show();
 
         $.ajax({
             url: url,
@@ -99,10 +133,6 @@ $(document).ready(function(){
                 $('.profile_logo').html(
                     `<span>평가표</span>`
                 );
-                $('.profile_section').hide();
-                $('#comment_section').hide();
-                $('#question_section').hide();
-                $('#evaluation_section').show();
                 $('#evaluation_section').html(response);
             },
             error: function(response){

@@ -21,14 +21,13 @@ $(document).ready(function() {
         event.preventDefault();
 
         var applicantId = $('#load-comment').data('applicant-id');
-        console.log(applicantId);
         var url = applicantId + "/comment/";
-        console.log($('#comment-form').serialize())
 
         $.ajax({
             url: url, //$('#comment-form').attr('action'), // 폼의 액션 URL을 사용
             type: 'POST',
             data: $('#comment-form').serialize(),
+            async: false,
             headers: {
                 'X-CSRFToken': csrftoken
             },
