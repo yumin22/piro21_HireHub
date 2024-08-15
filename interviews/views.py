@@ -19,7 +19,6 @@ def generate_questions(request, application_id):
         content += f"Q: {answer.question.question_text}\n"
         content += f"A: {answer.answer_text}\n\n"
 
-    # OpenAI API 호출 (최신 버전)
     completion = openai.chat.completions.create(
         model='gpt-4o',  
         messages=[
@@ -31,5 +30,7 @@ def generate_questions(request, application_id):
     )
 
     questions = completion.choices[0].message.content
+    questions = questions.replace("\n\n", "</p><p>").replace("\n", "<br>")
+    questions = f"<p>{questions}</p>"
 
     return render(request, 'applicant/openai.html', {'questions': questions})
