@@ -362,24 +362,51 @@ def question(request, pk):
             return render(request, 'applicant/questions.html', ctx)    
         
         else:
-            interviewer = get_object_or_404(Interviewer, email=request.user.email)
-            question_form = QuestionForm(request.POST)
-            answer_form = AnswerForm(request.POST)
-            if question_form.is_valid() :
-                question = question_form.save(commit=False)
-                question.application = applicant
-                question.interviewer = interviewer
-                question.save()
-                return JsonResponse({
-                    'success': True,
-                    'question': {
-                        'text': question.text,
-                        'created_at': question.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                        'interviewer': interviewer.email,
-                        'id': question.id
-                    }
-                })
+            if 'question_submit' in request.POST:
+                interviewer = get_object_or_404(Interviewer, email=request.user.email)
+                question_form = QuestionForm(request.POST)
+                if question_form.is_valid():
+                    question = question_form.save(commit=False)
+                    question.application = applicant
+                    question.interviewer = interviewer
+                    question.save()
+                    return JsonResponse({
+                        'success': True,
+                        'question': {
+                            'text': question.text,
+                            'created_at': question.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                            'interviewer': interviewer.email,
+                            'id': question.id
+                        }
+                    })
+                else:
+                    # 폼이 유효하지 않은 경우 오류 메시지 반환
+                    return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': question_form.errors.as_json()})
+            
+            elif 'answer_submit' in request.POST:
+                interviewer = get_object_or_404(Interviewer, email=request.user.email)
+                answer_form = AnswerForm(request.POST)
+                if answer_form.is_valid():
+                    answer = answer_form.save(commit=False)
+                    answer.application = applicant
+                    answer.interviewer = interviewer
+                    answer.question_id = request.POST.get('question_id')
+                    answer.save()
+                    return JsonResponse({
+                        'success': True,
+                        'answer': {
+                            'text': answer.text,
+                            'created_at': answer.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                            'interviewer': interviewer.email,
+                            'id': answer.id
+                        }
+                    })
+                else:
+                    # 폼이 유효하지 않은 경우 오류 메시지 반환
+                    return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': question_form.errors.as_json()})
+            
             else:
+                print("iui")
                 # 폼이 유효하지 않은 경우 오류 메시지 반환
                 return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': question_form.errors.as_json()})
             
@@ -389,6 +416,16 @@ def delete_question(request, pk, question_id):
         try:
             question = individualQuestion.objects.get(pk=question_id, application_id=pk)
             question.delete()
+            return JsonResponse({'success': True})
+        except individualQuestion.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Question does not exist.'})
+    return JsonResponse({'success': False, 'error': 'Invalid request method.'})
+
+def delete_answer(request, pk, answer_id):
+    if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        try:
+            answer = individualAnswer.objects.get(pk=answer_id, application_id=pk)
+            answer.delete()
             return JsonResponse({'success': True})
         except individualQuestion.DoesNotExist:
             return JsonResponse({'success': False, 'error': 'Question does not exist.'})
