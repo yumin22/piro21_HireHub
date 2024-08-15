@@ -8,6 +8,8 @@ from django.db import models
 from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
 from datetime import time
+from .tasks import process_application
+from django.db import transaction
 
 from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer
 from accounts.models import Interviewer, InterviewTeam
@@ -196,20 +198,21 @@ def apply(request, pk):
             applyContent.template = template
             applyContent.save()
             form.save_m2m()
-            
+
+            answers = {}
             for question in template.questions.all():
                 answer_text = request.POST.get(f'answer_{question.id}')
-                Answer.objects.create(
-                    application = applyContent,
-                    question = question,
-                    answer_text = answer_text,
-                )
+                answers[question.id] = answer_text
+
             
+            transaction.on_commit(lambda: process_application.apply_async(args=(applyContent.id, answers), countdown=5))
+
             name = form.cleaned_data['name']
             phone_number = form.cleaned_data['phone_number']
             request.session['name'] = name
             request.session['phone_number'] = phone_number
             request.session['submitted'] = True
+
             return redirect('applicants:apply_result')
     
     context = {
