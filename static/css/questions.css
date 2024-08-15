@@ -1,22 +1,19 @@
-.question_section {
+section {
     height: 100%;
-
-}
-
-main > section {
-    height: 100% !important;
     display: flex;
     flex-direction: column;
 }
 
-.questions_section {
-    display: flex;
+#question_section {
+    height: 100%;
 }
 
-.questions_section section {
-    height: 100%;
+
+.questions_section {
     display: flex;
+    height: 100%;
 }
+
 
 .questions_section .questions_header {
     display: flex;
@@ -53,7 +50,8 @@ main > section {
 
 .questions_section .application_container h3 {
     font-size: 2rem;
-    padding-left: 10px;
+    margin: 10px 0 20px 0;
+    color: #A3A3A3;
 }
 
 .questions_section .application_content {
@@ -61,9 +59,8 @@ main > section {
     height: 100%;
     border-radius: 10px;
     margin: 10px 0;
-    padding: 10px;
+    padding: 10px 20px 0 20px;
     overflow-y: scroll;
-    flex-direction: column;
 }
 
 .questions_section .application_content::-webkit-scrollbar {
@@ -152,25 +149,23 @@ main > section {
     margin-bottom: 5px;
 }
 
-.questions_section #questionForm {
+.questions_section #question-form {
     height: 20%;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
+    border: 2px solid #ddd;
+    border-radius: 7px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .questions_section #id_text{
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: none;
     box-sizing: border-box;
     font-size: 16px;
-    max-height:70px;
+    max-height:50px;
+    margin-left: 20px;
 }
 
 
@@ -186,4 +181,15 @@ main > section {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+
+}
+
+.questions_section #question-form p > label {
+    display: none;
+}
+
+.questions_section #question-form > button {
+    font-size: 3.5rem;
+    margin-right: 10px;
+    color: #A3A3A3;
 }

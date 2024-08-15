@@ -1,8 +1,9 @@
 {% load static %}
+{% block content %}
 <head id="header_style">
     <link rel="stylesheet" href="{% static 'css/questions.css' %}">
 </head>
-<section>
+
     <div class="questions_section">
         <div class="application_container">
             <div class="application_content">
@@ -25,7 +26,6 @@
             </div>
         </div>
         <div class="questions">
-            <h1>개별 질문</h1>
             <ul id="question_list">
                 {% for question in questions %}
                 <li class="individualquestion" data-question-id="{{ question.id }}">
@@ -51,12 +51,12 @@
                 <form id="question-form" action="{% url 'applicants:question' applicant.pk %}" method="post">
                     {% csrf_token %}
                     {{ question_form.as_p }}
-                    <button type="submit">Add Question</button>
+                    <button type="submit"><i class="ri-send-plane-line"></i></button>
                 </form>
             </div>
         </div>
     </div>
-</section>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'js/questions.js' %}"></script>
 <script>
@@ -82,3 +82,4 @@
         });
     });
 </script>
+{% endblock %}

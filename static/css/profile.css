@@ -52,7 +52,7 @@ section {
 .actions a {
     text-decoration: none;
     text-align: end;
-    color: var(--main-color) !important;
+    color: var(--main-color);
     font-family: var(--eng-font);
 }
 
