@@ -90,7 +90,7 @@ main {
 }
 .apply_content input, .question textarea {
    width: 97%;
-   border: 2px solid var(--green-color);
+   border: 2px solid var(--main-color);
    border-radius: 20px;
    padding: 10px 20px;
    margin-bottom: 15px;
@@ -233,7 +233,7 @@ fieldset {
    width: 9rem;
    height: 9rem;
 }
-.result_comment {
+.result_comment, .resultno_comment {
    font-size: 3.6rem;
    margin-top: 7.8rem;
    margin-bottom: 3rem;
