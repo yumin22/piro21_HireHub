@@ -18,8 +18,8 @@
 </head>
 <main>
     <section>
-        <div class="container">
-            <h2>평가표 수정 | {{evaluation.template.title}} </h2>
+        <div class="container container2">
+            <h2>{{evaluation.template.title}} </h2>
             <p>{{ evaluation.template.description }}</p>
             <form action="{% url 'evaluations:update_evaluation' evaluation.pk %}" method="post" id="evaluationForm">
                 {% csrf_token %}
