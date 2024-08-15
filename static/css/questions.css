@@ -1,6 +1,21 @@
-.questions_section section {
-    padding: 30px 20px;
+.question_section {
     height: 100%;
+
+}
+
+main > section {
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.questions_section {
+    display: flex;
+}
+
+.questions_section section {
+    height: 100%;
+    display: flex;
 }
 
 .questions_section .questions_header {
@@ -28,7 +43,6 @@
 
 .questions_section .application_container {
     width: 50%;
-    padding: 0 20px;
     margin-top: 20px;
 }
 
@@ -43,8 +57,8 @@
 }
 
 .questions_section .application_content {
-    background-color: #dfdede;
-    height: 95%;
+    box-shadow: 0 0.4rem 2rem rgba(28, 101, 239, 0.2);
+    height: 100%;
     border-radius: 10px;
     margin: 10px 0;
     padding: 10px;
