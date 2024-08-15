@@ -13,7 +13,7 @@ body {
     box-shadow: 0 0.4rem 2rem rgba(28,101,239, 0.2);
     border-radius: 8px;
     background-color: #FFFFFF;
-    height: 90%;
+    height: calc(100% - 60px);
 }
 
 .createWrite {
@@ -82,9 +82,8 @@ body {
     border: 3px solid #E2E2E2;
     border-radius: 7px;
     width: 100%;
-    height: 4.3rem;
     font-size: 16px;
-    padding: 0 10px 0 10px;
+    padding: 10px;
     margin-bottom: 5px;
 }
 
@@ -124,7 +123,6 @@ body {
     background-color: #FFFFFF;
     border-radius: 7px;
     width: 100%;
-    height: 15rem;
     font-size: 16px;
     padding: 0 10px 0 10px;
     margin-bottom: 20px;

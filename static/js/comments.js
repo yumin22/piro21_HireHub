@@ -55,7 +55,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     // 코멘트 삭제
     $(document).on('click', '.deleteCommentBtn', function() {
-        if (!confirm('정말로 이 질문을 삭제하시겠습니까?')) {
+        if (!confirm('정말로 이 댓글을 삭제하시겠습니까?')) {
             return;
         }
 
