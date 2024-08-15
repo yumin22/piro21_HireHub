@@ -37,12 +37,12 @@
                             {% endfor %}
                         </ul>
                         <button class="deleteQuestionBtn" data-question-id="{{ question.id }}">삭제</button>
-                        {% comment %} <button class="toggleAnswerForm">답변 추가하기</button> {% endcomment %}
-                        {% comment %} <form class="answerForm" method="post" action="{% url 'applicants:question' applicant.pk %}">
+                        <button class="toggleAnswerForm">답변 보기</button>
+                        <form class="answerForm" method="post" action="{% url 'applicants:question' applicant.pk %}" style="display:none">
                             {% csrf_token %}
                             {{ answer_form.as_p }}
-                            <button type="submit" name="answer_submit">Submit Answer</button>
-                        </form> {% endcomment %}
+                            <button type="submit" name="answer_submit">답변 작성</button>
+                        </form>
                     </div>
                 </li>
                 {% endfor %}

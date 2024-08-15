@@ -322,7 +322,8 @@ def comment(request, pk):
                     'comment': {
                         'text': comment.text,
                         'created_at': comment.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                        'interviewer': interviewer.email  # 인터뷰어 이메일 반환
+                        'interviewer': interviewer.email,  # 인터뷰어 이메일 반환
+                        'id': comment.id
                     }
                 })
     return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': form.errors.as_json()})
@@ -374,7 +375,8 @@ def question(request, pk):
                     'question': {
                         'text': question.text,
                         'created_at': question.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                        'interviewer': interviewer.email
+                        'interviewer': interviewer.email,
+                        'id': question.id
                     }
                 })
             else:

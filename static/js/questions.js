@@ -1,23 +1,5 @@
-// function getCookie(name) {
-//     let cookieValue = null;
-//     if (document.cookie && document.cookie !== '') {
-//         const cookies = document.cookie.split(';');
-//         for (let i = 0; i < cookies.length; i++) {
-//             const cookie = cookies[i].trim();
-//             if (cookie.substring(0, name.length + 1) === (name + '=')) {
-//                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-//                 break;
-//             }
-//         }
-//     }
-//     return cookieValue;
-// }
-
-// const csrftoken = getCookie('csrftoken');
-
 $(document).ready(function() {
     $('#question-form').submit(function(e) {
-        console.log("왜 안되냐 ㄹㅇ")
         e.preventDefault();
         // 기존 폼 데이터를 가져옴
         var formData = $('#question-form').serializeArray();
@@ -55,40 +37,6 @@ $(document).ready(function() {
         });
     });
 });
-
-// $(document).ready(function() {
-//     // 질문 폼 생성
-//     $(document).on('submit', '#question-form', function(event){
-//         event.preventDefault();
-
-//         var applicantId = $('#load-question').data('applicant-id');
-//         var url = applicantId + "/question/";
-
-//         $.ajax({
-//             url: url,
-//             type: 'POST',
-//             data: $('#question-form').serialize(),
-//             async: false,
-//             headers: {
-//                 'X-CSRFToken': csrftoken
-//             },
-//             success: function(data) {
-//                 console.log('Server response:', data);
-//                 if (data.success) {
-//                     $('#question_list').append('<li class="individualquestion">' + data.question.text + ' (' + data.question.created_at + ')</li>');
-//                     $('#id_text').val('');
-//                 } else {
-//                     alert('Failed to add question: ' + data.error);
-//                     console.error(data.form_errors);  // 폼 오류 메시지 출력
-//                 }
-//             },
-//             error: function(xhr, status, error) {
-//                 alert('An error occurred: ' + error);
-//                 console.error('AJAX request failed:', error);
-//             }
-//         });
-//     });
-// });
 
 $(document).ready(function() {
     // 질문 삭제
