@@ -47,6 +47,7 @@ def document(request):
 def search_applicant(request):
     search_txt = request.GET.get('search_txt')
     applicants = Application.objects.filter(name__icontains=search_txt)
+    applicants = applicants.filter(~Q(status = 'submitted'))
     results = [{'id': applicant.id, 'name': applicant.name} for applicant in applicants]
     return JsonResponse(results, safe=False)
 
