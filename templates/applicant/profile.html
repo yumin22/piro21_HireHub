@@ -64,9 +64,13 @@
             </div>
         </div>
     </div>
-    <div id="comment_section"></div>
-    <div id="question_section"></div>
-    <div id="evaluation_section"></div>
+    <div id="comment_section" style="display:none;">
+        {% include 'applicant/comments.html' %}
+    </div>
+    <div id="question_section" style="display:none;">
+        {% include 'applicant/questions.html' %}
+    </div>
+    <div id="evaluation_section" style="display:none;"></div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'js/profile.js' %}"></script>
