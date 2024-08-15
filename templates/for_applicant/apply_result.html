@@ -1,10 +1,6 @@
 {% extends 'for_applicant/base.html' %}
 {% load static %}
 
-{% block head %}
-<link rel="stylesheet" href="{% static 'css/for_applicant.css' %}">
-{% endblock %}
-
 {% block content %}
 <div class="applyResult_container">
    {% if submitted %}
@@ -22,11 +18,27 @@
          <p>404</p>
          <p>NOT FOUND</p>
       </div>
-      <p class="result_comment">지원 이력이 존재하지 않습니다.</p>
+      <p class="resultno_comment">지원 이력이 존재하지 않습니다.</p>
       <a href='{% url "accounts:initialApplicant" %}'>
          <img src="{% static 'images/home.png' %}" alt="">
          메인 페이지로 돌아가기
       </a>
    {% endif %}
 </div>
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+      function adjustText() {
+         var elementno = document.querySelector('.resultno_comment');
+         if (window.innerWidth <= 580) {
+            elementno.innerHTML = "지원 이력이<br>존재하지 않습니다.";
+         } else {
+            elementno.innerHTML = "지원 이력이 존재하지 않습니다.";
+         }
+      }
+
+      adjustText();
+
+      window.addEventListener('resize', adjustText);
+   });
+</script>
 {% endblock content %}
