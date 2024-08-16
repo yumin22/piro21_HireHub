@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('applicants', '0001_initial'),
-        ('template', '0001_initial'),
+        ('template', '0002_applicationtemplate_is_default_and_more'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
