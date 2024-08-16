@@ -1,15 +1,15 @@
 from django.db.models import Q, Sum
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
-from .models import AudioRecording
 from applicants.models import Application
 from django.core.exceptions import PermissionDenied
-from django.db import models
+from django.db import models, transaction
 from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
 from datetime import time
 from .tasks import process_application
 from django.db import transaction
+from django.db.models.functions import Coalesce
 
 from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer
 from accounts.models import Interviewer, InterviewTeam
@@ -17,9 +17,12 @@ from template.models import ApplicationTemplate, ApplicationQuestion, InterviewT
 from .forms import ApplicationForm, CommentForm, QuestionForm, AnswerForm, ApplyForm
 
 def interview(request):
-    applicants = Application.objects.all()
-    ctx = {"applicants": applicants}
-    return render(request, "applicant/interview.html", ctx)
+    if request.user.is_authenticated:
+        applicants = Application.objects.all()
+        ctx = {"applicants": applicants}
+        return render(request, "applicant/interview.html", ctx)
+    else:
+        return redirect("accounts:login")
 
 def change_status(request, status_zone_id, applicant_id):
     if request.method == 'POST':
@@ -40,9 +43,12 @@ def change_status(request, status_zone_id, applicant_id):
     return JsonResponse({'error': 'Invalid request method'}, status=400)
             
 def document(request):
-    applicants = Application.objects.all()
-    ctx = {"applicants": applicants}
-    return render(request, "applicant/document.html", ctx)
+    if request.user.is_authenticated:
+        applicants = Application.objects.all()
+        ctx = {"applicants": applicants}
+        return render(request, "applicant/document.html", ctx)
+    else:
+        return redirect("accounts:login")
 
 def search_applicant(request):
     search_txt = request.GET.get('search_txt')
@@ -50,8 +56,7 @@ def search_applicant(request):
     applicants = applicants.filter(~Q(status = 'submitted'))
     results = [{'id': applicant.id, 'name': applicant.name} for applicant in applicants]
     return JsonResponse(results, safe=False)
-
-
+    
 def delete_recording(request, pk):
     applicant = get_object_or_404(Application, pk=pk)
     if request.method == 'POST':
@@ -64,13 +69,18 @@ def delete_recording(request, pk):
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=500)
     return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
+    
 
 def schedule(request):
-    applicants = Application.objects.filter(~Q(status ='submitted'))
-    schedules = Possible_date_list.objects.all()
+    if request.user.is_authenticated:
+        applicants = Application.objects.filter(~Q(status ='submitted'))
+        schedules = Possible_date_list.objects.all()
 
-    ctx = {"applicants": applicants, "schedules":schedules}
-    return render(request, 'applicant/schedule.html', ctx)
+        ctx = {"applicants": applicants, "schedules":schedules}
+        return render(request, 'applicant/schedule.html', ctx)
+    else:
+        return redirect("accounts:login")
+    
 
 def auto_schedule(request):
     schedules = Possible_date_list.objects.all()
@@ -163,6 +173,7 @@ def auto_schedule(request):
         schedules_info.remove(low_pop_schedule)
                     
     return redirect('applicants:schedule')
+    
 
 def schedule_update(request, pk):
     applicant = get_object_or_404(Application, id=pk)
@@ -187,113 +198,54 @@ def schedule_update(request, pk):
 
     return redirect('applicants:schedule')
 
-
-def apply(request, pk):
-    template = ApplicationTemplate.objects.get(id=pk)
-    form = ApplyForm()
-
-    if request.method == 'POST':
-        form = ApplyForm(request.POST)
-        if form.is_valid():
-            applyContent = form.save(commit=False)
-            applyContent.template = template
-            applyContent.save()
-            form.save_m2m()
-
-            answers = {}
-            for question in template.questions.all():
-                answer_text = request.POST.get(f'answer_{question.id}')
-                answers[question.id] = answer_text
-
-            
-            transaction.on_commit(lambda: process_application.apply_async(args=(applyContent.id, answers), countdown=5))
-
-            name = form.cleaned_data['name']
-            phone_number = form.cleaned_data['phone_number']
-            request.session['name'] = name
-            request.session['phone_number'] = phone_number
-            request.session['submitted'] = True
-
-            return redirect('applicants:apply_result')
-    
-    context = {
-        'form': form,
-        'template': template,
-    }
-    return render(request, 'for_applicant/write_apply.html', context)
-
-def apply_check(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        phone_number = request.POST.get('phone_number')
-        request.session['name'] = name
-        request.session['phone_number'] = phone_number
-        request.session['submitted'] = False
-        return redirect('applicants:apply_result')
-    return render(request, 'for_applicant/apply_check.html')
-
-def apply_result(request):
-    name = request.session.get('name')
-    phone_number = request.session.get('phone_number')
-    submitted = request.session.get('submitted')
-    if name and phone_number:
-        if submitted == False:
-            try:
-                application = Application.objects.get(name=name, phone_number=phone_number)
-                submitted = True
-            except Application.DoesNotExist:
-                submitted = False
-        context = {
-            'submitted': submitted,
-        }
-        return render(request, 'for_applicant/apply_result.html', context)
-    else:
-        return redirect('applicants:apply_check')
-
 def profile(request, pk):
-    applicant = get_object_or_404(Application, pk=pk)
-    answers = Answer.objects.filter(application=applicant)
-    # 리코딩
-    recording = AudioRecording.objects.filter(application=applicant).first()
+    if request.user.is_authenticated:
+        applicant = get_object_or_404(Application, pk=pk)
+        answers = Answer.objects.filter(application=applicant)
+        # 리코딩
+        recording = AudioRecording.objects.filter(application=applicant).first()
 
-    # 코멘트
-    comments = Comment.objects.filter(application=applicant).order_by('created_at')
-    form = CommentForm()
+        # 코멘트
+        comments = Comment.objects.filter(application=applicant).order_by('created_at')
+        form = CommentForm()
 
-    # 질문 생성
-    questions = individualQuestion.objects.filter(application=applicant).order_by('created_at')
-    question_form = QuestionForm()
-    answer_form = AnswerForm()
+        # 질문 생성
+        questions = individualQuestion.objects.filter(application=applicant).order_by('created_at')
+        question_form = QuestionForm()
+        answer_form = AnswerForm()
 
-    # 공통 질문 템플릿 및 질문 가져오기
-    common_template = InterviewTemplate.objects.get(is_default=True)
-    common_questions = InterviewQuestion.objects.filter(template=common_template)
+        # 공통 질문 템플릿 및 질문 가져오기
+        common_template = InterviewTemplate.objects.get(is_default=True)
+        common_questions = InterviewQuestion.objects.filter(template=common_template)
+        
+        # 녹음 파일 업로드 처리
+        if request.method == 'POST' and request.FILES.get('audio_data'):
+            try:
+                # AudioRecording 객체 생성 또는 가져오기
+                recording, created = AudioRecording.objects.get_or_create(application=applicant)
+                recording.file = request.FILES['audio_data']
+                recording.save()
+                return JsonResponse({'file_url': recording.file.url})
+            except Exception as e:
+                print(f"Error saving file: {e}")
+                return JsonResponse({'error': f'File upload failed: {str(e)}'}, status=500)
+
+        ctx = {
+            'applicant': applicant,
+            'answers': answers,
+            'recording_exists': recording is not None,
+            'comments': comments,
+            'form': form,
+            'questions': questions,
+            'question_form': question_form,
+            'answer_form': answer_form,
+            'common_questions': common_questions,
+        }
+        
+        return render(request, 'applicant/profile.html', ctx)
+    else:
+        return redirect("accounts:login")
     
-    # 녹음 파일 업로드 처리
-    if request.method == 'POST' and request.FILES.get('audio_data'):
-        try:
-            # AudioRecording 객체 생성 또는 가져오기
-            recording, created = AudioRecording.objects.get_or_create(application=applicant)
-            recording.file = request.FILES['audio_data']
-            recording.save()
-            return JsonResponse({'file_url': recording.file.url})
-        except Exception as e:
-            print(f"Error saving file: {e}")
-            return JsonResponse({'error': f'File upload failed: {str(e)}'}, status=500)
-
-    ctx = {
-        'applicant': applicant,
-        'answers': answers,
-        'recording_exists': recording is not None,
-        'comments': comments,
-        'form': form,
-        'questions': questions,
-        'question_form': question_form,
-        'answer_form': answer_form,
-        'common_questions': common_questions,
-    }
-    
-    return render(request, 'applicant/profile.html', ctx)
 
 def comment(request, pk):
     applicant = get_object_or_404(Application, pk=pk)
@@ -331,6 +283,7 @@ def comment(request, pk):
                     }
                 })
     return JsonResponse({'success': False, 'error': 'Invalid form submission', 'form_errors': form.errors.as_json()})
+    
 
 def delete_comment(request, pk, comment_id):
     if request.method == 'POST' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -437,7 +390,7 @@ def delete_answer(request, pk, answer_id):
 
 def applicant_rankings(req):
     applications = Application.objects.annotate(
-        total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)) # Evaluation모델을 역참조
+        total_score=Coalesce(Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)),0) # Evaluation모델을 역참조
     ).order_by('-total_score')
 
     interview_teams = InterviewTeam.objects.all()
@@ -445,16 +398,16 @@ def applicant_rankings(req):
     for interview_team in interview_teams:
         score_list = []
         for application in applications:
+            # 팀을 자동설정 해주는 로직
             if list(interview_team.members.all()) == list(application.interviewer.all()):
                 application.interview_team = interview_team
                 application.save()
-                if application.total_score == None:
-                    application.total_score = 0
-                    score_list.append(application.total_score)
-                else:
-                    score_list.append(application.total_score)
+            # 설정된 팀을 가지고 
+            if interview_team == application.interview_team:
+                score_list.append(application.total_score)
+                
         if len(score_list) != 0:
-            interview_team.average_score = sum(score_list)/len(score_list)
+            interview_team.average_score = round(sum(score_list)/len(score_list),2)
             interview_team.save()
 
     context = {
@@ -462,3 +415,66 @@ def applicant_rankings(req):
         'interview_teams': interview_teams,
     }
     return render(req, 'applicant_rankings.html', context)
+
+## 지원 ##
+def apply(request, pk):
+    template = ApplicationTemplate.objects.get(id=pk)
+    form = ApplyForm()
+
+    if request.method == 'POST':
+        form = ApplyForm(request.POST)
+        if form.is_valid():
+            applyContent = form.save(commit=False)
+            applyContent.template = template
+            applyContent.save()
+            form.save_m2m()
+
+            answers = {}
+            for question in template.questions.all():
+                answer_text = request.POST.get(f'answer_{question.id}')
+                answers[question.id] = answer_text
+
+            
+            transaction.on_commit(lambda: process_application.apply_async(args=(applyContent.id, answers), countdown=5))
+
+            name = form.cleaned_data['name']
+            phone_number = form.cleaned_data['phone_number']
+            request.session['name'] = name
+            request.session['phone_number'] = phone_number
+            request.session['submitted'] = True
+
+            return redirect('applicants:apply_result')
+    
+    context = {
+        'form': form,
+        'template': template,
+    }
+    return render(request, 'for_applicant/write_apply.html', context)
+
+def apply_check(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        phone_number = request.POST.get('phone_number')
+        request.session['name'] = name
+        request.session['phone_number'] = phone_number
+        request.session['submitted'] = False
+        return redirect('applicants:apply_result')
+    return render(request, 'for_applicant/apply_check.html')
+
+def apply_result(request):
+    name = request.session.get('name')
+    phone_number = request.session.get('phone_number')
+    submitted = request.session.get('submitted')
+    if name and phone_number:
+        if submitted == False:
+            try:
+                application = Application.objects.get(name=name, phone_number=phone_number)
+                submitted = True
+            except Application.DoesNotExist:
+                submitted = False
+        context = {
+            'submitted': submitted,
+        }
+        return render(request, 'for_applicant/apply_result.html', context)
+    else:
+        return redirect('applicants:apply_check')

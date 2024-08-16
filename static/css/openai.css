@@ -11,12 +11,12 @@
 .recommend_navbar {
    font-weight: bold;
 }
-.recommend_navbar a {
+.recommend_navbar button {
    text-decoration: none;
    color: var(--main-color);
    font-size: 2.6rem;
 }
-.recommend_navbar a i {
+.recommend_navbar button i {
    margin-right: 10px;
 }
 
