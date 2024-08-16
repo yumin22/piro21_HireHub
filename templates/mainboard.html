@@ -36,8 +36,10 @@
             <div class="schedule_content">
                 {% for applicant in applicants %}
                     {% if applicant.status != 'submitted' %}
-                    <p id="schedule_name">{{applicant.name}}</p>
-                    <span id="schedule_date">면접 날짜 : {{applicant.interview_date}}</span>
+                    <div class="schedule_info">
+                        <p id="schedule_name">{{applicant.name}}</p>
+                        <p id="schedule_date">면접 날짜 : {{applicant.interview_date}}</p>
+                    </div>
                     {% endif %}
                 {% endfor %}
             </div>

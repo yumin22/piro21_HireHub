@@ -7,7 +7,7 @@ from django.http import HttpResponseForbidden
 # Create your views here.
 
 def create_evaluation(req, pk):
-    if request.user.is_authenticated:
+    if req.user.is_authenticated:
         application = Application.objects.get(id=pk)
         interviewer = Interviewer.objects.get(id = req.user.id)
         template = EvaluationTemplate.objects.get(is_default=True)
