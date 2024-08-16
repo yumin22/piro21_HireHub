@@ -110,19 +110,3 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-function updateColor(applicant_id, status_zone_id) {
-    const applicantElement = document.getElementById(applicant_id);
-
-    applicantElement.addEventListener('dragstart', (event) => event.stopPropagation());
-    applicantElement.addEventListener('dragend', (event) => event.stopPropagation());
-
-    applicantElement.classList.remove('scheduled', 'in_progress', 'completed');
-    
-    if (status_zone_id === '1') {
-        applicantElement.classList.add('scheduled');
-    } else if (status_zone_id === '2') {
-        applicantElement.classList.add('in_progress');
-    } else if (status_zone_id === '3') {
-        applicantElement.classList.add('completed');
-    }
-}
