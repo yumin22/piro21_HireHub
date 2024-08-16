@@ -87,7 +87,7 @@ section {
 .profile_section .profile_name {
     font-size: 2.5rem;
     font-weight: bold;
-    width: 40%;
+    width: 30%;
 }
 
 .profile_section .profile_detail {
@@ -103,6 +103,7 @@ section {
     font-weight: bold;
     font-size: 2rem;
     text-align: start;
+    width: 70%;
 }
 .profile_section .profile_detail2 {
     display: flex;
