@@ -62,6 +62,13 @@
 
 
 }
+.schedule_container::-webkit-scrollbar {
+    width: 8px;
+}
+.schedule_container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #a5a5a5;
+}
 
 .reschedule_container {
     flex-direction: column;
@@ -213,3 +220,4 @@ span[class^="spanUpdate"] input[type="button"]:hover {
     font-size: 1.2rem;
     font-weight: 700;
 }
+
