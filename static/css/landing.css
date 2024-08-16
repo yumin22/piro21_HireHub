@@ -103,8 +103,9 @@ section.main a:active {
 
 /* all_in_one */
 section.all_in_one {
+    margin-top: 200px;
     width: 100%;
-    height: 110%;
+    height: 130%;
 }
 
 section.all_in_one h2 {
@@ -125,16 +126,52 @@ section.all_in_one p {
     animation-delay: 0.9s;
 }
 
-.img_container{
-    margin-top: 100px;
-}
-
 .img_list{
     display: flex; 
-    align-items: center; 
-    gap: 200px;
-    margin-left: 100px;
+    align-items: center;
+    justify-content: start; 
+    height: 160px;
+    gap: 100px;
+    margin-left: 60px;
+    margin-top: 130px;
+    margin-bottom: -120px;
 }
+
+#section_img_1 {
+    width: 116px;
+    animation: floating 1.2s infinite;
+    display: none;
+    opacity: 0;
+}
+
+#section_img_2 {
+    width: 122px;
+    animation: floating 1.2s infinite;
+    display: none;
+    opacity: 0;
+}
+
+#section_img_3 {
+    width: 141px;
+    animation: floating 1.2s infinite;
+    display: none;
+    opacity: 0;
+}
+
+#section_img_4 {
+    width: 160px;
+    animation: floating 1.2s infinite;
+
+    display: none;
+    opacity: 0;
+}
+
+#section_img_1.show, #section_img_2.show, #section_img_3.show, #section_img_4.show {
+    display: block;
+    opacity: 1;
+}
+
+
 
 .image_list img {
     margin-right: 20px;
@@ -143,9 +180,14 @@ section.all_in_one p {
 #arrow {
     width: 1220px; 
     height: auto; 
-    animation: slide 3s ease-in-out;
+    opacity: 1;
+    transform: scale(1);
+
 }
 
+.animate-on-focus {
+    animation: slide 3s forwards;
+}
 
 
 /* assistant */
@@ -178,6 +220,11 @@ section.assistant p {
 section.interview {
     width: 100%;
     height: 110%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
 }
 
 section.interview h2 {
@@ -196,6 +243,17 @@ section.interview p {
     color: #666;
     letter-spacing: 2px;
     animation-delay: 0.9s;
+}
+
+#interview_img {
+    margin-top: 100px;
+    width: 590px;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.interview-on-focus {
+    animation: floating2 2s infinite;
 }
 
 
@@ -260,7 +318,9 @@ section.final a:active {
 footer {
     width: 100%;
     height: 25%; 
-    background-color: #E6E6E6;
+    /*background-color: #E6E6E6;*/
+    background-color: white;
+
     color: #333333;
     display: flex;
     justify-content: space-between;
@@ -283,17 +343,46 @@ footer {
     margin-right: 40px;
 }
 
-.social_container a {
+.social_container > a {
     display: block; 
     text-decoration: none; 
     color: #707070;
     font-size: 2rem; 
 }
 
-.social_container a:last-child {
-    margin-bottom: 0; /* 마지막 링크는 하단 여백을 없앱니다 */
+.social_container > a > i {
+    padding-right: 10px;
 }
 
+#title_box {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 2s ease-out, transform 1.5s ease-out;
+}
+
+#title_box.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.final_btn{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    margin-top: 10px;
+    animation-delay: 2s;
+}
+
+#final_btn{
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 4s ease-out, transform 3.5s ease-out;
+}
+
+#final_btn.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 @keyframes floating {
     0% {
@@ -301,6 +390,18 @@ footer {
     }
     50% {
         transform: translateY(-7px); /* 위로 이동 */
+    }
+    100% {
+        transform: translateY(0); /* 원래 위치로 돌아오기 */
+    }
+}
+
+@keyframes floating2 {
+    0% {
+        transform: translateY(0); /* 처음 위치 */
+    }
+    50% {
+        transform: translateY(-15px); /* 위로 이동 */
     }
     100% {
         transform: translateY(0); /* 원래 위치로 돌아오기 */
