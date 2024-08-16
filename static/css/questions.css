@@ -11,7 +11,7 @@ section {
 
 .questions_section {
     display: flex;
-    height: 100%;
+    height: calc(100% - 40px);
 }
 
 
@@ -40,7 +40,6 @@ section {
 
 .questions_section .application_container {
     width: 50%;
-    margin-top: 20px;
 }
 
 .questions_section .applicant_title {
@@ -56,7 +55,7 @@ section {
 
 .questions_section .application_content {
     box-shadow: 0 0.4rem 2rem rgba(28, 101, 239, 0.2);
-    height: calc(100% - 60px);
+    height: 100%;
     border-radius: 10px;
     margin: 10px 0;
     padding: 10px 20px 0 20px;
@@ -73,9 +72,13 @@ section {
 }
 
 .questions_section .question {
-    font-size: 2rem;
-    display: flex;
-    flex-direction: column;
+    font-size: 1.8rem;
+}
+
+.questions_section .application_text {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    margin-left: 2rem;
 }
 
 .questions_section .question_btn {
@@ -123,11 +126,10 @@ section {
 .questions_section .questions {
     width: 50%;
     padding: 0 20px;
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100% - 70px);
+    height: calc(100% - 40px);
 }
 
 
@@ -181,7 +183,7 @@ section {
     border: none;
     box-sizing: border-box;
     font-size: 16px;
-    max-height:50px;
+    max-height:40px;
     margin-left: 20px;
 }
 
