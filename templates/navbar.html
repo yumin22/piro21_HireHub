@@ -6,7 +6,7 @@
 
 {% block content %}
 <nav>
-    <a href='/'>
+    <a href='{% url "accounts:initialInterviewer" %}'>
         <img id="mainLogo" src="{% static 'images/main_logo.png' %}" alt="Hire Hub">
     </a>
     {% if user.is_authenticated %}<!--로그인한 상태일 때 출력-->
