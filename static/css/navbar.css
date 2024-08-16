@@ -108,9 +108,10 @@ nav {
     right: 0;
 }
 
+
 main {
 	height: calc(100vh - 80px);
-    padding: 50px 50px 40px;
+    padding: 40px 50px 40px;
     background-color: #ffffff;
 }
 
@@ -135,7 +136,8 @@ main {
 }
 
 /* for applicant */
-.applicant_navbar {
+.applicant_navbar,
+.landing_navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;

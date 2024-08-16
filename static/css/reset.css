@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
 @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -115,3 +121,4 @@ textarea:not([rows]) {
 :target {
   scroll-margin-block: 5ex;
 }
+

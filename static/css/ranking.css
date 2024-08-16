@@ -34,24 +34,29 @@ main {
 .team_container {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: stretch; /* 모든 요소가 컨테이너 높이에 맞게 늘어남 */
     width: 100%;
     height: auto;
     overflow-x: auto;
     white-space: nowrap;
 }
 
-.team_score {
+.team_score { 
     width: 300px;
     display: flex;
     flex-direction: column;
     margin-right: 30px; 
+    flex-grow: 1; /* 각 팀스코어 요소가 동일하게 공간을 차지 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .team_text {
     display: flex;
     justify-content: space-between;
-    padding: 0 5px 0 5px;
+    padding: 5px;
 }
 
 .team_text > h2 {
@@ -70,11 +75,10 @@ table {
 }
 
 th {
-    font-size: 1.6rem;
     text-align: center;
 }
 
 td {
-    font-size: 1.2rem;
     text-align: center;
+    padding-top:5px;
 }
