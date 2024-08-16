@@ -448,7 +448,10 @@ def applicant_rankings(req):
             if list(interview_team.members.all()) == list(application.interviewer.all()):
                 application.interview_team = interview_team
                 application.save()
-                if application.total_score != None:
+                if application.total_score == None:
+                    application.total_score = 0
+                    score_list.append(application.total_score)
+                else:
                     score_list.append(application.total_score)
         if len(score_list) != 0:
             interview_team.average_score = sum(score_list)/len(score_list)
