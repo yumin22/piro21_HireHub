@@ -100,24 +100,26 @@
 .schedule_content {
     padding:10px;
     display: flex;
-    gap: 10px;
-    align-items: flex-start;
+    gap: 15px;
     flex-direction: column;
 }
-
-.schedule_content > #schedule_name{
+.schedule_info {
+    display: flex;
+    justify-content: space-between;
+}
+.schedule_info > #schedule_name{
     font-size: 2rem;
     font-weight: bold;
     margin: 5px;
 }
 
-.schedule_content > #schedule_date{
+.schedule_info > #schedule_date{
     font-size: 2rem;
     margin: 5px;
 }
 
 .scroll_section {
-    height: calc(100% - 13rem);
+    height: calc(100% - 10rem);
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
     overflow-y: scroll;
