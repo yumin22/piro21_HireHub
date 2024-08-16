@@ -7,46 +7,49 @@ from django.http import HttpResponseForbidden
 # Create your views here.
 
 def create_evaluation(req, pk):
-    application = Application.objects.get(id=pk)
-    interviewer = Interviewer.objects.get(id = req.user.id)
-    template = EvaluationTemplate.objects.get(is_default=True)
+    if request.user.is_authenticated:
+        application = Application.objects.get(id=pk)
+        interviewer = Interviewer.objects.get(id = req.user.id)
+        template = EvaluationTemplate.objects.get(is_default=True)
 
-    if not interviewer in application.interviewer.all():  # 배정된 면접관인지 확인
-        return HttpResponseForbidden("배정된 면접관이 아닙니다.")
-    
-    existing_evaluation = Evaluation.objects.filter(application=application, interviewer=interviewer, template=template, is_submitted=True).first()
-    if existing_evaluation:
-        return redirect ('evaluations:update_evaluation', existing_evaluation.id)
+        if not interviewer in application.interviewer.all():  # 배정된 면접관인지 확인
+            return HttpResponseForbidden("배정된 면접관이 아닙니다.")
+        
+        existing_evaluation = Evaluation.objects.filter(application=application, interviewer=interviewer, template=template, is_submitted=True).first()
+        if existing_evaluation:
+            return redirect ('evaluations:update_evaluation', existing_evaluation.id)
 
-    if req.method == 'POST':
-        evaluation = Evaluation.objects.create(
-            application=application,
-            interviewer=interviewer,
-            template=template,
-            comments=req.POST.get('comments', '')
-        )
-
-        for question in template.questions.all():
-            score = req.POST.get(f'score_{question.id}')
-            EvaluationScore.objects.create(
-                evaluation=evaluation,
-                question=question,
-                score=score
+        if req.method == 'POST':
+            evaluation = Evaluation.objects.create(
+                application=application,
+                interviewer=interviewer,
+                template=template,
+                comments=req.POST.get('comments', '')
             )
-            
-        evaluation.is_submitted = True
-        evaluation.calculate_total_score()
-        evaluation.save()
 
-        return redirect('applicants:profile', application.id)
-    
-    ctx = {
-        'pk': pk,
-        'application': application,
-        'template': template,
-        'questions': template.questions.all()
-    }
-    return render(req, 'evaluation_create.html', ctx)
+            for question in template.questions.all():
+                score = req.POST.get(f'score_{question.id}')
+                EvaluationScore.objects.create(
+                    evaluation=evaluation,
+                    question=question,
+                    score=score
+                )
+                
+            evaluation.is_submitted = True
+            evaluation.calculate_total_score()
+            evaluation.save()
+
+            return redirect('applicants:profile', application.id)
+        
+        ctx = {
+            'pk': pk,
+            'application': application,
+            'template': template,
+            'questions': template.questions.all()
+        }
+        return render(req, 'evaluation_create.html', ctx)
+    else:
+        return redirect("accounts:login")
 
 def update_evaluation(req,pk):
     evaluation = Evaluation.objects.get(id=pk)

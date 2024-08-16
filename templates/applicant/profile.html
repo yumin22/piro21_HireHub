@@ -15,7 +15,7 @@
             <div class="application_text">
                     <button id="deleteRecordingBtn" style="{% if not recording_exists %}display: none;{% endif %}"><i class="ri-delete-bin-5-fill"></i></button>
                     <audio id="audioPlayback" controls style="display: none;"></audio>
-                    <button id="recordBtn"><i class="ri-circle-fill"></i>REC</button>
+                    <button id="recordBtn"><i class="ri-circle-fill not-recording"></i>REC</button>
             </div>
             <i class="ri-menu-line"></i>
             <div class="actions">
@@ -86,15 +86,14 @@
     var questionsCssUrl = "{% static 'css/questions.css' %}";
     var evaluateCssUrl = "{% static 'css/evaluate.css' %}";
 </script>
- <script>
-        document.addEventListener("DOMContentLoaded", function() {
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
         const toggleButton = document.querySelector(".ri-menu-line");
         const actionsElement = document.querySelector(".actions");
 
         toggleButton.addEventListener("click", function(event) {
-            event.preventDefault(); 
-
-            // 초기 display 속성을 계산하여 가져옴
+            event.preventDefault();
+            
             const currentDisplay = window.getComputedStyle(actionsElement).display;
 
             if (currentDisplay === "none") {
@@ -107,9 +106,23 @@
                 toggleButton.classList.add("ri-menu-line");
             }
         });
+
+        actionsElement.addEventListener("click", function(event) {
+            // .actions 요소 클릭 시 숨기기
+            actionsElement.style.display = "none";
+            toggleButton.classList.remove("ri-close-fill");
+            toggleButton.classList.add("ri-menu-line");
+            event.stopPropagation(); // 클릭 이벤트가 document로 전파되지 않도록 함
+        });
+
+        // 문서 클릭 시 .actions 숨기기 (버튼을 제외한 클릭)
+        document.addEventListener("click", function(event) {
+            if (!actionsElement.contains(event.target) && !toggleButton.contains(event.target)) {
+                actionsElement.style.display = "none";
+                toggleButton.classList.remove("ri-close-fill");
+                toggleButton.classList.add("ri-menu-line");
+            }
+        });
     });
-
-
-
-    </script>
+</script>
 {% endblock %}

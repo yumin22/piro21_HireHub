@@ -1,8 +1,9 @@
 {% load static %}
+{% block content %}
 <head id="header_style">
     <link rel="stylesheet" href="{% static 'css/questions.css' %}">
 </head>
-<section>
+
     <div class="questions_section">
         <div class="application_container">
             <div class="application_content">
@@ -25,14 +26,15 @@
             </div>
         </div>
         <div class="questions">
-            <h1>개별 질문</h1>
             <ul id="question_list">
                 {% for question in questions %}
                 <li class="individualquestion" data-question-id="{{ question.id }}">
                     <div class="question" data-question-id="{{ question.id }}">
                         질문: {{ question.text }}
-                        <button class="deleteQuestionBtn" data-question-id="{{ question.id }}">삭제</button>
-                        <button class="toggleAnswerForm">답변 보기</button>
+                        <div class="question_btn">
+                            <button class="deleteQuestionBtn" data-question-id="{{ question.id }}">삭제</button>
+                            <button class="toggleAnswerForm">답변 보기</button>
+                        </div>
                         <div class="answersheet" style="display:none">
                             <ul class="answerList">
                                 {% for answer in question.answers.all %}
@@ -55,12 +57,12 @@
                 <form id="question-form" action="{% url 'applicants:question' applicant.pk %}" method="post">
                     {% csrf_token %}
                     {{ question_form.as_p }}
-                    <button type="submit">Add Question</button>
+                    <button type="submit"><i class="ri-send-plane-line"></i></button>
                 </form>
             </div>
         </div>
     </div>
-</section>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'js/questions.js' %}"></script>
 <script>
@@ -86,3 +88,4 @@
         });
     });
 </script>
+{% endblock %}

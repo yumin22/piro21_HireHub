@@ -1,0 +1,324 @@
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+}
+
+
+main {
+    padding: 0 !important;
+}
+
+section.main h2,
+section.main h1,
+section.main p,
+.button_box {
+    opacity: 0;
+    transform: translateY(20px); /* 초기 위치를 살짝 아래로 설정 */
+    animation: fadeInUp 1s forwards;
+}
+
+/* main */
+section.main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 110%; 
+}
+
+section.main h2 {
+    text-align: center;
+    font-size: 6rem;
+    color: var(--main-color);
+    margin-top: 270px;
+    padding: 5px;
+    letter-spacing: 8px;
+    animation-delay: 0.3s;
+}
+
+section.main h1 {
+    text-align: center;
+    font-size: 6rem;
+    color: black;
+    padding: 5px;
+    padding-bottom: 15px;
+    letter-spacing: 2px;
+    animation-delay: 0.6s;
+}
+
+section.main p {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #666;
+    letter-spacing: 2px;
+    animation-delay: 0.9s;
+}
+
+section.main span {
+    font-weight: bold; 
+    letter-spacing: 2px;
+
+
+}
+
+.button_box{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    margin-top: 10px;
+    animation-delay: 2s;
+
+}
+
+section.main a {
+    display: inline-block;
+    margin: 20px;
+    padding: 8px 40px;
+    font-size: 2.5rem;
+    font-weight: 400;
+    background-color: #007BFF;
+    background-image: linear-gradient(to right, #007BFF, #3692f5);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 13px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1);
+    animation: floating 1.5s ease-in-out infinite;
+}
+
+section.main a:hover {
+    background-color: #0056b3;
+    background-image: linear-gradient(to right, #0056b3, #1d4c7a);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 12px 16px rgba(0, 0, 0, 0.15);
+}
+
+section.main a:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+/* all_in_one */
+section.all_in_one {
+    width: 100%;
+    height: 110%;
+}
+
+section.all_in_one h2 {
+    text-align: center;
+    font-size: 6rem;
+    color: black;
+    padding: 5px;
+    padding-bottom: 5px;
+    letter-spacing: 2px;
+    animation-delay: 0.6s;
+}
+
+section.all_in_one p {
+    text-align: center;
+    font-size: 2rem;
+    color: #666;
+    letter-spacing: 2px;
+    animation-delay: 0.9s;
+}
+
+.img_container{
+    margin-top: 100px;
+}
+
+.img_list{
+    display: flex; 
+    align-items: center; 
+    gap: 200px;
+    margin-left: 100px;
+}
+
+.image_list img {
+    margin-right: 20px;
+}
+
+#arrow {
+    width: 1220px; 
+    height: auto; 
+    animation: slide 3s ease-in-out;
+}
+
+
+
+/* assistant */
+section.assistant {
+    width: 100%;
+    height: 210%; 
+    /*background: linear-gradient(to bottom, #FFFFFF 0%, #9cbfff 50%, #FFFFFF 100%);*/
+    background: linear-gradient(to bottom, #FFFFFF 0%, #9cbfff 40%, #9cbfff 60%, #FFFFFF 100%);
+}
+
+section.assistant h2 {
+    text-align: center;
+    font-size: 6rem;
+    color: black;
+    padding: 5px;
+    padding-bottom: 5px;
+    letter-spacing: 2px;
+    animation-delay: 0.6s;
+}
+
+section.assistant p {
+    text-align: center;
+    font-size: 2rem;
+    color: #666;
+    letter-spacing: 2px;
+    animation-delay: 0.9s;
+}
+
+/* interview */
+section.interview {
+    width: 100%;
+    height: 110%; 
+}
+
+section.interview h2 {
+    text-align: center;
+    font-size: 6rem;
+    color: black;
+    padding: 5px;
+    padding-bottom: 5px;
+    letter-spacing: 2px;
+    animation-delay: 0.6s;
+}
+
+section.interview p {
+    text-align: center;
+    font-size: 2rem;
+    color: #666;
+    letter-spacing: 2px;
+    animation-delay: 0.9s;
+}
+
+
+
+/* final */
+section.final {
+    width: 100%;
+    height: 100%; 
+    background: linear-gradient(to bottom, #FFFFFF 0%, #9cbfff 100%);
+}
+
+section.final p {
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: black;
+    padding: 5px;
+    padding-top: 250px;
+    letter-spacing: 2px;
+    animation-delay: 0.6s;
+}
+
+section.final h1 {
+    text-align: center;
+    font-size: 9rem;
+    color: var(--main-color);
+    padding: 5px;
+    letter-spacing: 8px;
+    animation-delay: 0.3s;
+}
+
+section.final a {
+    display: inline-block;
+    margin: 20px;
+    padding: 8px 40px;
+    font-size: 2.5rem;
+    font-weight: 400;
+    background-color: #007BFF;
+    background-image: linear-gradient(to right, #007BFF, #3692f5);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 13px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1);
+    animation: floating 1.5s ease-in-out infinite;
+
+}
+
+section.final a:hover {
+    background-color: #0056b3;
+    background-image: linear-gradient(to right, #0056b3, #1d4c7a);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 12px 16px rgba(0, 0, 0, 0.15);
+}
+
+section.final a:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* footer */
+footer {
+    width: 100%;
+    height: 25%; 
+    background-color: #E6E6E6;
+    color: #333333;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer_title {
+    padding: 60px;
+}
+
+.footer_title > h1{
+    font-size: 4rem;
+    color: #666;
+    letter-spacing: 2px;
+}
+
+.social_container {
+    display: block;
+    margin: 20px;
+    margin-top: 100px;
+    margin-right: 40px;
+}
+
+.social_container a {
+    display: block; 
+    text-decoration: none; 
+    color: #707070;
+    font-size: 2rem; 
+}
+
+.social_container a:last-child {
+    margin-bottom: 0; /* 마지막 링크는 하단 여백을 없앱니다 */
+}
+
+
+@keyframes floating {
+    0% {
+        transform: translateY(0); /* 처음 위치 */
+    }
+    50% {
+        transform: translateY(-7px); /* 위로 이동 */
+    }
+    100% {
+        transform: translateY(0); /* 원래 위치로 돌아오기 */
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0); /* 제자리로 이동 */
+    }
+}
+
+@keyframes slide {
+    0%{
+        transform: translateX(-1500px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}

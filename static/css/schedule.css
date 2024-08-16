@@ -49,25 +49,42 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    height: calc(100% - 130px);
+    width: 100%;
+    height: calc(100% - 60px);
     
 }
 .schedule_container {
     width: 70%;
-    display: grid;
-    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
-    overflow-y: auto;
-    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: auto;
 
+
+}
+.schedule_container::-webkit-scrollbar {
+    width: 8px;
+}
+.schedule_container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #a5a5a5;
 }
 
 .reschedule_container {
+    flex-direction: column;
+    display: flex;
     width: 20%;
     height: 100%;
     padding: 15px 20px;
     background-color: var(--box-color);
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 55, 255, 0.25);
+
+}
+
+.grid_container {
+    display: flex;
+    flex-direction: column;
 }
 
 .grid_container > p {
@@ -76,6 +93,15 @@
     margin-top: 10px;
     font-size: 1.6rem;
     font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.applicants_ctx {
+    height: auto;               
+    white-space: wrap;        
+    display:block; 
+    padding: 5px;
+    margin-bottom: 10px;
 }
 
 .applicant_info {
@@ -87,7 +113,8 @@
     margin-bottom: 10px;
     margin-right: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-    transition: transform 0.3s ease; 
+    transition: transform 0.3s ease;             
+
 }
 
 .applicant_info:hover {
@@ -193,3 +220,4 @@ span[class^="spanUpdate"] input[type="button"]:hover {
     font-size: 1.2rem;
     font-weight: 700;
 }
+

@@ -18,20 +18,23 @@
 </head>
 <main>
     <section>
-        <div class="container">
-            <h2>평가표 수정 | {{evaluation.template.title}} </h2>
+        <div class="container container2">
+            <h2>{{evaluation.template.title}} </h2>
             <p>{{ evaluation.template.description }}</p>
             <form action="{% url 'evaluations:update_evaluation' evaluation.pk %}" method="post" id="evaluationForm">
                 {% csrf_token %}
-                <div class="evaluate_content">
-                    <label for="comments">Comments:</label>
+                <label for="comments">Comments:</label>
                     <textarea name="comments" id="comments" rows="4">{{ evaluation.comments }}</textarea>
+                <div class="evaluate_content">
+                    
                     <ol class="questions_list">
                         {% for question in evaluation.template.questions.all %}
                             <li class="question">
                                 <label for="score_{{ question.id }}">{{ question.question_title }} : {{question.question_text}}</label>
-                                <input type="number" name="score_{{ question.id }}" id="score_{{ question.id }}" 
-                                    value="{{ existing_scores|get_item:question.id }}">
+                                <span>
+                                    <input type="number" name="score_{{ question.id }}" id="score_{{ question.id }}"
+                                        value="{{ existing_scores|get_item:question.id }}"> /10
+                                </span>
                             </li>
                         {% endfor %}
                     </ol>
