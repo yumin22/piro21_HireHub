@@ -5,13 +5,12 @@ section {
 }
 
 #question_section {
-    height: 100%;
+    height: calc(100% - 5rem);
 }
-
 
 .questions_section {
     display: flex;
-    height: calc(100% - 40px);
+    height: 100%;
 }
 
 
@@ -33,13 +32,13 @@ section {
 
 .questions_section .questions_section {
     display: flex;
-    height: 700px;
-    margin: 20px 0;
-    padding: 20px;
+    height: 100%;
+    /* margin: 20px 0;
+    padding: 20px; */
 }
 
 .questions_section .application_container {
-    width: 50%;
+    width: 60%;
 }
 
 .questions_section .applicant_title {
@@ -57,9 +56,8 @@ section {
     box-shadow: 0 0.4rem 2rem rgba(28, 101, 239, 0.2);
     height: 100%;
     border-radius: 10px;
-    margin: 10px 0;
-    padding: 10px 20px 0 20px;
-    overflow-y: scroll;
+    padding: 10px 20px;
+/*     overflow-y: scroll; */
 }
 
 .questions_section .application_content::-webkit-scrollbar {
@@ -98,7 +96,9 @@ section {
 
 .questions_section #applicationContent {
     counter-reset: section;
-    display: block; /* 기본적으로 표시 */
+    /* display: block; /* 기본적으로 표시 */
+    height: calc(100% - 6rem);
+    overflow-y: scroll;
 }
 
 .questions_section #applicationContent .question::before {
@@ -125,18 +125,19 @@ section {
 
 .questions_section .questions {
     width: 50%;
+    height: 100%;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100% - 40px);
 }
 
 
 .questions_section #question_list {
-    height: 90%;
+    height: 100%;
     overflow-y: scroll;
     flex-direction: column-reverse;
+    padding: 0;
 }
 
 .questions_section #question_listt::-webkit-scrollbar {
