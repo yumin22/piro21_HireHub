@@ -11,7 +11,7 @@ from .tasks import process_application
 from django.db import transaction
 from django.db.models.functions import Coalesce
 
-from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer
+from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer, AudioRecording
 from accounts.models import Interviewer, InterviewTeam
 from template.models import ApplicationTemplate, ApplicationQuestion, InterviewTemplate, InterviewQuestion
 from .forms import ApplicationForm, CommentForm, QuestionForm, AnswerForm, ApplyForm

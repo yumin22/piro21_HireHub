@@ -11,7 +11,7 @@ from django.urls import reverse, reverse_lazy
 # Create your views here.
 class TemplateListView(View):
     def get(self, req):
-        if request.user.is_authenticated:
+        if req.user.is_authenticated:
             template1 = ApplicationTemplate.objects.all()
             template2 = EvaluationTemplate.objects.all()
             template3 = InterviewTemplate.objects.all()
@@ -19,11 +19,11 @@ class TemplateListView(View):
         else:
             return redirect("accounts:login")
         
-   
+
     
 class ApplicationTemplateCreateView(View):
         def get(self, req):
-            if request.user.is_authenticated:
+            if req.user.is_authenticated:
                 template_form = ApplicationTemplateForm()
                 QuestionFormSet = modelformset_factory(ApplicationQuestion, form=ApplicationQuestionForm, extra=0)
                 formset = QuestionFormSet(queryset=ApplicationQuestion.objects.none())
@@ -35,7 +35,7 @@ class ApplicationTemplateCreateView(View):
                 return redirect("accounts:login")
         
         def post(self, req):
-            if request.user.is_authenticated:
+            if req.user.is_authenticated:
                 template_form = ApplicationTemplateForm(req.POST)
                 QuestionFormSet = modelformset_factory(ApplicationQuestion, form=ApplicationQuestionForm, extra=0)
                 formset = QuestionFormSet(req.POST, queryset=ApplicationQuestion.objects.none())
@@ -65,7 +65,7 @@ class ApplicationTemplateCreateView(View):
     
 class TemplateDetailView(View):
     def get(self, req, pk):
-        if request.user.is_authenticated:
+        if req.user.is_authenticated:
             template = ApplicationTemplate.objects.get(pk=pk)
             questions = template.questions.all()
             return render(req, 'temple/template_detail.html', {'template': template, 'questions':questions})
@@ -125,7 +125,7 @@ class TemplateDeleteView(DeleteView):
 
 class InterviewTemplateCreateView(View):
         def get(self, req):
-            if request.user.is_authenticated:
+            if req.user.is_authenticated:
                 template_form = InterviewTemplateForm()
                 QuestionFormSet = modelformset_factory(InterviewQuestion, form=InterviewQuestionForm, extra=0)
                 formset = QuestionFormSet(queryset=InterviewQuestion.objects.none())
@@ -137,7 +137,7 @@ class InterviewTemplateCreateView(View):
                 return redirect("accounts:login")
             
         def post(self, req):
-            if request.user.is_authenticated:
+            if req.user.is_authenticated:
                 template_form = InterviewTemplateForm(req.POST)
                 QuestionFormSet = modelformset_factory(InterviewQuestion, form=InterviewQuestionForm, extra=0)
                 formset = QuestionFormSet(req.POST, queryset=InterviewQuestion.objects.none())
@@ -165,7 +165,7 @@ class InterviewTemplateCreateView(View):
 
 class InterviewDetailView(View):
     def get(self, req, pk):
-        if request.user.is_authenticated:
+        if req.user.is_authenticated:
             template = InterviewTemplate.objects.get(pk=pk)
             questions = template.questions.all()
             return render(req, 'temple/interview_detail.html', {'template': template, 'questions':questions})
@@ -222,7 +222,7 @@ class InterviewDeleteView(DeleteView):
 
 class EvaluationTemplateCreateView(View):
     def get(self, req):
-        if request.user.is_authenticated:
+        if req.user.is_authenticated:
             template_form = EvaluationTemplateForm()
             QuestionFormSet = modelformset_factory(EvaluationQuestion, form=EvaluationQuestionForm, extra=0)
             formset = QuestionFormSet(queryset=EvaluationQuestion.objects.none())
@@ -234,7 +234,7 @@ class EvaluationTemplateCreateView(View):
             return redirect("accounts:login")
             
     def post(self, req):
-        if request.user.is_authenticated:
+        if req.user.is_authenticated:
             template_form = EvaluationTemplateForm(req.POST)
             QuestionFormSet = modelformset_factory(EvaluationQuestion, form=EvaluationQuestionForm, extra=0)
             formset = QuestionFormSet(req.POST, queryset=EvaluationQuestion.objects.none())
@@ -265,7 +265,7 @@ class EvaluationTemplateCreateView(View):
     
 class EvaluateDetailView(View):
     def get(self, req, pk):
-        if request.user.is_authenticated:
+        if req.user.is_authenticated:
             template = EvaluationTemplate.objects.get(pk=pk)
             questions = template.questions.all()
             return render(req, 'temple/evaluate_detail.html', {'template': template, 'questions':questions})
