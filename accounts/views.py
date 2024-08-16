@@ -70,21 +70,24 @@ def logout(request):
    return redirect('accounts:initialInterviewer')
 
 def mainboard(request,pk):
-   applicants = Application.objects.filter(interviewer=pk)
-   sort_applicants = Application.objects.filter(interviewer=pk)
-   sort = request.GET.get('sort','')
+   if request.user.is_authenticated:
+      applicants = Application.objects.filter(interviewer=pk)
+      sort_applicants = Application.objects.filter(interviewer=pk)
+      sort = request.GET.get('sort','')
 
-   if sort == 'submitted':
-      sort_applicants = sort_applicants.filter(status='submitted')
-   elif sort == 'scheduled':
-      sort_applicants = sort_applicants.filter(status='interview_scheduled')
-   elif sort == 'in_progress':
-      sort_applicants = sort_applicants.filter(status='interview_in_progress')
-   elif sort == 'completed':
-      sort_applicants = sort_applicants.filter(status='interview_completed')
+      if sort == 'submitted':
+         sort_applicants = sort_applicants.filter(status='submitted')
+      elif sort == 'scheduled':
+         sort_applicants = sort_applicants.filter(status='interview_scheduled')
+      elif sort == 'in_progress':
+         sort_applicants = sort_applicants.filter(status='interview_in_progress')
+      elif sort == 'completed':
+         sort_applicants = sort_applicants.filter(status='interview_completed')
+      else:
+         sort_applicants = sort_applicants
+
+      interview_num = applicants.filter(~Q(status='submitted')).count()
+      ctx = {"applicants":applicants, "sort_applicants":sort_applicants, "pk":pk, "interview_num": interview_num}
+      return render(request, "mainboard.html", ctx)
    else:
-      sort_applicants = sort_applicants
-
-   interview_num = applicants.filter(~Q(status='submitted')).count()
-   ctx = {"applicants":applicants, "sort_applicants":sort_applicants, "pk":pk, "interview_num": interview_num}
-   return render(request, "mainboard.html", ctx)
+      return redirect("accounts:login")
