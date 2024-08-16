@@ -3,7 +3,7 @@
 .sideCtx {
     display: flex;
     justify-content: end;
-    min-height: 70px;
+    margin-bottom: 2rem;
 }
 
 .sideCtx > a {
@@ -46,6 +46,15 @@
     display: flex;
     position: absolute;
     cursor: pointer;
+    padding-left: 2rem;
+}
+#applicant-search-results li {
+    list-style: none;
+    margin-right: 5px;
+    font-size: 1.5rem;
+}
+#applicant-search-results li:hover {
+    font-weight: bold;
 }
 
 .search_box >  ul > li {
@@ -61,9 +70,9 @@
 
 .applicant_container{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-content: space-around;
-    height: 100%;
+    height: calc(100% - 3.5rem);
 }
     
 .applicants_list {
@@ -78,7 +87,7 @@
     border-bottom: 0.5rem solid var(--main-color);
     font-size: 2.6rem;
     font-weight: 700;
-
+    margin-bottom: 2rem;
 }
 /*
 .each_applicant {
@@ -155,7 +164,7 @@
     scrollbar-width: none; /* Firefox */
     height: calc(100% - 7.5rem);
     padding: 20px;
-
+    padding-top: 1rem;
 }
 .scroll_section::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/

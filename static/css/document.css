@@ -34,12 +34,23 @@
     margin-bottom: 15px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     transition: transform 0.3s ease; /* 호버가 끝난 후 원래 상태로 돌아가기 위한 전환 효과 */
+    display: flex;
+    justify-content: space-between;
 }
 
 .each_applicant:hover {
     transform: translateY(-3px); /* 요소를 왼쪽으로 10px 이동 */
 }
 
+.each_applicant button {
+    background-color: var(--main-color);
+    color: white;
+    width: 95px;
+    height: 30px;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
 .all {
     background-color: var(--box-color);
 }
