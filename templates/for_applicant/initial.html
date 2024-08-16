@@ -4,7 +4,11 @@
 {% block header %}
     <div class="initial_btns">
         <a class="link_check" href="{% url 'applicants:apply_check' %}">지원 상태 확인하기</a>
+        {% if time_over %}
+        <a class="link_write link_timeover" href="{% url 'applicants:timeover' %}">지원 마감</a>
+        {% else %}
         <a class="link_write" href="{% url 'applicants:apply' pk=template.pk %}">지원하러 바로가기</a>
+        {% endif %}
     </div>
 {% endblock %}
 {% block content %}

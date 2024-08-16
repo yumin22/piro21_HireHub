@@ -34,12 +34,15 @@ $(document).ready(function() {
             success: function(data) {
                 console.log('Server response:', data); // 응답 데이터 로그 출력
                 if (data.success) {
-                    $('#comment_list').append(
+                    var content = $('#comment_list');
+                    var newComment = $(
                         `<div class="comment" data-comment-id="${data.comment.id}"><small><strong>작성자:</strong> ${data.comment.interviewer}</small><p>| ${data.comment.text}</p>
-                        <button class="deleteCommentBtn" data-comment-id="${data.comment.id}">삭제</button></div>
+                        <button class="deleteCommentBtn" data-comment-id="${data.comment.id}"><i class="ri-delete-bin-7-line"></button></div>
                         `
                     );
+                    content.append(newComment)
                     $('#id_text').val(''); // 입력 필드를 비웁니다.
+
                 } else {
                     alert(data.error);
                     console.error(data.form_errors); // 폼 오류 메시지 출력

@@ -15,7 +15,7 @@ section {
 
 
 #evaluation_section .container {
-    height: calc(100% - 60px);
+    height: 100%;
     box-shadow: 0 0.4rem 2rem rgba(28, 101, 239, 0.2);
     border-radius: 10px;
     padding: 20px;
