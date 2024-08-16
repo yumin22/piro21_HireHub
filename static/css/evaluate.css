@@ -62,9 +62,7 @@ section {
     width: 8px;
 }
 
-#evaluation_section .evaluate_content::-webkit-scrollbar-thumb {
 
-}
 #evaluation_section .questions_list {
     padding: 0;
     margin: 0;
