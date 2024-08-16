@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from datetime import time
 from .tasks import process_application
 from django.db import transaction
+from django.db.models.functions import Coalesce
 
 from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer
 from accounts.models import Interviewer, InterviewTeam
@@ -437,7 +438,7 @@ def delete_answer(request, pk, answer_id):
 
 def applicant_rankings(req):
     applications = Application.objects.annotate(
-        total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)) # Evaluation모델을 역참조
+        total_score=Coalesce(Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)),0) # Evaluation모델을 역참조
     ).order_by('-total_score')
 
     interview_teams = InterviewTeam.objects.all()
@@ -445,16 +446,16 @@ def applicant_rankings(req):
     for interview_team in interview_teams:
         score_list = []
         for application in applications:
+            # 팀을 자동설정 해주는 로직
             if list(interview_team.members.all()) == list(application.interviewer.all()):
                 application.interview_team = interview_team
                 application.save()
-                if application.total_score == None:
-                    application.total_score = 0
-                    score_list.append(application.total_score)
-                else:
-                    score_list.append(application.total_score)
+            # 설정된 팀을 가지고 
+            if interview_team == application.interview_team:
+                score_list.append(application.total_score)
+                
         if len(score_list) != 0:
-            interview_team.average_score = sum(score_list)/len(score_list)
+            interview_team.average_score = round(sum(score_list)/len(score_list),2)
             interview_team.save()
 
     context = {
