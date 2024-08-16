@@ -438,22 +438,30 @@ def delete_answer(request, pk, answer_id):
 def applicant_rankings(req):
     applications = Application.objects.annotate(
         total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)) # Evaluation모델을 역참조
-    ).order_by('-total_score')
+    )
 
     interview_teams = InterviewTeam.objects.all()
 
     for interview_team in interview_teams:
         score_list = []
         for application in applications:
+            if application.total_score == None:
+                application.total_score = 0
+                application.save()
+            # 팀을 자동설정 해주는 로직
             if list(interview_team.members.all()) == list(application.interviewer.all()):
                 application.interview_team = interview_team
                 application.save()
-                if application.total_score != None:
-                    score_list.append(application.total_score)
+            # 설정된 팀을 가지고 
+            if interview_team == application.interview_team:
+                score_list.append(application.total_score)
         if len(score_list) != 0:
-            interview_team.average_score = sum(score_list)/len(score_list)
+            interview_team.average_score = round(sum(score_list)/len(score_list),2)
             interview_team.save()
-
+    
+    applications = Application.objects.annotate(
+        total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)) # Evaluation모델을 역참조
+    ).order_by('-total_score')
     context = {
         'applications': applications,
         'interview_teams': interview_teams,
