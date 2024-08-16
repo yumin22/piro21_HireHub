@@ -298,7 +298,7 @@ def comment(request, pk):
                     'comment': {
                         'text': comment.text,
                         'created_at': comment.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                        'interviewer': interviewer.email,  # 인터뷰어 이메일 반환
+                        'interviewer': interviewer.name,  # 인터뷰어 이메일 반환
                         'id': comment.id
                     }
                 })
@@ -352,7 +352,7 @@ def question(request, pk):
                         'question': {
                             'text': question.text,
                             'created_at': question.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                            'interviewer': interviewer.email,
+                            'interviewer': interviewer.name,
                             'id': question.id
                         }
                     })
@@ -412,9 +412,7 @@ def applicant_rankings(req):
     applications = Application.objects.annotate(
         total_score=Coalesce(Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)),0) # Evaluation모델을 역참조
     ).order_by('-total_score')
-
     interview_teams = InterviewTeam.objects.all()
-
     for interview_team in interview_teams:
         score_list = []
         for application in applications:
@@ -429,7 +427,6 @@ def applicant_rankings(req):
         if len(score_list) != 0:
             interview_team.average_score = round(sum(score_list)/len(score_list),2)
             interview_team.save()
-
     context = {
         'applications': applications,
         'interview_teams': interview_teams,
@@ -498,3 +495,6 @@ def apply_result(request):
         return render(request, 'for_applicant/apply_result.html', context)
     else:
         return redirect('applicants:apply_check')
+
+def apply_timeover(request):
+    return render(request, 'for_applicant/timeover.html')
