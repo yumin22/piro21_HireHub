@@ -320,6 +320,3 @@ class EvaluateDeleteView(DeleteView):
         if req.headers.get('x-requested-with') == 'XMLHttpRequest':
             return JsonResponse({'success': True, 'redirect': str(self.success_url)})
         return response
-        
-
-
