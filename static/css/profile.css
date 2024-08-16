@@ -58,7 +58,7 @@ section {
 
 .profile_section {
     display: flex;
-    height: calc(100% - 80px);
+    height: calc(100% - 48px);
     /* height: 100%; */
     /* padding-bottom: 20px; */
 }
@@ -185,14 +185,7 @@ section {
     content: counter(section) ". ";
     font-weight: 600;
 }
-.profile_section .application_content::-webkit-scrollbar {
-    width: 8px;
-}
 
-.profile_section .application_content::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: black;
-}
 .profile_section .application_question {
     font-size: 2rem;
 }

@@ -46,6 +46,15 @@
     display: flex;
     position: absolute;
     cursor: pointer;
+    padding-left: 2rem;
+}
+#applicant-search-results li {
+    list-style: none;
+    margin-right: 5px;
+    font-size: 1.5rem;
+}
+#applicant-search-results li:hover {
+    font-weight: bold;
 }
 
 .search_box >  ul > li {
