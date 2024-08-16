@@ -244,6 +244,7 @@ fieldset {
    text-decoration: none;
    font-size: 2rem;
    font-weight: 600;
+   color: black;
 }
 .applyResult_container a img {
    width: 2.4rem;
