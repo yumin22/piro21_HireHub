@@ -193,7 +193,7 @@ section.all_in_one p {
 /* assistant */
 section.assistant {
     width: 100%;
-    height: 210%; 
+    height: auto; 
     /*background: linear-gradient(to bottom, #FFFFFF 0%, #9cbfff 50%, #FFFFFF 100%);*/
     background: linear-gradient(to bottom, #FFFFFF 0%, #9cbfff 40%, #9cbfff 60%, #FFFFFF 100%);
 }
@@ -261,8 +261,9 @@ section.assistant p {
 
 /* interview */
 section.interview {
+    margin-top: 300px;
     width: 100%;
-    height: 110%; 
+    height: 100%; 
     display: flex;
     flex-direction: column;
     justify-content: center;
