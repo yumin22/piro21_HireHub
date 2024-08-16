@@ -33,21 +33,6 @@
                         질문: {{ question.text }}
                         <div class="question_btn">
                             <button class="deleteQuestionBtn" data-question-id="{{ question.id }}">삭제</button>
-                            <button class="toggleAnswerForm">답변 보기</button>
-                        </div>
-                        <div class="answersheet" style="display:none">
-                            <ul class="answerList">
-                                {% for answer in question.answers.all %}
-                                    <li class="individualanswer" data-answer-id="{{ answer.id }}">답변: {{ answer.text }}
-                                    <button class="deleteAnswerBtn" data-answer-id="{{ answer.id }}">삭제</button>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                            <form class="answerForm" data-question-id="{{ question.id }}" method="post" action="{% url 'applicants:question' applicant.pk %}">
-                                {% csrf_token %}
-                                {{ answer_form.as_p }}
-                                <button type="submit" name="answer_submit">답변 작성</button>
-                            </form>
                         </div>
                     </div>
                 </li>
@@ -62,7 +47,6 @@
             </div>
         </div>
     </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'js/questions.js' %}"></script>
 <script>

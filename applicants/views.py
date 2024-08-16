@@ -11,7 +11,7 @@ from .tasks import process_application
 from django.db import transaction
 from django.db.models.functions import Coalesce
 
-from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer
+from .models import Application, Answer, Possible_date_list, Comment, individualQuestion, individualAnswer, Interviewer, AudioRecording
 from accounts.models import Interviewer, InterviewTeam
 from template.models import ApplicationTemplate, ApplicationQuestion, InterviewTemplate, InterviewQuestion
 from .forms import ApplicationForm, CommentForm, QuestionForm, AnswerForm, ApplyForm
@@ -278,7 +278,7 @@ def comment(request, pk):
                     'comment': {
                         'text': comment.text,
                         'created_at': comment.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                        'interviewer': interviewer.email,  # 인터뷰어 이메일 반환
+                        'interviewer': interviewer.name,  # 인터뷰어 이메일 반환
                         'id': comment.id
                     }
                 })
@@ -332,7 +332,7 @@ def question(request, pk):
                         'question': {
                             'text': question.text,
                             'created_at': question.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                            'interviewer': interviewer.email,
+                            'interviewer': interviewer.name,
                             'id': question.id
                         }
                     })
