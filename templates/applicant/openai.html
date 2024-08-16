@@ -12,7 +12,7 @@
             <span>| AI Recommend</span>
         </div>
         <div class="recommend_navbar">
-            <a href=""><i class="ri-corner-down-left-fill"></i>프로필로 돌아가기</a>
+            <button onclick="goBack()"><i class="ri-corner-down-left-fill"></i>프로필로 돌아가기</button>
         </div>
     </div>
     <div class="recommend_content_container">
@@ -21,4 +21,9 @@
         </div>
     </div>
 </div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+    </script>
 {% endblock %}
