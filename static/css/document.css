@@ -70,11 +70,13 @@
 }
 
 .scroll_section {
-    height: calc(100% - 10rem);
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    height: calc(100% - 8rem);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     overflow-y: scroll;
     padding: 20px;
+    padding-top: 1rem;
+    margin-top: 3rem;
 }
 .scroll_section::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/

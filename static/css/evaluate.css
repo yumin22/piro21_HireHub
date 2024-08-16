@@ -6,7 +6,7 @@ section {
 
 
 #evaluation_section {
-    height: 100%;
+    height: calc(100% - 4.8rem);
 }
 
 #evaluation_section .container2 {
