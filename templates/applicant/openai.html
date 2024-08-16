@@ -17,7 +17,7 @@
     </div>
     <div class="recommend_content">
         <div id="recommend_content_container">
-            <p class="airecommend">{{ questions }}</p>
+            <div>{{ questions|safe }}</div>
         </div>
         <button type="button" onclick="copyText()">전체 복사하기</button>
     </div>
