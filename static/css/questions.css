@@ -138,6 +138,7 @@ section {
     overflow-y: scroll;
     flex-direction: column-reverse;
     padding: 0;
+    margin-top: 0;
 }
 
 .questions_section #question_listt::-webkit-scrollbar {
@@ -151,6 +152,7 @@ section {
     padding: 15px;
     overflow-y: scroll;
     flex-direction: column;
+    margin-top: 0;
 }
 .questions_section .individualquestion > p {
     font-size: 1.6rem;
