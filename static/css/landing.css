@@ -143,8 +143,9 @@ section.all_in_one p {
 }
 
 #arrow {
-    width: 120%; 
+    width: 1220px; 
     height: auto; 
+    animation: slide 3s ease-in-out;
 }
 
 
@@ -173,7 +174,50 @@ section.assistant p {
     color: #666;
     letter-spacing: 2px;
     animation-delay: 0.9s;
+    margin-bottom: 300px;
 }
+
+.assistant_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; 
+    margin: 100px;
+}
+
+#page{
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    border-radius: 20px;
+    width: 40%;
+    height: auto;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08), 0 16px 24px rgba(0, 0, 0, 0.08);
+}
+
+.left {
+    opacity: 0;
+    transform: translateX(-100%); /* 왼쪽에서 등장 */
+}
+
+.right {
+    opacity: 0;
+    transform: translateX(100%); /* 오른쪽에서 등장 */
+}
+
+.left.visible,
+.right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#info {
+    opacity: 0;
+    transition: opacity 3s ease-out; 
+}
+
+#info.visible {
+    opacity: 1;
+}
+
 
 /* interview */
 section.interview {
@@ -339,5 +383,14 @@ footer {
     to {
         opacity: 1;
         transform: translateY(0); /* 제자리로 이동 */
+    }
+}
+
+@keyframes slide {
+    0%{
+        transform: translateX(-1500px);
+    }
+    100%{
+        transform: translateX(0px);
     }
 }

@@ -21,9 +21,10 @@
         <p>{{ template.description }}</p>
         <form action="{% url 'evaluations:evaluation_create' pk %}" method="post" id="evaluationForm">
             {% csrf_token %}
-            <div class="evaluate_content">
-                <label for="comments">Comments:</label>
+            <label for="comments">Comments:</label>
                 <textarea name="comments" id="comments" rows="4"></textarea>
+            <div class="evaluate_content">
+                
                 <ol class="questions_list">
                     {% for question in template.questions.all %}
                         <li class="question">

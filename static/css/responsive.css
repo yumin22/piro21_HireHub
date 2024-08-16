@@ -6,7 +6,7 @@
 
 @media (max-width: 690px) {
    header {
-      height: 100px;
+      height: 90px;
    }
    main {
       height: calc(100vh - 100px);
@@ -14,8 +14,8 @@
    .initial_btns {
       display: none;
    }
-   .applicant_navbar {
-      justify-content: center;
+   #mainLogo {
+      width: 15rem;
    }
    .main_comment {
       margin-top: 2rem;

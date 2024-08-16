@@ -11,7 +11,7 @@ section {
 
 .questions_section {
     display: flex;
-    height: 100%;
+    height: calc(100% - 40px);
 }
 
 
@@ -40,7 +40,6 @@ section {
 
 .questions_section .application_container {
     width: 50%;
-    margin-top: 20px;
 }
 
 .questions_section .applicant_title {
@@ -73,7 +72,23 @@ section {
 }
 
 .questions_section .question {
-    font-size: 2rem;
+    font-size: 1.8rem;
+}
+
+.questions_section .application_text {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    margin-left: 2rem;
+}
+
+.questions_section .question_btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.toggleAnswerForm {
+    z-index: 1 !important;
 }
 
 .questions_section .answers p {
@@ -111,28 +126,28 @@ section {
 .questions_section .questions {
     width: 50%;
     padding: 0 20px;
-    margin-top: 20px;
-}
-
-.questions_section #questionList {
-    height: 70%;
-    overflow-y: scroll;
+    display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 40px);
 }
 
-.questions_section #questionList::-webkit-scrollbar {
-    width: 8px;
+
+.questions_section #question_list {
+    height: 90%;
+    overflow-y: scroll;
+    flex-direction: column-reverse;
 }
-.questions_section #questionList::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: black;
+
+.questions_section #question_listt::-webkit-scrollbar {
+    display: none;
 }
 
 .questions_section .individualquestion{
-    background-color: var(--mediumprocess-color);
+    background-color: #EAF1FD;
     border-radius: 10px;
     margin: 10px 0;
-    padding: 15px 15px 20px 15px;
+    padding: 15px;
     overflow-y: scroll;
     flex-direction: column;
 }
@@ -149,11 +164,15 @@ section {
     margin-bottom: 5px;
 }
 
-.questions_section #question-form {
-    height: 20%;
+.questions_section .question_box {
+    height: 10%;
     border: 2px solid #ddd;
     border-radius: 7px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.questions_section #question-form {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -164,7 +183,7 @@ section {
     border: none;
     box-sizing: border-box;
     font-size: 16px;
-    max-height:50px;
+    max-height:40px;
     margin-left: 20px;
 }
 

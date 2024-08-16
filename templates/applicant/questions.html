@@ -13,9 +13,9 @@
                 </div>
                 <div id="applicationContent">
                     {% for answer in answers %}
-                        <p class="question"><strong>{{ answer.question.question_text }}</strong></p>
-                        <p>{{ answer.answer_text }}</p>
-                        <p><small>작성자: {{ answer.user.username }}</small></p>
+                        <span class="question"><strong>{{ answer.question.question_text }}</strong></span>
+                        <p class="application_text">{{ answer.answer_text }}</p>
+        
                     {% endfor %}
                 </div>
                 <div id="commonQuestionContent" style="display:none;">
@@ -31,8 +31,10 @@
                 <li class="individualquestion" data-question-id="{{ question.id }}">
                     <div class="question" data-question-id="{{ question.id }}">
                         질문: {{ question.text }}
-                        <button class="deleteQuestionBtn" data-question-id="{{ question.id }}">삭제</button>
-                        <button class="toggleAnswerForm">답변 보기</button>
+                        <div class="question_btn">
+                            <button class="deleteQuestionBtn" data-question-id="{{ question.id }}">삭제</button>
+                            <button class="toggleAnswerForm">답변 보기</button>
+                        </div>
                         <div class="answersheet" style="display:none">
                             <ul class="answerList">
                                 {% for answer in question.answers.all %}

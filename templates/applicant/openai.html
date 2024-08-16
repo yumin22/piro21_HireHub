@@ -12,23 +12,18 @@
             <span>| AI Recommend</span>
         </div>
         <div class="recommend_navbar">
-            <a href=""><i class="ri-corner-down-left-fill"></i>프로필로 돌아가기</a>
+            <button onclick="goBack()"><i class="ri-corner-down-left-fill"></i>프로필로 돌아가기</button>
         </div>
     </div>
-    <div class="recommend_content">
-        <div id="recommend_content_container">
-            <p class="airecommend">{{ questions }}</p>
+    <div class="recommend_content_container">
+        <div id="recommend_content_scroll">
+            <div>{{ questions|safe }}</div>
         </div>
-        <button type="button" onclick="copyText()">전체 복사하기</button>
     </div>
 </div>
 <script>
-    const recommendContent = document.getElemendById("recommend_content_container");
-
-    function copyText() {
-        window.navigator.clipboard.writeText(recommendContent.textContent).then(() => {
-            alert("복사완료!");
-        })
+    function goBack() {
+        window.history.back();
     }
-</script>
+    </script>
 {% endblock %}
