@@ -6,7 +6,7 @@ section {
 
 
 #evaluation_section {
-    height: 100%;
+    height: calc(100% - 4.8rem);
 }
 
 #evaluation_section .container2 {
@@ -62,9 +62,7 @@ section {
     width: 8px;
 }
 
-#evaluation_section .evaluate_content::-webkit-scrollbar-thumb {
 
-}
 #evaluation_section .questions_list {
     padding: 0;
     margin: 0;

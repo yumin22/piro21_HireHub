@@ -141,8 +141,9 @@ section.all_in_one p {
 }
 
 #arrow {
-    width: 120%; 
+    width: 1220px; 
     height: auto; 
+    animation: slide 3s ease-in-out;
 }
 
 
@@ -310,5 +311,14 @@ footer {
     to {
         opacity: 1;
         transform: translateY(0); /* 제자리로 이동 */
+    }
+}
+
+@keyframes slide {
+    0%{
+        transform: translateX(-1500px);
+    }
+    100%{
+        transform: translateX(0px);
     }
 }
