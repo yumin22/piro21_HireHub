@@ -89,7 +89,6 @@ h4 {
 /* 클래스가 없는 기본 a 태그 요소는 기본 스타일을 가져옵니다. */
 a:not([class]) {
   text-decoration-skip-ink: auto;
-  color: currentColor;
 }
 
 /* 이미지 관련 작업을 더 쉽게 합니다. */

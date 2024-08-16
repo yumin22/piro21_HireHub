@@ -21,14 +21,13 @@ $(document).ready(function() {
         event.preventDefault();
 
         var applicantId = $('#load-comment').data('applicant-id');
-        console.log(applicantId);
         var url = applicantId + "/comment/";
-        console.log($('#comment-form').serialize())
 
         $.ajax({
             url: url, //$('#comment-form').attr('action'), // 폼의 액션 URL을 사용
             type: 'POST',
             data: $('#comment-form').serialize(),
+            async: false,
             headers: {
                 'X-CSRFToken': csrftoken
             },
@@ -36,7 +35,9 @@ $(document).ready(function() {
                 console.log('Server response:', data); // 응답 데이터 로그 출력
                 if (data.success) {
                     $('#comment_list').append(
-                        `<div class="comment"><small><strong>작성자:</strong> ${data.comment.interviewer}</small><p>| ${data.comment.text}</p></div>`
+                        `<div class="comment" data-comment-id="${data.comment.id}"><small><strong>작성자:</strong> ${data.comment.interviewer}</small><p>| ${data.comment.text}</p>
+                        <button class="deleteCommentBtn" data-comment-id="${data.comment.id}">삭제</button></div>
+                        `
                     );
                     $('#id_text').val(''); // 입력 필드를 비웁니다.
                 } else {
@@ -54,7 +55,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     // 코멘트 삭제
     $(document).on('click', '.deleteCommentBtn', function() {
-        if (!confirm('정말로 이 질문을 삭제하시겠습니까?')) {
+        if (!confirm('정말로 이 댓글을 삭제하시겠습니까?')) {
             return;
         }
 

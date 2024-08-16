@@ -6,8 +6,8 @@ section {
 .profile_header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 1.5rem;
+    align-items: center;
 }
 .profile_logo > span {
     font-size: 3.2rem;
@@ -18,6 +18,8 @@ section {
 
 .profile_navbar {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile_navbar > i {
@@ -135,6 +137,7 @@ section {
     display: flex ;
     flex-direction: row;
     gap: 5px;
+    align-items: center;
  
 }
 
@@ -160,6 +163,7 @@ section {
     border-radius: 7px;
     gap: 5px;
     margin-right: 10px;
+    height: 38px;
 }
 
 .ri-circle-fill {
@@ -204,4 +208,24 @@ section {
 ::-webkit-scrollbar {
     width: 5px; /* 수직 스크롤바의 너비 */
     height: 12px; /* 수평 스크롤바의 높이 */
+}
+
+@keyframes blink {
+    0% {
+        color: red;
+    }
+    50% {
+        color: white;
+    }
+    100% {
+        color: red;
+    }
+}
+
+.recording {
+    animation: blink 2s infinite !important;
+}
+
+.not-recording {
+    color: red;
 }

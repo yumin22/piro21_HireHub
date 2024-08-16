@@ -15,7 +15,7 @@
             <div class="application_text">
                     <button id="deleteRecordingBtn" style="{% if not recording_exists %}display: none;{% endif %}"><i class="ri-delete-bin-5-fill"></i></button>
                     <audio id="audioPlayback" controls style="display: none;"></audio>
-                    <button id="recordBtn"><i class="ri-circle-fill"></i>REC</button>
+                    <button id="recordBtn"><i class="ri-circle-fill not-recording"></i>REC</button>
             </div>
             <i class="ri-menu-line"></i>
             <div class="actions">
@@ -69,9 +69,13 @@
             </div>
         </div>
     </div>
-    <div id="comment_section"></div>
-    <div id="question_section"></div>
-    <div id="evaluation_section"></div>
+    <div id="comment_section" style="display:none;">
+        {% include 'applicant/comments.html' %}
+    </div>
+    <div id="question_section" style="display:none;">
+        {% include 'applicant/questions.html' %}
+    </div>
+    <div id="evaluation_section" style="display:none;"></div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'js/profile.js' %}"></script>
