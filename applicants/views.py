@@ -481,3 +481,6 @@ def apply_result(request):
         return render(request, 'for_applicant/apply_result.html', context)
     else:
         return redirect('applicants:apply_check')
+
+def apply_timeover(request):
+    return render(request, 'for_applicant/timeover.html')
