@@ -74,6 +74,18 @@ section {
 
 .questions_section .question {
     font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.questions_section .question_btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.toggleAnswerForm {
+    z-index: 1 !important;
 }
 
 .questions_section .answers p {
@@ -129,10 +141,10 @@ section {
 }
 
 .questions_section .individualquestion{
-    background-color: var(--mediumprocess-color);
+    background-color: #EAF1FD;
     border-radius: 10px;
     margin: 10px 0;
-    padding: 15px 15px 20px 15px;
+    padding: 15px;
     overflow-y: scroll;
     flex-direction: column;
 }
