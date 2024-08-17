@@ -154,7 +154,7 @@
 
 @media (max-width: 1100px) {
    #arrow {
-      display: none; 
+      display: none !important; 
    }
 
    .img_container {
@@ -169,9 +169,7 @@
       grid-template-columns: repeat(2, 1fr); 
       gap: 40px; 
       justify-content: center;
-      margin-left: 0;
-      margin-top: 20px;
-      margin-bottom: 0;
+      align-items: center;
    }
 
    .img_list img {
