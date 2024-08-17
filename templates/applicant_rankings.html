@@ -33,7 +33,7 @@
                         {% if application.interview_team.id == interview_team.id %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
-                                <td>{{ application.name }}</td>
+                                <td class="applicant_name" data-application-id="{{ application.id }}">{{ application.name }}</td>
                                 <td>{{ application.total_score }}</td>
                             </tr>
                         {% endif %}

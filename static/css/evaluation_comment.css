@@ -1,0 +1,26 @@
+main {
+    height: calc(100vh - 80px);
+    padding: 40px 50px 40px;
+    background-color: #ffffff;
+}
+.evaluation_title {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.evaluation_title > i {
+    position: absolute;
+    font-size: 2rem;
+    color: #699BF7;
+    left: 258px;
+    top:110px;
+
+}
+
+.evaluation_title > h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #1C65EF;
+    font-family: var(--eng-font);
+}
