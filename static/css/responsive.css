@@ -194,3 +194,11 @@
       justify-content: center;
    }
 }
+@media (max-width: 430px) {
+   section.all_in_one {
+      height: 100% !important;
+   }
+   body {
+      width: 100vh;
+   }
+}
