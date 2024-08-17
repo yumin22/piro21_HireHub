@@ -71,6 +71,7 @@ section {
 
 .questions_section .question {
     font-size: 1.8rem;
+    margin-bottom: 15px;
 }
 
 .questions_section .application_text {
@@ -109,10 +110,8 @@ section {
 
 .questions_section #commonQuestionContent {
     display: none; /* 초기 상태에서 숨김 */
-    background-color: #dfdede;
     height: 95%;
     border-radius: 10px;
-    margin: 10px 0;
     padding: 10px;
     overflow-y: scroll;
     flex-direction: column;
