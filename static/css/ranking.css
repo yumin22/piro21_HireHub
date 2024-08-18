@@ -82,3 +82,7 @@ td {
     text-align: center;
     padding-top:5px;
 }
+
+.hidden {
+    display: none;
+}

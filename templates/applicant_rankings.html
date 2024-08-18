@@ -39,7 +39,7 @@
                                     var s{{forloop.counter}} = counter
                                     document.getElementById("{{forloop.counter}}").innerHTML = s{{forloop.counter}};
                                 </script>
-                                <td>{{ application.name }}</td>
+                                <td class="applicant_name" style="cursor: pointer;" data-application-id="{{ application.id }}">{{ application.name }}</td>
                                 <td>{{ application.total_score }}</td>
                             </tr>
                         {% endif %}

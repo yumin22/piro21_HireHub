@@ -27,3 +27,43 @@ window.addEventListener('load', adjustFontSize);
 
 // 창 크기가 조정될 때마다 폰트 크기 조정
 window.addEventListener('resize', adjustFontSize);
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const applicantNames = document.querySelectorAll('.applicant_name');
+    const contentToHide = document.querySelector('main');
+
+    applicantNames.forEach(applicant => {
+        applicant.addEventListener('click', function () {
+            const applicationId = this.dataset.applicationId;
+            const baseUrl = window.location.origin; // 현재 페이지의 도메인과 포트를 가져옴
+            const fetchUrl = `${baseUrl}/evaluations/evaluations/comment/${applicationId}`;
+
+            // AJAX 요청
+            fetch(fetchUrl)
+            .then(response => response.text())  // HTML 텍스트로 응답 받기
+            .then(data => {
+                const popup = document.createElement('div');
+                popup.classList.add('popup');
+
+                popup.innerHTML = `
+                    <div class="popup-content">
+                        ${data}
+                    </div>
+                `;
+
+                document.body.appendChild(popup);
+
+                // 원래 화면의 특정 요소 숨기기
+                contentToHide.classList.add('hidden');
+
+                popup.querySelector('.close-popup').addEventListener('click', function () {
+                    document.body.removeChild(popup);
+                    contentToHide.classList.remove('hidden');
+                });
+            })
+            .catch(error => console.error('Error:', error));
+                });
+    });
+});
