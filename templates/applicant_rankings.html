@@ -29,11 +29,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <script> var counter = 0 </script>
                     {% for application in applications %}
                         {% if application.interview_team.id == interview_team.id %}
                             <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td class="applicant_name" style="cursor: pointer;" data-application-id="{{ application.id }}">{{ application.name }}</td>
+                                <td id="{{forloop.counter}}">{{ forloop.counter }}</td>
+                                <script>
+                                    var counter = counter+1
+                                    var s{{forloop.counter}} = counter
+                                    document.getElementById("{{forloop.counter}}").innerHTML = s{{forloop.counter}};
+                                </script>
+                                <td>{{ application.name }}</td>
+
                                 <td>{{ application.total_score }}</td>
                             </tr>
                         {% endif %}

@@ -36,6 +36,7 @@ section.main h2 {
     padding: 5px;
     letter-spacing: 8px;
     animation-delay: 0.3s;
+    font-family: var(--eng-font);
 }
 
 section.main h1 {
@@ -86,6 +87,7 @@ section.main a {
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1);
     animation: floating 1.5s ease-in-out infinite;
+    font-weight: 600;
 }
 
 section.main a:hover {
@@ -116,6 +118,7 @@ section.all_in_one h2 {
     padding-bottom: 5px;
     letter-spacing: 2px;
     animation-delay: 0.6s;
+    font-family: var(--eng-font);
 }
 
 section.all_in_one p {
@@ -206,6 +209,7 @@ section.assistant h2 {
     padding-bottom: 5px;
     letter-spacing: 2px;
     animation-delay: 0.6s;
+    font-family: var(--eng-font);
 }
 
 section.assistant p {
@@ -250,6 +254,7 @@ section.assistant p {
 }
 
 #info {
+    width: 200px;
     opacity: 0;
     transition: opacity 3s ease-out; 
 }
@@ -279,6 +284,7 @@ section.interview h2 {
     padding-bottom: 5px;
     letter-spacing: 2px;
     animation-delay: 0.6s;
+    font-family: var(--eng-font);
 }
 
 section.interview p {
@@ -327,6 +333,7 @@ section.final h1 {
     padding: 5px;
     letter-spacing: 8px;
     animation-delay: 0.3s;
+    font-family: var(--eng-font);
 }
 
 section.final a {
@@ -343,7 +350,7 @@ section.final a {
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.1);
     animation: floating 1.5s ease-in-out infinite;
-
+    font-weight: 600;
 }
 
 section.final a:hover {
@@ -370,24 +377,27 @@ footer {
 
     color: #333333;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
 .footer_title {
     padding: 60px;
+    margin-left: 40px;
 }
 
 .footer_title > h1{
     font-size: 4rem;
     color: #666;
     letter-spacing: 2px;
+    font-family: var(--eng-font);
 }
 
 .social_container {
     display: block;
     margin: 20px;
-    margin-top: 100px;
-    margin-right: 40px;
+    margin-right: 100px;
+    font-family: var(--eng-font);
 }
 
 .social_container > a {
@@ -399,6 +409,7 @@ footer {
 
 .social_container > a > i {
     padding-right: 10px;
+    font-size: 2rem;
 }
 
 #title_box {

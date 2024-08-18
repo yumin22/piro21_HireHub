@@ -56,6 +56,26 @@ def search_applicant(request):
     applicants = applicants.filter(~Q(status = 'submitted'))
     results = [{'id': applicant.id, 'name': applicant.name} for applicant in applicants]
     return JsonResponse(results, safe=False)
+
+def pass_document(request, applicant_id):
+    if request.method == 'POST':
+        try:
+            applicant = Application.objects.get(pk=applicant_id)
+            applicant.status = 'interview_scheduled'
+            applicant.save()
+            return JsonResponse({'success': True})
+        except Application.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Applicant not Found'})
+
+def fail_document(request, applicant_id):
+    if request.method == 'POST':
+        try:
+            applicant = Application.objects.get(pk=applicant_id)
+            applicant.status = 'submitted'
+            applicant.save()
+            return JsonResponse({'success': True})
+        except Application.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Applicant not Found'})
     
 def delete_recording(request, pk):
     applicant = get_object_or_404(Application, pk=pk)
@@ -392,9 +412,7 @@ def applicant_rankings(req):
     applications = Application.objects.annotate(
         total_score=Coalesce(Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)),0) # Evaluation모델을 역참조
     ).order_by('-total_score')
-
     interview_teams = InterviewTeam.objects.all()
-
     for interview_team in interview_teams:
         score_list = []
         for application in applications:
@@ -409,10 +427,6 @@ def applicant_rankings(req):
         if len(score_list) != 0:
             interview_team.average_score = round(sum(score_list)/len(score_list),2)
             interview_team.save()
-    
-    applications = Application.objects.annotate(
-        total_score=Sum('evaluations__total_score', filter=models.Q(evaluations__is_submitted=True)) # Evaluation모델을 역참조
-    ).order_by('-total_score')
     context = {
         'applications': applications,
         'interview_teams': interview_teams,
