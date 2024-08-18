@@ -18,22 +18,30 @@
     <div class="evaluation_title">
         <h1>| Comments of Evaluations</h1>
     </div>
-    <div class="container container2">
-        <h2>{{application.name}}</h2>
-        <div style="display: flex; gap: 0.5rem;">
-            <strong>담당 면접관:</strong>
-            <div>                        
-                {% for interviewer in application.interviewer.all%}
-                <span> {{ interviewer.name }}</span>
-                {% endfor %}
+    <section>
+        <div class="container">
+            <h2>{{application.name}}</h2>
+            <div class="interviewer" style="display: flex; gap: 0.5rem;">
+                <strong>담당 면접관:</strong>
+                <div>                        
+                    {% for interviewer in application.interviewer.all%}
+                    <span> {{ interviewer.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="container_bottom">
+                <div class="comment_content">
+                    <ul class="comment_container">
+                        {% for evaluation in evaluations %}
+                        <li>
+                            <label class="interviewer_name">{{evaluation.interviewer.name}}의 한줄평</label>
+                            <p class="comment">{{evaluation.comments}}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <button class="close-popup">닫기</button>
             </div>
         </div>
-        <div class="comment_container">
-            {% for evaluation in evaluations %}
-            <p>{{evaluation.interviewer.name}}의 한줄평</p>
-            <p>{{evaluation.comments}}</p>
-            {% endfor %}
-        </div>
-    </div>
-    <button class="close-popup">닫기</button>
+    </section>
 </main>
