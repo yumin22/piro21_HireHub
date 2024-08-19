@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{% static 'css/variable.css' %}">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
     <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <style>
         body {
             font-family: 'Pretendard', sans-serif !important;
@@ -38,12 +40,12 @@
             <div>
                 <div>
                     <h2 id="animatedText">HIREHUB</h2>
-                    <h1 id="animatedText">효율적인 인재 영입의 시작</h1>
+                    <h1 id="animatedText">효율적인 <span class="line-break">인재 영입의 시작</span></h1>
                     <p>탁월한 <span>채용 전략</span>과 <span>지원자 관리</span>를</p>
                     <p>제공하는 채용 솔루션</p>
                 </div>
                 <div class="button_box">
-                    <a href="https://open.kakao.com/o/gmQbV5Ig" target="_blank">문의하기</a><!-- 임시 url -->
+                    <a href="https://www.instagram.com/hirehub_official?igsh=bG5yNnprbG0xbmY2" target="_blank">문의하기</a><!-- 임시 url -->
                     <a href="{% url 'accounts:initialInterviewer' %}">시작하기</a>
                 </div>
             </div>
@@ -116,7 +118,7 @@
             <div class="social_container">
                 <a href=""><i class="ri-kakao-talk-fill"></i>hirehub_kakao</a>
                 <a href=""><i class="ri-instagram-fill"></i>@hirehub_official</a>
-                <a href=""><i class="ri-mail-fill"></i>hirehub.gmail.com</a>
+                <a href=""><i class="ri-mail-fill"></i>hirehubkr.gmail.com</a>
             </div>
         </footer>
     </main>

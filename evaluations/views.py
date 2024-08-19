@@ -94,3 +94,12 @@ def update_evaluation(req,pk):
     }
     return render(req, 'evaluation_update.html', ctx)
 
+def evaluation_comment(req, application_id):
+    application = Application.objects.get(id=application_id)
+    evaluations = Evaluation.objects.filter(application = application_id)
+
+    ctx = {
+        'application': application,
+        'evaluations': evaluations,
+    }
+    return render(req, 'evaluation_comment.html', ctx)
