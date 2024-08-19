@@ -1,3 +1,4 @@
+
 @media (max-width: 1201px) {
    body {
       display: flex;
@@ -71,6 +72,8 @@
    header {
       height: 90px;
       width: 100vw;
+
+
    }
    main {
       height: calc(100vh - 100px);
@@ -78,8 +81,10 @@
    .initial_btns {
       display: none;
    }
+
    #mainLogo {
       width: 15rem;
+
    }
    .main_comment {
       margin-top: 2rem;
@@ -99,6 +104,7 @@
       margin: 0;
       margin-bottom: 1.5rem;
    }
+
 
    .apply_container h2 {
       font-size: 2.4rem;
@@ -186,6 +192,9 @@
       font-size: 5rem;
       line-height: 6rem;
    }
+
+}
+
    #animatedText {
       font-size: 4rem;
    }
@@ -219,4 +228,5 @@
       height: 100% !important;
    }
 }
+
 

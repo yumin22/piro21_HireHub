@@ -1,63 +1,40 @@
-.around {
-    height: 100%;
-}
 
-
-.title {
-    display: flex;
-    justify-content: start;
-    padding-top: 45px;
-    padding-left: 57px;
-}
-
-.title > h1 {
-    font-size: 4rem;
-    font-weight: 700;
-}
-
-.title > i {
-    font-size: 3.5rem;
-}
-
-.title > p {
-    font-size: 2.4rem;
-    font-weight: 700;
-    line-height: 210%;
-}
 
 .sideCtx {
     display: flex;
     justify-content: end;
+    margin-bottom: 2rem;
 }
 
 .sideCtx > a {
     font-size: 1.8rem;
-    font-weight: 900;
+    font-weight: bold;
     padding: 5px 30px 0 0;
     text-decoration: none;
+    color: black;
 }
 
-.search-applicant {
-    width: 400px;
+.search_box {
+    width: auto;
     height: 35px;
     border-radius: 20px;
-    background-color: var(--box-color);
-    margin-right: 90px;
+    background-color: var(--lightprocess-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 10px;
+    padding: 0 10px 0;
 }
 
-.search-applicant > input {
+.search_box > input {
     border: none;
     background-color: transparent;
     font-size: 1.6rem;
     padding-left: 5px;
 }
 
-.search-applicant > input:focus {
+.search_box > input:focus {
     outline: none;
+    background-color: transparent !important;
 }
 
 .searchBtn  {
@@ -65,64 +42,88 @@
     margin-right: 15px;
 }
 
-
-.applicant_container {
+#applicant-search-results {
     display: flex;
-    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+    padding-left: 2rem;
+}
+#applicant-search-results li {
+    list-style: none;
+    margin-right: 5px;
+    font-size: 1.5rem;
+}
+#applicant-search-results li:hover {
+    font-weight: bold;
+}
+
+.search_box >  ul > li {
+    display: block;
+    min-height: 10px;
+    z-index: 10;
+}
+
+.search_box > ul > li::before {
+    content: '\00a0'; /* 공백 문자 추가 */
+    visibility: hidden; /* 화면에 보이지 않지만 공간은 차지함 */
+}
+
+.applicant_container{
+    display: flex;
+    justify-content: space-between;
     align-content: space-around;
-    gap: 10px;
-    height: calc(100% - 14rem);
-    padding: 5rem;
+    height: calc(100% - 3.5rem);
 }
     
 .applicants_list {
     width: 32%;
+    height: 100%;
+    padding: 10px;
 }
 
 .applicants_list > p {
-    margin:0;
-    padding: 10px 0;
-    border-bottom: 5px solid black;
-    margin-bottom: 20px;
-    font-size: 2rem;
+    padding-left: 10px;
+    color: var(--main-color);
+    border-bottom: 0.5rem solid var(--main-color);
+    font-size: 2.6rem;
     font-weight: 700;
-    margin-right: 20px;
-
+    margin-bottom: 2rem;
+}
+/*
+.each_applicant {
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 
+.each_applicant:hover {
+    transform: perspective(500px) translateZ(10px);
+    transition: transform 0.3s ease;
+}
+*/
 .each_applicant {
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    
-    cursor: move;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease; /* 호버가 끝난 후 원래 상태로 돌아가기 위한 전환 효과 */
+}
+
+.each_applicant:hover {
+    transform: translateY(-3px); /* 요소를 왼쪽으로 10px 이동 */
 }
 
 .scheduled {
-    background-color: var(--lightprocess-color);
-    width: 89%;
-    height: 39px;
-    padding: 0 10px 0 10px;
-    margin-top: 20px;
-    margin-left: 10px;
+    background-color: var(--box-color);
 }
 
 .in_progress {
-    background-color: var(--mediumprocess-color);
-    width: 89%;
-    height: 39px;
-    padding: 0 10px 0 10px;
-    margin-top: 20px;
-    margin-left: 10px;
+    background-color: var(--box-color);
 }
 
 .completed {
-    background-color: var(--process-color);
-    width: 89%;
-    height: 39px;
-    padding: 0 10px 0 10px;
-    margin-top: 20px;
-    margin-left: 10px;
+    background-color: var(--box-color);
 }
 
 .applicant_info {
@@ -131,10 +132,9 @@
     justify-content: start;
     list-style: none;
     padding-left: 0;
-    display: flex;
     gap: 10px;
-    margin: 5px 0;
-    padding-top: 7px;
+    flex-wrap: nowrap;
+    margin: 0;
 }
 
 .infoName {
@@ -149,7 +149,7 @@
     font-size: 1.4rem;
     font-weight: 500;
     padding-right: 10px;
-    margin-left: 20px;
+
 }
 
 .infoMajor {
@@ -163,6 +163,8 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
     height: calc(100% - 7.5rem);
+    padding: 20px;
+    padding-top: 1rem;
 }
 .scroll_section::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/

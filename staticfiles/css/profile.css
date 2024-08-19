@@ -1,5 +1,4 @@
 section {
-    padding: 30px 20px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -7,35 +6,64 @@ section {
 .profile_header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 1.5rem;
+    align-items: center;
 }
-.profile_logo {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-left: 2rem;
+.profile_logo > span {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--main-color);
+    font-family: var(--eng-font);
+}
+
+.profile_navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_navbar > i {
+    color: var(--main-color);
+    font-size: 2.6rem;
+    font-weight: 700;
 }
 
 .actions {
-    display: flex;
-    justify-content: space-between;
-    font-size: 2rem;
+    background-color: var(--box-color);
+    display: none;
+    padding: 10px;
+    position: absolute;
+    text-align: end;
+    flex-direction: column;
+    font-size: 1.8rem;
     font-weight: bold;
-    gap: 1.5rem;
-    margin-right: 1rem;
+    gap: 3px;
+    right: 40px;
+    top: 180px;
+    z-index: 10;
 }
+
+.actions > button {
+    text-align: end;
+    color: var(--main-color);
+    font-family: var(--eng-font);
+}
+
 .actions a {
     text-decoration: none;
+    text-align: end;
+    color: var(--main-color);
+    font-family: var(--eng-font);
 }
 
 .profile_section {
     display: flex;
-    height: calc(100% - 80px);
+    height: calc(100% - 48px);
     /* height: 100%; */
     /* padding-bottom: 20px; */
 }
 
-.profile_container {
+.profile_section .profile_container {
     background-color: var(--box-color);
     border-radius: 10px;
     width: 40%;
@@ -45,9 +73,10 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 0.4rem 2rem rgba(28, 101, 239, 0.2);
 }
 
-.profile_personal {
+.profile_section .profile_personal {
     display: flex;
     align-items: center;
     text-align: center;
@@ -55,27 +84,28 @@ section {
     width: 100%;
     border-bottom: 2px solid black;
 }
-.profile_name {
+.profile_section .profile_name {
     font-size: 2.5rem;
     font-weight: bold;
-    width: 40%;
+    width: 30%;
 }
 
-.profile_detail {
+.profile_section .profile_detail {
     display: flex;
     padding-left: 60px;
     gap: 30px;
     width: 60%;
 }
-.profile_detail1 {
+.profile_section .profile_detail1 {
     display: flex;
     flex-direction: column;
     gap: 10px;
     font-weight: bold;
     font-size: 2rem;
     text-align: start;
+    width: 70%;
 }
-.profile_detail2 {
+.profile_section .profile_detail2 {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -83,7 +113,7 @@ section {
     text-align: start;
 }
 
-.profile_interview {
+.profile_section .profile_interview {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,64 +121,105 @@ section {
     height: 50%;
 }
 
-.application_container{
+.profile_section .application_container{
     width: 60%;
     height: 100%;
-    padding: 0 10px;
+
+}
+
+.application_container > p {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--main-color);
+    font-family: var(--eng-font);
 }
 
 .application_text {
-    display: flex;
-    justify-content: start;
+    display: flex ;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+ 
 }
 
-.application_text h3 {
+.application_text p {
     font-size: 2rem;
     padding-left: 10px;
+    font-weight: bold;
 }
 
-.application_text > button {
-    width: 50px;
-    height: 30px;
-    background-color: black;
-    color: white;
-    font-size: 1.2rem;
-    padding: 10px; 
-    text-align: center;
-    line-height: 100%;
-    margin-left: 30px;
+#deleteRecordingBtn {
+    font-size: 3rem;
+    color: var(--main-color);
+}
+
+#recordBtn {
+    display: flex;
+    background-color: var(--main-color);
+    color: var(--box-color);
+    font-family: var(--eng-font);
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 2px 15px 2px;
+    border-radius: 7px;
+    gap: 5px;
+    margin-right: 10px;
+    height: 38px;
+}
+
+.ri-circle-fill {
+    color: red;
+}
+
+.profile_section .application_content {
+    height: calc(100% - 5rem);
     border-radius: 10px;
-}
-
-.application_content {
-    height: calc(100% - 3rem);
-    border: 2px solid black;
-    border-radius: 1rem s;
     margin-top: 1rem;
     padding: 1.5rem 2rem;
     overflow-y: scroll;
     flex-direction: column;
     counter-reset: section;
+    box-shadow: 0 0.4rem 2rem rgba(28, 101, 239, 0.2);
 }
-.application_question::before {
+.profile_section .application_question::before {
     counter-increment: section;
     content: counter(section) ". ";
     font-weight: 600;
 }
-.application_content::-webkit-scrollbar {
-    width: 8px;
-}
 
-.application_content::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: black;
-}
-.application_question {
+.profile_section .application_question {
     font-size: 2rem;
 }
 
-.application_answer {
+.profile_section .application_answer {
     margin: 10px 0;
     margin-left: 2rem;
     font-size: 1.5rem;
+}
+
+
+/* 귀찮아서 일단 패스... */
+::-webkit-scrollbar {
+    width: 5px; /* 수직 스크롤바의 너비 */
+    height: 12px; /* 수평 스크롤바의 높이 */
+}
+
+@keyframes blink {
+    0% {
+        color: red;
+    }
+    50% {
+        color: white;
+    }
+    100% {
+        color: red;
+    }
+}
+
+.recording {
+    animation: blink 2s infinite !important;
+}
+
+.not-recording {
+    color: red;
 }
