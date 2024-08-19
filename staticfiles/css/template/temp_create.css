@@ -4,27 +4,35 @@ body {
 }
 
 .createEntire {
-    margin-left: 57px;
     display: flex;
     justify-content: space-between;
 
 }
+.createform {
+    padding: 10px;
+    box-shadow: 0 0.4rem 2rem rgba(28,101,239, 0.2);
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    height: calc(100% - 60px);
+}
 
 .createWrite {
     height: auto;
+    width: 40%;
 }
 
 .createPrev {
     display: block;
-    margin: 40px 30px 10px 30px;
-    border-radius: 20px 20px 10px 10px;
+    margin-left: 30px;
+    border-radius: 30px 30px 10px 10px;
     min-width: 60%;
-    min-height: 600px;
-    background-color: #E2E2E2;
+    height: calc(100vh - 17rem);
+    background-color: #FFFFFF;
+    border: 2px solid rgba(28,101,239, 0.2)
 }
 
 .createPrev > h2 {
-    background-color: black;
+    background-color: #1C65EF;
     padding: 10px 0 10px 20px;
     border-radius: 20px 20px 0 0;
     color: white;
@@ -36,7 +44,6 @@ body {
 
 .createHeader {
     display: flex;
-    margin-top: 30px;
 }
 
 .createHeader > h1 {
@@ -49,18 +56,19 @@ body {
     font-size: 30px;
     font-weight:500;
     line-height: 200%;
+    color: var(--main-color);
 }
 
 .createHeader > p {
     font-size: 24px;
     font-weight: 700;
     line-height: 240%;
+    color: #1C65EF;
 }
 
 .templateForm {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
 }
 
 .formTitle > h2{
@@ -73,11 +81,10 @@ body {
 .formTitle > input {
     border: 3px solid #E2E2E2;
     border-radius: 7px;
-    width: 43rem;
-    height: 4.3rem;
+    width: 100%;
     font-size: 16px;
-    padding: 0 10px 0 10px;
-    margin-bottom: 20px;
+    padding: 10px;
+    margin-bottom: 5px;
 }
 
 .formTitle > input::placeholder {
@@ -87,8 +94,8 @@ body {
 .formContent > textarea {
     border: 3px solid #E2E2E2;
     border-radius: 7px;
-    width: 43rem;
-    height:15rem;
+    width: 100%;
+    min-height:15rem;
     font-size: 16px;
     padding: 10px 10px 0 10px;
     margin-bottom: 20px;
@@ -113,9 +120,9 @@ body {
 .formQuestion > div {
     display: block;
     border: 3px solid #E2E2E2;
+    background-color: #FFFFFF;
     border-radius: 7px;
-    width: 43rem;
-    height:15rem;
+    width: 100%;
     font-size: 16px;
     padding: 0 10px 0 10px;
     margin-bottom: 20px;
@@ -152,7 +159,7 @@ body {
 }
 
 .createBtn {
-    background-color: black;
+    background-color: #1C65EF;
     height: 5rem;
     border-radius: 7px;
     display: flex;

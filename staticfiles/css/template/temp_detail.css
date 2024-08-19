@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-    height: calc(100% - 105px);
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -12,47 +12,48 @@ body {
     position: relative;
 }
 
-.DetailTitle {
-    padding-top: 30px;
-    margin-left: 7px;
-    display: flex;
-}
-
-.DetailTitle > a {
-    text-decoration: none;
-}
-
-.DetailTitle > a > i {
-    font-size: 5rem;
-    color: black;
-}
-
-.DetailTitle > h1 {
-
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 180%;
-}
-
 .tempDetail {
     display: flex;
     flex-direction: column;
-    border-radius: 20px 20px 0 0;
-    width: 60%;
+    border-radius: 20px;
+    width: 85%;
     height: 100%;
-    background-color: #E2E2E2;
+    background-color: #FFFFFF;
     position: absolute;
+    box-shadow: 0 0.4rem 2rem rgba(28,101,239, 0.2);
     top: 0;
+    padding-right: 10px;
+}
+
+.detail_more {
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
+    margin-bottom: 10px;
+}
+
+.detail_more > a {
+    font-size: 4rem;
+    color: var(--main-color);
+    cursor: pointer;
+    text-decoration: none;
+    padding-left: 5px;
+
+}
+
+.detail_more > i {
+    font-size: 4rem;
+    color: var(--main-color);
+    padding-right: 5px;
+    cursor: pointer;
 }
 
 .form-title {
     border-radius: 20px 20px 0 0;
     height: 80px;
-    background-color: black;
-    color: white;
-    font-size: 2.4rem;
+    color: #1C65EF;
+    font-size: 2.7rem;
     font-weight: 700;
-    padding-left: 20px;
     padding-top: 25px;
 }
 
@@ -60,8 +61,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 20px 0 0 20px;
-    overflow-y: scroll;
+    padding: 0 0 0 20px;
+    overflow-y: auto;
 }
 
 .form-description > h3 {
@@ -100,42 +101,30 @@ body {
 .question-item {
     font-weight: 500;
 }
+
 .question-item > p { 
     font-weight: bold;
 }
 
 .actions {
-    gap: 20px;
-    display: flex;
+    display: none;
+    background-color: var(--box-color);
+    padding: 10px;
     position: absolute;
-    bottom: 20px;
-    right: 30px;
+    right: 20px;
+    top: 40px;
 }
 
 .btn-custom {
-    width: 96px;
-    height: 33px;
-    background-color: #A8FF82;
-    border-radius: 7px;
-    display: block;
     text-decoration: none;
-    color: black;
-    font-size: 1.6rem;
-    font-weight: 700;
-    text-align: center;
-    line-height: 200%;
+    color: var(--main-color);
+    font-size: 1.8rem;
+    font-weight: 500;
 }
 
 .btn-delete {
-    width: 96px;
-    height: 33px;
-    background-color: #FA0000;
-    border-radius: 7px;
-    display: block;
     text-decoration: none;
-    color: black;
-    font-size: 1.6rem;
-    font-weight: 700;
-    text-align: center;
-    line-height: 200%;
+    color: var(--main-color);
+    font-size: 1.8rem;
+    font-weight: 500;
 }
