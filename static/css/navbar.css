@@ -111,6 +111,7 @@ nav {
 
 main {
 	height: calc(100vh - 80px);
+    width: 100%;
     padding: 40px 50px 40px;
     background-color: #ffffff;
 }

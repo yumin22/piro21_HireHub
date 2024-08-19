@@ -57,36 +57,34 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('section_img_4'),
     ];
 
-
   // IntersectionObserver 설정
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            if (!animatedElement.classList.contains('animate-on-focus')) {
-                animatedElement.classList.add('animate-on-focus');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (!animatedElement.classList.contains('animate-on-focus')) {
+                    animatedElement.classList.add('animate-on-focus');
 
-                elementsToShow.forEach((element, index) => {
-                    // 각 요소에 다른 지연 시간을 적용
-                    const delay = (index + 1) * 500; // 첫 번째 요소 500ms, 두 번째 1000ms, 세 번째 1500ms, 네 번째 2000ms
-                    setTimeout(() => {
-                        element.classList.add('show');
-                    }, delay); // 지연 시간 적용
+                    elementsToShow.forEach((element, index) => {
+                        // 각 요소에 다른 지연 시간을 적용
+                        const delay = (index + 1) * 500; // 첫 번째 요소 500ms, 두 번째 1000ms, 세 번째 1500ms, 네 번째 2000ms
+                        setTimeout(() => {
+                            element.classList.add('show');
+                        }, delay); // 지연 시간 적용
 
-                });
+                    });
 
-                // 애니메이션이 끝난 후 'done' 클래스를 추가하여 상태를 유지
-                animatedElement.addEventListener('transitionend', function() {
-                    animatedElement.classList.add('done');
-                }, { once: true });
+                    // 애니메이션이 끝난 후 'done' 클래스를 추가하여 상태를 유지
+                    animatedElement.addEventListener('transitionend', function() {
+                        animatedElement.classList.add('done');
+                    }, { once: true });
+                }
             }
-        }
+        });
+    }, {
+        threshold: 0.1 
     });
-}, {
-    threshold: 0.1 
-});
 
-
-observer.observe(animatedElement);
+    observer.observe(animatedElement);
 });
 
 document.addEventListener('DOMContentLoaded', function() {

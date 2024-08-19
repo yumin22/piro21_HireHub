@@ -88,7 +88,7 @@ function statusUpdate(applicant_id, status_zone_id) {
     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
     xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
 
-    updateColor(applicant_id, status_zone_id);
+    updateStatus(applicant_id, status_zone_id)
     const data = {
         'applicant_id': applicant_id,
         'status_zone_id': status_zone_id
@@ -109,4 +109,18 @@ function getCookie(name) {
         }
     }
     return cookieValue;
+}
+
+function updateStatus(applicant_id, status_zone_id) {
+    const applicantElement = document.getElementById(applicant_id);
+
+    applicantElement.classList.remove('scheduled', 'in_progress', 'completed');
+
+    if (status_zone_id === '1') {
+        applicantElement.classList.add('scheduled');
+    } else if (status_zone_id === '2') {
+        applicantElement.classList.add('in_progress');
+    } else if (status_zone_id === '3') {
+        applicantElement.classList.add('completed');
+    }
 }

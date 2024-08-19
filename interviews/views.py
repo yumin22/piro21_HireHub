@@ -1,7 +1,7 @@
 import openai
 from dotenv import load_dotenv
 import os
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from applicants.models import Application, Answer
 
 # .env 파일 로드
