@@ -6,12 +6,7 @@
 
 @media (max-width: 690px) {
    header {
-<<<<<<< HEAD
-      height: 90px;
-      width: 100vw;
-=======
       height: 100px;
->>>>>>> 0bce51c ([Edit] 지원서 작성 페이지 css 분리 및 랜딩 페이지, 지원자 관련 페이지 반응형 파일 분리)
    }
    main {
       height: calc(100vh - 100px);
