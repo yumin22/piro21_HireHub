@@ -1,6 +1,10 @@
 {% extends 'for_applicant/base.html' %}
 {% load static %}
 
+{% block head %}
+   <link rel="stylesheet" href="{% static 'css/write_apply.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="apply_container">
    <h2>지원서 | {{ template.name }}</h2>
