@@ -2,7 +2,7 @@
 
 > Hire Hub는 피로그래밍 21기 최종 프로젝트로 탄생한 <strong>면접관을 위한 지원자 관리 웹 서비스</strong> 입니다.
 <br/>
-<img width="100%" src="https://github.com/user-attachments/assets/ed4b9a87-894a-4586-a2b5-491b097d295c">
+<img width="100%" src="https://github.com/user-attachments/assets/cc381c7d-d0a8-446a-8c5c-1e56d098161a">
 
 
 <br/><br/><br/>
