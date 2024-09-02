@@ -28,6 +28,38 @@ Hire Hub는 소규모 집단의 면접관도 쉽게 접근할 수 있는 서비�
 
 <br/><br/>
 
+## 💡 기능 소개
+
+<details>
+  <summary>지원자 관리 기능</summary>
+  <div markdown="1">
+    <img width="100%" src="https://github.com/user-attachments/assets/bf25bf19-de9c-4cd9-8094-cc6134c59343">
+    <img width="100%" src="https://github.com/user-attachments/assets/d6936093-993d-47b8-aac2-4fde21a08288">
+    <img width="100%" src="https://github.com/user-attachments/assets/c0f3d707-35a7-4b3f-9a85-6485da24ed36">
+  </div>
+</details>
+  
+<details>
+  <summary>템플릿 기능</summary>
+  <div markdown="1">
+    <img width="100%" src="https://github.com/user-attachments/assets/54214cba-a7f6-41d0-b337-10c3301e1ea9">
+    <img width="100%" src="https://github.com/user-attachments/assets/4b95fa66-c6df-4913-94e6-00f1eeb4ddc4">
+    <img width="100%" src="https://github.com/user-attachments/assets/43273d4c-dfd6-405e-8951-bcfe3adae8db">
+  </div>
+</details>
+  
+<details>
+  <summary>면접 일정 스케줄링 기능</summary>
+  <img width="100%" src="https://github.com/user-attachments/assets/76b9551a-7a0c-40a7-b59e-0f0c61b7fdeb">
+</details>
+
+<details>
+  <summary>개별 질문 추천 기능</summary>
+  <img width="100%" src="https://github.com/user-attachments/assets/06b1ba21-4aef-4a03-a9fb-e00fb839500e">
+</details>
+
+<br/><br/>
+
 ## 🛠️ 개발 환경
 + <strong>Frontend<strong/>
 
@@ -55,41 +87,7 @@ Hire Hub는 소규모 집단의 면접관도 쉽게 접근할 수 있는 서비�
 
 <br/><br/>
 
-## 💡 기능 소개
-
-<details>
-  <summary>지원자 관리 기능</summary>
-  <div markdown="1">
-    <img width="100%" src="https://github.com/user-attachments/assets/bf25bf19-de9c-4cd9-8094-cc6134c59343">
-    <img width="100%" src="https://github.com/user-attachments/assets/d6936093-993d-47b8-aac2-4fde21a08288">
-    <img width="100%" src="https://github.com/user-attachments/assets/c0f3d707-35a7-4b3f-9a85-6485da24ed36">
-  <div/>
-<details/> 
-
-<br/>
-  
-<details>
-  <summary>템플릿 기능</summary>
-  <div markdown="1">
-    <img width="100%" src="https://github.com/user-attachments/assets/54214cba-a7f6-41d0-b337-10c3301e1ea9">
-    <img width="100%" src="https://github.com/user-attachments/assets/4b95fa66-c6df-4913-94e6-00f1eeb4ddc4">
-    <img width="100%" src="https://github.com/user-attachments/assets/43273d4c-dfd6-405e-8951-bcfe3adae8db">
-  <div/>
-<details/>
-  
-<details>
-  <summary>면접 일정 스케줄링 기능</summary>
-  <img width="100%" src="https://github.com/user-attachments/assets/76b9551a-7a0c-40a7-b59e-0f0c61b7fdeb">
-<details/>
-
-<details>
-  <summary>개별 질문 추천 기능</summary>
-  <img width="100%" src="https://github.com/user-attachments/assets/06b1ba21-4aef-4a03-a9fb-e00fb839500e">
-<details/>
-
-<br/><br/>
-
-## 🛠️ System Architexture
+## 🌐 시스템 아키텍처
 <img width="100%" src="https://github.com/user-attachments/assets/6693c9e0-9f56-41b7-89d2-2fe0428db316">
 
 <br/><br/>
