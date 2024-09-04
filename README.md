@@ -1,9 +1,6 @@
 > 피로그래밍 21기 최종 프로젝트
 # Hire Hub [![CD Pipeline](https://github.com/leegh1025/HireHub-Piro21/actions/workflows/test-cd.yml/badge.svg)](https://github.com/leegh1025/HireHub-Piro21/actions/workflows/test-cd.yml)
 
-
-<br/>
-
 <img width="100%" src="https://github.com/user-attachments/assets/cc381c7d-d0a8-446a-8c5c-1e56d098161a">
 
 
