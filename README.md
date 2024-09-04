@@ -27,7 +27,7 @@
 
 <br/><br/>
 
-## 💡 기능 소개
+## 💡 주요 기능 소개
 
 <details>
   <summary>지원자 관리 기능</summary>
