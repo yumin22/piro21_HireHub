@@ -1,7 +1,10 @@
+> 피로그래밍 21기 최종 프로젝트
 # Hire Hub [![CD Pipeline](https://github.com/leegh1025/HireHub-Piro21/actions/workflows/test-cd.yml/badge.svg)](https://github.com/leegh1025/HireHub-Piro21/actions/workflows/test-cd.yml)
 
-> Hire Hub는 피로그래밍 21기 최종 프로젝트로 탄생한 <strong>면접관을 위한 지원자 관리 웹 서비스</strong> 입니다.
+면접관을 위한 지원자 관리 웹 서비스
+
 <br/>
+
 <img width="100%" src="https://github.com/user-attachments/assets/cc381c7d-d0a8-446a-8c5c-1e56d098161a">
 
 
