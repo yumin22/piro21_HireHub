@@ -1,14 +1,13 @@
 > 피로그래밍 21기 최종 프로젝트
 # Hire Hub [![CD Pipeline](https://github.com/leegh1025/HireHub-Piro21/actions/workflows/test-cd.yml/badge.svg)](https://github.com/leegh1025/HireHub-Piro21/actions/workflows/test-cd.yml)
 
-면접관을 위한 지원자 관리 웹 서비스
 
 <br/>
 
 <img width="100%" src="https://github.com/user-attachments/assets/cc381c7d-d0a8-446a-8c5c-1e56d098161a">
 
 
-<br/><br/><br/>
+<br/>
 
 ## 💻 프로젝트 소개
 인적 자원 시장의 확대 속에서 면접관을 위한 서비스의 부재라는 불편 해소를 목표로 삼아 <br/>
